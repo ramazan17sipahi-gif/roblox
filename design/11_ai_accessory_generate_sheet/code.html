@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Editorial Studio - AI Generation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#403f3f",
+              "surface-bright": "#f7f7f4",
+              "error-dim": "#9f0519",
+              "on-primary-fixed": "#000000",
+              "on-surface-variant": "#5a5c5a",
+              "secondary-fixed": "#e5e2e1",
+              "secondary-dim": "#504f4f",
+              "on-secondary": "#f5f2f1",
+              "on-error-container": "#570008",
+              "primary-dim": "#8c3300",
+              "primary-fixed-dim": "#f86513",
+              "error": "#b31b25",
+              "on-primary-container": "#421400",
+              "surface-container-low": "#f0f1ee",
+              "surface-variant": "#dcddda",
+              "secondary": "#5c5b5b",
+              "on-background": "#2d2f2d",
+              "on-primary": "#ffefea",
+              "on-error": "#ffefee",
+              "on-secondary-fixed-variant": "#5c5b5b",
+              "secondary-container": "#e5e2e1",
+              "on-primary-fixed-variant": "#511a00",
+              "on-secondary-container": "#525151",
+              "surface-tint": "#9f3b00",
+              "on-tertiary-fixed": "#004f2e",
+              "outline-variant": "#acadab",
+              "on-tertiary-fixed-variant": "#126f44",
+              "tertiary-fixed-dim": "#9aefb9",
+              "on-surface": "#2d2f2d",
+              "primary": "#9f3b00",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-container": "#a8fec6",
+              "inverse-surface": "#0d0f0d",
+              "on-tertiary-container": "#00643b",
+              "outline": "#767775",
+              "inverse-primary": "#ff6a1a",
+              "surface-container": "#e8e8e5",
+              "surface-dim": "#d3d5d1",
+              "inverse-on-surface": "#9c9d9b",
+              "surface-container-highest": "#dcddda",
+              "tertiary-fixed": "#a8fec6",
+              "background": "#f7f7f4",
+              "tertiary-dim": "#005c36",
+              "surface": "#f7f7f4",
+              "primary-container": "#ff793a",
+              "error-container": "#fb5151",
+              "primary-fixed": "#ff793a",
+              "tertiary": "#06693f",
+              "secondary-fixed-dim": "#d7d4d3",
+              "on-tertiary": "#cbffda",
+              "surface-container-high": "#e2e3df"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        font-family: 'Manrope', sans-serif;
+        background-color: #F7F7F4;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .action-gradient {
+        background: linear-gradient(135deg, #FF793A 0%, #9F3B00 100%);
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen flex justify-center items-center p-0 md:p-8">
+
+    <!-- Mobile Device Mockup (iPhone 15 Pro context) -->
+    <div class="relative w-full max-w-[430px] h-[932px] bg-background overflow-hidden md:rounded-[3rem] md:shadow-2xl md:border-[8px] md:border-on-background/5">
+        
+        <!-- Background Screen (Dimmed Preview) -->
+        <div class="absolute inset-0 z-0 brightness-[0.4] saturate-50 overflow-hidden">
+            <!-- Top App Bar Shared Component (Background version) -->
+            <header class="bg-[#F7F7F4]/85 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full fixed top-0 z-50">
+                <div class="flex items-center gap-3">
+                    <img src="https://avatar.iran.liara.run/public/64" class="w-8 h-8 rounded-full bg-surface-container" data-alt="portrait of a young digital artist with glasses in a minimalist studio setting" alt="Avatar">
+                    <span class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight text-xl font-extrabold text-[#2D2F2D]">Studio</span>
+                </div>
+                <span class="material-symbols-outlined text-[#2D2F2D]/60" data-icon="notifications">notifications</span>
+            </header>
+
+            <main class="pt-24 px-6 space-y-8">
+                <!-- Current Design Context -->
+                <div class="aspect-square w-full rounded-lg bg-surface-container-lowest overflow-hidden flex items-center justify-center">
+                    <div class="relative w-full h-full">
+                        <img src="https://images.unsplash.com/photo-1633536708264-b0a68d067609?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover" data-alt="a high-end metallic 3D abstract sculpture floating in a soft pastel studio environment with diffuse lighting" alt="3D Model">
+                        <div class="absolute inset-0 bg-gradient-to-t from-on-background/20 to-transparent"></div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h1 class="font-headline text-3xl font-bold text-on-background">Modern Vesta v.04</h1>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-surface-container-lowest p-5 rounded-lg">
+                            <p class="text-on-surface-variant text-xs font-label tracking-widest uppercase">Complexity</p>
+                            <p class="font-headline text-xl font-bold">Medium</p>
+                        </div>
+                        <div class="bg-surface-container-lowest p-5 rounded-lg">
+                            <p class="text-on-surface-variant text-xs font-label tracking-widest uppercase">Polygons</p>
+                            <p class="font-headline text-xl font-bold">12.4k</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Bottom Sheet Overlay Container -->
+        <div class="absolute inset-0 z-40 flex flex-col justify-end">
+            <!-- Sheet Handle Area -->
+            <div class="w-12 h-1.5 bg-surface-container-highest/40 rounded-full mx-auto mb-3"></div>
+            
+            <!-- The AI Generation Bottom Sheet -->
+            <div class="bg-surface-container-lowest rounded-t-[2.5rem] w-full max-h-[85%] overflow-y-auto custom-scrollbar shadow-[0_-12px_48px_rgba(0,0,0,0.12)]">
+                
+                <!-- Sticky Header of Sheet -->
+                <div class="sticky top-0 bg-surface-container-lowest/80 backdrop-blur-xl z-10 px-8 pt-8 pb-4 flex justify-between items-center">
+                    <h2 class="font-headline text-2xl font-bold tracking-tight text-on-background">Generate with AI</h2>
+                    <div class="bg-primary/5 px-4 py-2 rounded-full flex items-center gap-2 border border-primary/10">
+                        <span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;" data-icon="generating_tokens">generating_tokens</span>
+                        <span class="font-label font-bold text-primary text-sm tracking-tight">12 Credits</span>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="px-8 pb-32 space-y-8">
+                    
+                    <!-- Prompt Section -->
+                    <div class="space-y-3">
+                        <label class="font-label text-xs font-bold uppercase tracking-[0.1em] text-on-surface-variant/70 ml-1">Prompt Instructions</label>
+                        <div class="relative group">
+                            <textarea class="w-full bg-surface-container-low border-none rounded-lg p-5 text-on-background placeholder:text-on-surface-variant/40 focus:ring-2 focus:ring-primary/20 min-h-[120px] transition-all font-body text-md leading-relaxed" placeholder="Describe the 3D accessory you want to create... e.g., A cybernetic backpack with glowing teal circuits and matte carbon fiber finish."></textarea>
+                            <div class="absolute bottom-4 right-4 text-on-surface-variant/30 text-[10px] font-mono">0 / 500</div>
+                        </div>
+                    </div>
+
+                    <!-- Reference Image Upload -->
+                    <div class="space-y-3">
+                        <label class="font-label text-xs font-bold uppercase tracking-[0.1em] text-on-surface-variant/70 ml-1">Reference Image (Optional)</label>
+                        <div class="border-2 border-dashed border-outline-variant/30 rounded-lg p-8 flex flex-col items-center justify-center gap-3 bg-surface-container-low/30 hover:bg-surface-container-low transition-colors cursor-pointer group">
+                            <div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-on-surface-variant" data-icon="add_a_photo">add_a_photo</span>
+                            </div>
+                            <p class="font-body text-sm text-on-surface-variant font-medium">Drop inspiration or click to browse</p>
+                        </div>
+                    </div>
+
+                    <!-- Style Chips -->
+                    <div class="space-y-3">
+                        <label class="font-label text-xs font-bold uppercase tracking-[0.1em] text-on-surface-variant/70 ml-1">Visual Style</label>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="px-5 py-2.5 rounded-full bg-primary text-on-primary font-body text-sm font-bold shadow-md">Realistic</button>
+                            <button class="px-5 py-2.5 rounded-full bg-surface-container-low text-on-surface font-body text-sm font-semibold hover:bg-surface-variant transition-colors">Low Poly</button>
+                            <button class="px-5 py-2.5 rounded-full bg-surface-container-low text-on-surface font-body text-sm font-semibold hover:bg-surface-variant transition-colors">Fantasy</button>
+                            <button class="px-5 py-2.5 rounded-full bg-surface-container-low text-on-surface font-body text-sm font-semibold hover:bg-surface-variant transition-colors">Cyberpunk</button>
+                            <button class="px-5 py-2.5 rounded-full bg-surface-container-low text-on-surface font-body text-sm font-semibold hover:bg-surface-variant transition-colors">Cute</button>
+                        </div>
+                    </div>
+
+                    <!-- Platform Selector -->
+                    <div class="space-y-3">
+                        <label class="font-label text-xs font-bold uppercase tracking-[0.1em] text-on-surface-variant/70 ml-1">Target Platform</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button class="flex flex-col items-center gap-2 p-4 rounded-lg bg-surface-container-low border-2 border-transparent hover:border-primary/20 transition-all group">
+                                <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="sports_esports">sports_esports</span>
+                                <span class="text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant">Gaming</span>
+                            </button>
+                            <button class="flex flex-col items-center gap-2 p-4 rounded-lg bg-primary-container/10 border-2 border-primary/40 transition-all">
+                                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;" data-icon="view_in_ar">view_in_ar</span>
+                                <span class="text-[10px] font-label font-bold uppercase tracking-widest text-primary">Web AR</span>
+                            </button>
+                            <button class="flex flex-col items-center gap-2 p-4 rounded-lg bg-surface-container-low border-2 border-transparent hover:border-primary/20 transition-all group">
+                                <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="print">print</span>
+                                <span class="text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant">3D Print</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Slider Section -->
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-end">
+                            <label class="font-label text-xs font-bold uppercase tracking-[0.1em] text-on-surface-variant/70 ml-1">Size / Complexity</label>
+                            <span class="text-primary font-headline font-bold text-sm">High Fidelity</span>
+                        </div>
+                        <div class="relative h-2 w-full bg-surface-container-low rounded-full">
+                            <div class="absolute top-0 left-0 h-full w-[75%] action-gradient rounded-full"></div>
+                            <div class="absolute top-1/2 left-[75%] -translate-y-1/2 -translate-x-1/2 w-6 h-6 bg-surface-container-lowest rounded-full shadow-lg border-2 border-primary ring-4 ring-primary/10"></div>
+                        </div>
+                        <div class="flex justify-between px-1">
+                            <span class="text-[10px] font-label font-bold text-on-surface-variant/40">FAST</span>
+                            <span class="text-[10px] font-label font-bold text-on-surface-variant/40">OPTIMIZED</span>
+                            <span class="text-[10px] font-label font-bold text-on-surface-variant/40">EXTREME</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Fixed Bottom Actions -->
+                <div class="sticky bottom-0 bg-surface-container-lowest/90 backdrop-blur-xl border-t border-surface-container-low px-8 pt-6 pb-10 flex gap-4">
+                    <button class="flex-1 py-4 px-6 rounded-full bg-surface-container-low text-on-surface font-headline font-bold text-sm transition-all hover:bg-surface-container active:scale-95 flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-lg" data-icon="casino">casino</span>
+                        Randomize
+                    </button>
+                    <button class="flex-[2] py-4 px-6 rounded-full action-gradient text-on-primary font-headline font-bold text-sm shadow-xl shadow-primary/20 transition-all hover:opacity-90 active:scale-95 flex items-center justify-center gap-3">
+                        <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;" data-icon="auto_awesome">auto_awesome</span>
+                        Generate Accessory
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Home Indicator (iPhone style) -->
+        <div class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-on-background/20 rounded-full z-[60]"></div>
+    </div>
+
+</body>
+</html></style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body></body></html>

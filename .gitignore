@@ -1,0 +1,67 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Flutter
+.dart_tool/
+.packages
+build/
+*.iml
+.flutter-plugins
+.flutter-plugins-dependencies
+.metadata
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment
+.env
+.env.local
+.env.*.local
+apps/mobile_app/env.local.json
+
+# Next.js / scrape cache
+.next/
+apps/admin_panel/.next/
+apps/admin_panel/.firecrawl/
+out/
+
+# Build outputs
+*.apk
+*.aab
+*.ipa
+*.app
+
+# Supabase
+backend/supabase/.temp/
+
+# Pub cache
+.pub-cache/
+.pub/
+
+# Generated files
+*.g.dart
+*.freezed.dart
+apps/mobile_app/lib/l10n/generated/
+
+# Android
+apps/mobile_app/android/.gradle/
+apps/mobile_app/android/app/build/
+apps/mobile_app/android/build/
+apps/mobile_app/android/local.properties
+apps/mobile_app/android/key.properties
+*.jks
+
+# iOS
+apps/mobile_app/ios/Pods/
+apps/mobile_app/ios/.symlinks/
+apps/mobile_app/ios/Flutter/Flutter.framework
+apps/mobile_app/ios/Flutter/Flutter.podspec

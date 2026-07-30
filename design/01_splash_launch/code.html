@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Studio Splash</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#403f3f",
+              "surface-bright": "#f7f7f4",
+              "error-dim": "#9f0519",
+              "on-primary-fixed": "#000000",
+              "on-surface-variant": "#5a5c5a",
+              "secondary-fixed": "#e5e2e1",
+              "secondary-dim": "#504f4f",
+              "on-secondary": "#f5f2f1",
+              "on-error-container": "#570008",
+              "primary-dim": "#8c3300",
+              "primary-fixed-dim": "#f86513",
+              "error": "#b31b25",
+              "on-primary-container": "#421400",
+              "surface-container-low": "#f0f1ee",
+              "surface-variant": "#dcddda",
+              "secondary": "#5c5b5b",
+              "on-background": "#2d2f2d",
+              "on-primary": "#ffefea",
+              "on-error": "#ffefee",
+              "on-secondary-fixed-variant": "#5c5b5b",
+              "secondary-container": "#e5e2e1",
+              "on-primary-fixed-variant": "#511a00",
+              "on-secondary-container": "#525151",
+              "surface-tint": "#9f3b00",
+              "on-tertiary-fixed": "#004f2e",
+              "outline-variant": "#acadab",
+              "on-tertiary-fixed-variant": "#126f44",
+              "tertiary-fixed-dim": "#9aefb9",
+              "on-surface": "#2d2f2d",
+              "primary": "#9f3b00",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-container": "#a8fec6",
+              "inverse-surface": "#0d0f0d",
+              "on-tertiary-container": "#00643b",
+              "outline": "#767775",
+              "inverse-primary": "#ff6a1a",
+              "surface-container": "#e8e8e5",
+              "surface-dim": "#d3d5d1",
+              "inverse-on-surface": "#9c9d9b",
+              "surface-container-highest": "#dcddda",
+              "tertiary-fixed": "#a8fec6",
+              "background": "#f7f7f4",
+              "tertiary-dim": "#005c36",
+              "surface": "#f7f7f4",
+              "primary-container": "#ff793a",
+              "error-container": "#fb5151",
+              "primary-fixed": "#ff793a",
+              "tertiary": "#06693f",
+              "secondary-fixed-dim": "#d7d4d3",
+              "on-tertiary": "#cbffda",
+              "surface-container-high": "#e2e3df"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-studio-paper {
+            background-color: #F6F6F3;
+        }
+        /* Editorial Motion Shapes */
+        .blur-blob {
+            position: absolute;
+            filter: blur(100px);
+            z-index: 0;
+            opacity: 0.4;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-studio-paper font-body text-on-surface selection:bg-primary-container/30 overflow-hidden">
+<!-- Splash Screen Container (iPhone 15 Pro Ratio) -->
+<main class="relative h-screen w-full max-w-[430px] mx-auto overflow-hidden bg-studio-paper flex flex-col items-center justify-center">
+<!-- Abstract Background Elements -->
+<div class="blur-blob w-72 h-72 bg-primary-fixed/20 -top-20 -left-20 rounded-full"></div>
+<div class="blur-blob w-96 h-96 bg-surface-variant/40 -bottom-20 -right-20 rounded-full"></div>
+<div class="blur-blob w-64 h-64 bg-primary-fixed/10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"></div>
+<!-- Content Overlay (The Studio Canvas) -->
+<div class="relative z-10 flex flex-col items-center">
+<!-- Minimal Abstract Orange Logo Mark -->
+<div class="w-24 h-24 mb-10 flex items-center justify-center relative">
+<!-- Outer Ring Layer -->
+<div class="absolute inset-0 border-[6px] border-primary-fixed/10 rounded-lg transform rotate-12"></div>
+<!-- Inner Geometric Focus -->
+<div class="w-16 h-16 bg-gradient-to-br from-primary-fixed to-primary flex items-center justify-center rounded-lg shadow-lg">
+<span class="material-symbols-outlined text-white text-4xl" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+</div>
+<!-- Brand Identity -->
+<div class="text-center space-y-3">
+<h1 class="font-headline text-4xl font-extrabold tracking-tighter text-on-background">
+                    Studio
+                </h1>
+<p class="font-label text-sm uppercase tracking-[0.2em] text-on-surface-variant/70 font-bold">
+                    Create, edit, publish.
+                </p>
+</div>
+</div>
+<!-- Progress Indicator (Minimal/Fast Feel) -->
+<div class="absolute bottom-16 w-12 h-[2px] bg-surface-container-high overflow-hidden rounded-full">
+<div class="h-full bg-primary-fixed w-1/2 animate-pulse"></div>
+</div>
+<!-- Decorative "Creator" Texture -->
+<div class="absolute bottom-8 left-0 w-full px-12 flex justify-between opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-xl" data-icon="videocam">videocam</span>
+<span class="material-symbols-outlined text-xl" data-icon="grid_view">grid_view</span>
+<span class="material-symbols-outlined text-xl" data-icon="brush">brush</span>
+<span class="material-symbols-outlined text-xl" data-icon="send">send</span>
+</div>
+<!-- Invisible Nav Suppression for Splash Logic -->
+</main>
+<!-- Content Card for visual grounding in larger browser viewports -->
+<div class="hidden lg:block fixed top-10 left-10 max-w-xs space-y-4">
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border border-outline-variant/10">
+<h3 class="font-headline font-bold text-lg mb-2">Editorial Studio Design</h3>
+<p class="text-sm text-on-surface-variant">This splash screen utilizes tonal layering and high-energy accents. The vivid orange #FF6A1A (primary-fixed) is used to create a tangible "Action" focal point against the #F6F6F3 paper base.</p>
+</div>
+</div>
+<!-- Background Image Strategy (If needed for texture) -->
+<div class="fixed inset-0 -z-10 bg-studio-paper opacity-50" data-alt="ultra subtle fine paper grain texture with soft warm lighting for professional studio feel" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5WjkSQQehQGT3gyRzbpRxY6LBkDqrHOGjAwVOUk7HZB5Zx4vA6SyUEa262TP7LgyT2Dvsol1jtvod-6BJHpqaWikS6VPCmizovrxdscYzd0OxqPpR-a00maDpW4oqOFKO-HEw1Ub_9gP5gDwPsn99GnwtVngodUCEwrDdOFQjrL1NhXZXDpxPsBgotAJuDCm2uYZS9kwrTJ2Blw6fEIwbDyVWE1G6sVK33vOTLqJzcnD6TMIWru9cCMwN6JjGlXHSas28MtvlEvBJ')"></div>
+</body></html>

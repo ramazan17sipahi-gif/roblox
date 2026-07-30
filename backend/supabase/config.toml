@@ -1,0 +1,42 @@
+project_id = "creator-platform"
+
+[api]
+port = 54321
+schemas = ["public", "pgmq"]
+
+[db]
+port = 54322
+
+[studio]
+port = 54323
+
+[auth]
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["exp://localhost:19006"]
+
+[auth.external.google]
+enabled = false
+
+[storage]
+file_size_limit = "50MB"
+
+[functions.create-export-job]
+verify_jwt = false
+
+[functions.publish-design]
+verify_jwt = false
+
+[functions.link-platform-account-init]
+verify_jwt = false
+
+[functions.link-platform-account-finalize]
+verify_jwt = false
+
+[functions.revenuecat-webhook]
+verify_jwt = false
+
+[functions.auth-roblox-init]
+verify_jwt = false
+
+[functions.auth-roblox-finalize]
+verify_jwt = false

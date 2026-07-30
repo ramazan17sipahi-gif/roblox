@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Studio | 3D Editor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed": "#403f3f",
+                        "surface-bright": "#f7f7f4",
+                        "error-dim": "#9f0519",
+                        "on-primary-fixed": "#000000",
+                        "on-surface-variant": "#5a5c5a",
+                        "secondary-fixed": "#e5e2e1",
+                        "secondary-dim": "#504f4f",
+                        "on-secondary": "#f5f2f1",
+                        "on-error-container": "#570008",
+                        "primary-dim": "#8c3300",
+                        "primary-fixed-dim": "#f86513",
+                        "error": "#b31b25",
+                        "on-primary-container": "#421400",
+                        "surface-container-low": "#f0f1ee",
+                        "surface-variant": "#dcddda",
+                        "secondary": "#5c5b5b",
+                        "on-background": "#2d2f2d",
+                        "on-primary": "#ffefea",
+                        "on-error": "#ffefee",
+                        "on-secondary-fixed-variant": "#5c5b5b",
+                        "secondary-container": "#e5e2e1",
+                        "on-primary-fixed-variant": "#511a00",
+                        "on-secondary-container": "#525151",
+                        "surface-tint": "#9f3b00",
+                        "on-tertiary-fixed": "#004f2e",
+                        "outline-variant": "#acadab",
+                        "on-tertiary-fixed-variant": "#126f44",
+                        "tertiary-fixed-dim": "#9aefb9",
+                        "on-surface": "#2d2f2d",
+                        "primary": "#9f3b00",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#a8fec6",
+                        "inverse-surface": "#0d0f0d",
+                        "on-tertiary-container": "#00643b",
+                        "outline": "#767775",
+                        "inverse-primary": "#ff6a1a",
+                        "surface-container": "#e8e8e5",
+                        "surface-dim": "#d3d5d1",
+                        "inverse-on-surface": "#9c9d9b",
+                        "surface-container-highest": "#dcddda",
+                        "tertiary-fixed": "#a8fec6",
+                        "background": "#f7f7f4",
+                        "tertiary-dim": "#005c36",
+                        "surface": "#f7f7f4",
+                        "primary-container": "#ff793a",
+                        "error-container": "#fb5151",
+                        "primary-fixed": "#ff793a",
+                        "tertiary": "#06693f",
+                        "secondary-fixed-dim": "#d7d4d3",
+                        "on-tertiary": "#cbffda",
+                        "surface-container-high": "#e2e3df"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .canvas-bg {
+            background-image: radial-gradient(#dcddda 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased overflow-hidden select-none">
+<!-- Top AppBar (Transactional: Suppressing BottomNavBar/SideNav) -->
+<header class="fixed top-0 z-50 w-full bg-surface-bright/85 backdrop-blur-xl flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<h1 class="font-headline font-bold text-on-surface tracking-tight leading-none">Fantasy Wings</h1>
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Unsaved Changes</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex items-center bg-surface-container-low p-1 rounded-full mr-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-lowest transition-all active:scale-90">
+<span class="material-symbols-outlined text-on-surface text-lg">undo</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-lowest transition-all active:scale-90">
+<span class="material-symbols-outlined text-on-surface text-lg">redo</span>
+</button>
+</div>
+<button class="bg-primary-container text-on-primary-container px-5 py-2.5 rounded-full font-headline font-bold text-sm shadow-[0_12px_24px_rgba(159,59,0,0.08)] active:scale-95 transition-all">
+                Export
+            </button>
+</div>
+</header>
+<!-- Main Editor Stage -->
+<main class="relative h-screen w-full canvas-bg flex items-center justify-center pt-20 pb-48">
+<!-- Viewport Controls -->
+<div class="absolute left-6 top-24 flex flex-col gap-4 z-40">
+<!-- 2D/3D Toggle -->
+<div class="bg-surface-container-lowest/80 backdrop-blur-md p-1.5 rounded-full flex gap-1 shadow-sm border border-outline-variant/10">
+<button class="bg-primary text-white px-4 py-1.5 rounded-full font-label text-xs font-bold uppercase tracking-wider transition-all">3D</button>
+<button class="text-on-surface-variant px-4 py-1.5 rounded-full font-label text-xs font-bold uppercase tracking-wider hover:bg-surface-container-low transition-all">2D</button>
+</div>
+<!-- View Controls -->
+<div class="flex flex-col bg-surface-container-lowest/80 backdrop-blur-md rounded-lg p-1 shadow-sm border border-outline-variant/10">
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-on-surface-variant">zoom_in</span>
+</button>
+<div class="h-px bg-surface-variant mx-2"></div>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-on-surface-variant">zoom_out</span>
+</button>
+<div class="h-px bg-surface-variant mx-2"></div>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-on-surface-variant">orbit</span>
+</button>
+</div>
+</div>
+<!-- 3D Scene Mockup -->
+<div class="relative w-full max-w-lg aspect-[3/4] flex items-center justify-center">
+<!-- Mannequin Placeholder -->
+<div class="absolute inset-0 flex items-center justify-center opacity-40">
+<img class="h-4/5 object-contain" data-alt="clean minimal gray 3D mannequin torso in a professional editor view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEtrT6QbLe-Rjs7j4sQeoKWm981Btuqt06P8yt88_lVeOZfyfeH2xN__WbKi8hCg-qVJ8h95bk_OG9ckBFol57nw2T7-oRUDjuxMmOoQdZXtrWiXpSopuueSovwL9WRJOIwO9z34tuph5XMyznJN3fxJ71EQEX480f4_REHNA1LdnmifRRRfBQ6H0qUkEFTPaiE2a0kgOKIeUu6fYGmmVAAE19hsaEx7IE3m1vjn_wqW67W98opBP3aox0STR1hluOUTCQqoAUjVR7"/>
+</div>
+<!-- Wings Accessory (Active Element) -->
+<div class="relative z-10 w-full flex items-center justify-center">
+<img class="w-[120%] h-auto object-contain" data-alt="luminescent iridescent ethereal fantasy wings with glowing particles in 3D studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOyy_AdYTjCK4HCp5S88WvYjjffAq0HqvLKxu4c-kLPGPNHHtQlcKjj7TANVW6-Dsuoud7L320n3vrphdgq6EL48x7BaYyUVQXlQD81pjmjLLDcheapuzLQGvQrXXVv7zaz8TOF42OldI7wdNvPrTTwKZZucafv1duSG00OX09GVCrdYFm9hT7gYEq5cjCPaU87ZJty41USX3E7xNjbmSD_A1seEcPQrMd5EyG_nj89zSvi9EW0SVZDqbdT4ZwxHRggewZZpL2x1xM"/>
+<!-- Selection Bounding Box -->
+<div class="absolute inset-0 border-2 border-primary/40 rounded-lg pointer-events-none">
+<div class="absolute -top-1 -left-1 w-3 h-3 bg-white border-2 border-primary rounded-full"></div>
+<div class="absolute -top-1 -right-1 w-3 h-3 bg-white border-2 border-primary rounded-full"></div>
+<div class="absolute -bottom-1 -left-1 w-3 h-3 bg-white border-2 border-primary rounded-full"></div>
+<div class="absolute -bottom-1 -right-1 w-3 h-3 bg-white border-2 border-primary rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Right Side Shortcut Actions -->
+<div class="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-40">
+<button class="w-12 h-12 bg-surface-container-lowest text-on-surface-variant rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-all">
+<span class="material-symbols-outlined">content_copy</span>
+</button>
+<button class="w-12 h-12 bg-error-container text-on-error-container rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-all">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</main>
+<!-- Contextual Properties Panel -->
+<div class="fixed bottom-36 left-1/2 -translate-x-1/2 w-[92%] max-w-md z-40">
+<div class="bg-surface-container-lowest/90 backdrop-blur-2xl rounded-lg shadow-2xl p-6 border border-outline-variant/10">
+<div class="flex items-center justify-between mb-5">
+<h3 class="font-headline font-bold text-on-surface text-base">Accessorize: Wings</h3>
+<span class="font-label text-[10px] uppercase font-extrabold text-primary-dim bg-primary/10 px-2 py-0.5 rounded">Active Layer</span>
+</div>
+<div class="space-y-6">
+<!-- Color Swatches -->
+<div>
+<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant font-extrabold mb-3 block">Color Palette</label>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-[#E0C3FC] ring-2 ring-primary ring-offset-2"></div>
+<div class="w-8 h-8 rounded-full bg-[#A3C4F3]"></div>
+<div class="w-8 h-8 rounded-full bg-[#B9FBC0]"></div>
+<div class="w-8 h-8 rounded-full bg-[#FBF8CC]"></div>
+<div class="w-8 h-8 rounded-full bg-[#FFCFD2]"></div>
+<button class="w-8 h-8 rounded-full border-2 border-dashed border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+<!-- Sliders Grid -->
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<div class="flex justify-between">
+<label class="font-label text-[10px] uppercase font-bold text-on-surface-variant">Size</label>
+<span class="font-label text-[10px] font-bold text-on-surface">120%</span>
+</div>
+<input class="w-full accent-primary h-1 bg-surface-container-high rounded-full appearance-none cursor-pointer" type="range"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between">
+<label class="font-label text-[10px] uppercase font-bold text-on-surface-variant">Opacity</label>
+<span class="font-label text-[10px] font-bold text-on-surface">85%</span>
+</div>
+<input class="w-full accent-primary h-1 bg-surface-container-high rounded-full appearance-none cursor-pointer" type="range"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Tool Rail (Mobile Only Interface) -->
+<nav class="fixed bottom-0 left-0 w-full bg-surface-bright/95 backdrop-blur-xl z-50 flex items-center px-2 py-6 overflow-x-auto scrollbar-hide no-scrollbar shadow-[0_-12px_24px_rgba(0,0,0,0.02)]">
+<div class="flex items-center justify-between w-full min-w-max px-4 gap-6">
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 min-w-[56px] transition-all hover:text-primary active:scale-90">
+<span class="material-symbols-outlined text-2xl">category</span>
+<span class="font-label text-[9px] uppercase font-bold tracking-tighter">Templates</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 min-w-[56px] transition-all hover:text-primary active:scale-90">
+<span class="material-symbols-outlined text-2xl">palette</span>
+<span class="font-label text-[9px] uppercase font-bold tracking-tighter">Colors</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 min-w-[56px] transition-all hover:text-primary active:scale-90">
+<span class="material-symbols-outlined text-2xl">upload_file</span>
+<span class="font-label text-[9px] uppercase font-bold tracking-tighter">Uploads</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 min-w-[56px] transition-all hover:text-primary active:scale-90">
+<span class="material-symbols-outlined text-2xl">text_fields</span>
+<span class="font-label text-[9px] uppercase font-bold tracking-tighter">Text</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary-dim bg-primary/10 rounded-2xl p-2 min-w-[64px] transition-all scale-105">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">extension</span>
+<span class="font-label text-[9px] uppercase font-extrabold tracking-tighter">Accs</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 min-w-[56px] transition-all hover:text-primary active:scale-90">
+<span class="material-symbols-outlined text-2xl">view_in_ar</span>
+<span class="font-label text-[9px] uppercase font-bold tracking-tighter">3D Edit</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 min-w-[56px] transition-all hover:text-primary active:scale-90">
+<span class="material-symbols-outlined text-2xl">layers</span>
+<span class="font-label text-[9px] uppercase font-bold tracking-tighter">Layers</span>
+</button>
+</div>
+</nav>
+<!-- Visual Hint: Active State Glow on Tool -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 pointer-events-none">
+<div class="w-12 h-1 bg-primary rounded-full blur-[4px] opacity-40"></div>
+</div>
+</body></html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-secondary-fixed": "#403f3f",
+            "surface-bright": "#f7f7f4",
+            "error-dim": "#9f0519",
+            "on-primary-fixed": "#000000",
+            "on-surface-variant": "#5a5c5a",
+            "secondary-fixed": "#e5e2e1",
+            "secondary-dim": "#504f4f",
+            "on-secondary": "#f5f2f1",
+            "on-error-container": "#570008",
+            "primary-dim": "#8c3300",
+            "primary-fixed-dim": "#f86513",
+            "error": "#b31b25",
+            "on-primary-container": "#421400",
+            "surface-container-low": "#f0f1ee",
+            "surface-variant": "#dcddda",
+            "secondary": "#5c5b5b",
+            "on-background": "#2d2f2d",
+            "on-primary": "#ffefea",
+            "on-error": "#ffefee",
+            "on-secondary-fixed-variant": "#5c5b5b",
+            "secondary-container": "#e5e2e1",
+            "on-primary-fixed-variant": "#511a00",
+            "on-secondary-container": "#525151",
+            "surface-tint": "#9f3b00",
+            "on-tertiary-fixed": "#004f2e",
+            "outline-variant": "#acadab",
+            "on-tertiary-fixed-variant": "#126f44",
+            "tertiary-fixed-dim": "#9aefb9",
+            "on-surface": "#2d2f2d",
+            "primary": "#9f3b00",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-container": "#a8fec6",
+            "inverse-surface": "#0d0f0d",
+            "on-tertiary-container": "#00643b",
+            "outline": "#767775",
+            "inverse-primary": "#ff6a1a",
+            "surface-container": "#e8e8e5",
+            "surface-dim": "#d3d5d1",
+            "inverse-on-surface": "#9c9d9b",
+            "surface-container-highest": "#dcddda",
+            "tertiary-fixed": "#a8fec6",
+            "background": "#f7f7f4",
+            "tertiary-dim": "#005c36",
+            "surface": "#f7f7f4",
+            "primary-container": "#ff793a",
+            "error-container": "#fb5151",
+            "primary-fixed": "#ff793a",
+            "tertiary": "#06693f",
+            "secondary-fixed-dim": "#d7d4d3",
+            "on-tertiary": "#cbffda",
+            "surface-container-high": "#e2e3df"
+          },
+          fontFamily: {
+            "headline": ["Plus Jakarta Sans"],
+            "body": ["Manrope"],
+            "label": ["Manrope"]
+          },
+          borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      background-color: #F7F7F4;
+    }
+    .action-gradient {
+      background: linear-gradient(135deg, #FF793A 0%, #9F3B00 100%);
+    }
+    .surface-blur {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body text-on-background selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 z-50 w-full bg-[#F7F7F4]/85 backdrop-blur-xl flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="close up of a modern minimalist digital avatar profile picture with a clean studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRc6CkPRPDiTS_hysK3E3psaDOl-I3N68VHUO2WWHSDy-oEpQ_fkxU-1FNgwUQoQjM7T5ridn35to2oQyqsv3XoVEophGG2y6oZD5wORQ28BW7c216wbtgsyp6ElVjOWsXz_PhaY0V7l3oSCDP6koubw4XdC6K1Y2J1BpbwC4A35RAyK7WE0Ik1rdKKIYrF6h37AI-_0BCjx7AHetZQn3drHFEa2dsSFo6f_9BE7VvOjwiR7ykvNOujujXVC5t3j20zEhRYprkaE_l"/>
+</div>
+<span class="font-headline font-bold tracking-tight text-xl text-[#2D2F2D]">Studio</span>
+</div>
+<div class="flex gap-4 items-center">
+<button class="material-symbols-outlined text-[#2D2F2D]/60 hover:opacity-80 transition-opacity">share</button>
+<button class="material-symbols-outlined text-[#2D2F2D]/60 hover:opacity-80 transition-opacity">notifications</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="pt-24 pb-32 px-6 max-w-lg mx-auto">
+<!-- Hero Preview Section -->
+<section class="relative w-full aspect-[4/5] rounded-lg bg-surface-container-lowest overflow-hidden shadow-[0_12px_24px_rgba(159,59,0,0.04)] mb-8 flex items-center justify-center">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-surface-container-low/30"></div>
+<img class="h-[85%] w-auto object-contain drop-shadow-2xl" data-alt="blocky minimalist 3D avatar mannequin wearing a vibrant pink utility jumpsuit with multiple pockets in a sun-drenched white studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcGtjrAsEkMLGUbsVgEQgpa4HXFw6iTaNjirwXrIF2A7dKajjIPmnw55RctdvRf0bjVL0SCoEKTDw7tP1KPjcPTNp3cPb_5aXHG8JLgmqX7uZq-jmJ6uFoKyi1jlcRHL08g2J004qMKbk71OCP75AtcMamLgMCE3uY24K04ALwuwzNXY4guJ-yXdGQwO5fg52NeXEIoOhhZZIrb1tTmRYMdXW6QPTqpoJubJ8nChUkijWrAmqEhKlLbNFyEj2RwWEL5555usw-Qqnl"/>
+<!-- Preview Controls -->
+<div class="absolute bottom-6 right-6 flex flex-col gap-2">
+<button class="p-3 rounded-full bg-surface-bright/80 backdrop-blur-md shadow-sm material-symbols-outlined text-primary">360</button>
+<button class="p-3 rounded-full bg-surface-bright/80 backdrop-blur-md shadow-sm material-symbols-outlined text-primary">fullscreen</button>
+</div>
+</section>
+<!-- Header Details -->
+<div class="space-y-2 mb-6">
+<div class="flex items-center gap-2">
+<span class="bg-primary/10 text-primary px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-widest font-label">Shirt</span>
+<span class="bg-surface-container-low text-on-surface-variant px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-widest font-label">Classic</span>
+<span class="bg-surface-container-low text-on-surface-variant px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-widest font-label">Editable</span>
+</div>
+<h1 class="font-headline text-3xl font-extrabold tracking-tight text-on-background">Pink Utility Overalls</h1>
+<div class="flex items-center gap-2">
+<span class="text-on-surface-variant text-sm font-medium">By</span>
+<span class="text-primary font-bold text-sm">@urban_blocks</span>
+</div>
+</div>
+<!-- CTA Section -->
+<div class="mb-8">
+<button class="action-gradient w-full py-5 rounded-full text-white font-headline font-bold text-lg shadow-[0_12px_24px_rgba(159,59,0,0.12)] active:scale-[0.96] transition-transform flex items-center justify-center gap-2">
+        Start design
+        <span class="material-symbols-outlined">brush</span>
+</button>
+</div>
+<!-- Metadata Grid -->
+<div class="grid grid-cols-3 gap-4 p-5 bg-surface-container-low rounded-lg mb-10">
+<div class="flex flex-col items-center gap-1 border-r border-outline-variant/20">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+<span class="font-bold text-on-background">4.8k</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant opacity-60">Popularity</span>
+</div>
+<div class="flex flex-col items-center gap-1 border-r border-outline-variant/20">
+<span class="material-symbols-outlined text-primary text-xl">download</span>
+<span class="font-bold text-on-background">12.2k</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant opacity-60">Downloads</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-bold text-on-background">2.4k</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant opacity-60">Likes</span>
+</div>
+</div>
+<!-- Suggestions Row -->
+<section>
+<div class="flex justify-between items-center mb-5">
+<h3 class="font-headline text-xl font-bold text-on-background">Similar Templates</h3>
+<button class="text-primary font-bold text-sm">View all</button>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-4 -mx-6 px-6 no-scrollbar">
+<!-- Suggestion Card 1 -->
+<div class="min-w-[140px] flex-shrink-0 group">
+<div class="aspect-square bg-surface-container-lowest rounded-lg mb-3 overflow-hidden transition-transform group-hover:scale-95 duration-300">
+<img class="w-full h-full object-cover" data-alt="close up of a vibrant blue utility jacket for a blocky 3D avatar on a light grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCroq7QGeFcZkiIofiaFoCTJNDc8e607Ayvs0vkRoD4P1e2Nl-afX-2LYTZiPFlMpB9o9I0NHdVq_6CfSMOckrUxQ01zVQZnY8j-fp-ttxiIUhU1cLurpdYxLBR3NQ1Marr6_cQbzPBDSp-MI1LztTAg_qM_m5bT7z-BZHDUxcmO2n_u14ljbxCB2W0xdMMZ0UMLqaDUG3kZkDXweR2oTv8T2VkmFL0gvVugJgMwERHLqJ6DqhJNrTiJaSSMtKMyfMO5T_a8xzn-qCX"/>
+</div>
+<p class="font-bold text-sm text-on-background leading-tight">Azure Cargo</p>
+<p class="text-xs text-on-surface-variant">Top Tier</p>
+</div>
+<!-- Suggestion Card 2 -->
+<div class="min-w-[140px] flex-shrink-0 group">
+<div class="aspect-square bg-surface-container-lowest rounded-lg mb-3 overflow-hidden transition-transform group-hover:scale-95 duration-300">
+<img class="w-full h-full object-cover" data-alt="close up of a bright yellow leather biker jacket design for a blocky digital character" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJlmb1B18hNZ11cfQkPS-d65d84S640b8Hf-sETt4qIHSBnP-6h_6QuuRzuyQgDQ30AnTFsMo3xY2MyWc1WmGpmECgQoINnRLwp6HOoC0yzh-RA1X_oAj0R-lkjVWOg4sp7KRDYHEnJvBgdqKl39xG4S3hZjvvbqMM4oauisnlx_Mls0Wu_pTb6TXrzvd6n7pwCYkXU5HOKEA26zTVUxt6J_X98gRHr6jh6pF-LE7A6KaSBZpqcceZiCsglLfoThHHs-zhYtNU0ZO9"/>
+</div>
+<p class="font-bold text-sm text-on-background leading-tight">Lemon Biker</p>
+<p class="text-xs text-on-surface-variant">Premium</p>
+</div>
+<!-- Suggestion Card 3 -->
+<div class="min-w-[140px] flex-shrink-0 group">
+<div class="aspect-square bg-surface-container-lowest rounded-lg mb-3 overflow-hidden transition-transform group-hover:scale-95 duration-300">
+<img class="w-full h-full object-cover" data-alt="black minimalist t-shirt with orange typography design for a stylized avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxtIVp3n5YHrawDktBZgh9vUhJMZhqFJrXlbynhcnhsDGv8ujbS1QNknFyCi-s8u0lH8EVD37UygPpUwKWYLHP6UNJd4ERzuivpwXKPj3e5Rsb3gfkNG0yA8bSP1RpobCLgHtZFruCVawkH72eaGpPWkcaB7ZnTfMC0x7ceBVgozdPvaSQgG1V20L9oXYlwbkxvvLok8dcxzTW7Z0JTPfDToIbh9DYGo3FII84pN2cdl9Skw6rVzNf6_C8UhEBvJP9DSVqmaryehd2"/>
+</div>
+<p class="font-bold text-sm text-on-background leading-tight">Stealth Tee</p>
+<p class="text-xs text-on-surface-variant">Free</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-[#F7F7F4]/85 backdrop-blur-xl rounded-t-[2.5rem] shadow-[0_-12px_24px_rgba(159,59,0,0.04)] z-50">
+<a class="flex flex-col items-center justify-center text-[#2D2F2D]/50 transition-colors hover:text-[#9F3B00]" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#9F3B00] bg-[#FF793A]/10 rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest mt-1">Create</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#2D2F2D]/50 transition-colors hover:text-[#9F3B00]" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest mt-1">Library</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#2D2F2D]/50 transition-colors hover:text-[#9F3B00]" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest mt-1">Store</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#2D2F2D]/50 transition-colors hover:text-[#9F3B00]" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest mt-1">Explore</span>
+</a>
+</nav>
+</body></html>

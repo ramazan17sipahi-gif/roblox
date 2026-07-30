@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#403f3f",
+              "surface-bright": "#f7f7f4",
+              "error-dim": "#9f0519",
+              "on-primary-fixed": "#000000",
+              "on-surface-variant": "#5a5c5a",
+              "secondary-fixed": "#e5e2e1",
+              "secondary-dim": "#504f4f",
+              "on-secondary": "#f5f2f1",
+              "on-error-container": "#570008",
+              "primary-dim": "#8c3300",
+              "primary-fixed-dim": "#f86513",
+              "error": "#b31b25",
+              "on-primary-container": "#421400",
+              "surface-container-low": "#f0f1ee",
+              "surface-variant": "#dcddda",
+              "secondary": "#5c5b5b",
+              "on-background": "#2d2f2d",
+              "on-primary": "#ffefea",
+              "on-error": "#ffefee",
+              "on-secondary-fixed-variant": "#5c5b5b",
+              "secondary-container": "#e5e2e1",
+              "on-primary-fixed-variant": "#511a00",
+              "on-secondary-container": "#525151",
+              "surface-tint": "#9f3b00",
+              "on-tertiary-fixed": "#004f2e",
+              "outline-variant": "#acadab",
+              "on-tertiary-fixed-variant": "#126f44",
+              "tertiary-fixed-dim": "#9aefb9",
+              "on-surface": "#2d2f2d",
+              "primary": "#9f3b00",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-container": "#a8fec6",
+              "inverse-surface": "#0d0f0d",
+              "on-tertiary-container": "#00643b",
+              "outline": "#767775",
+              "inverse-primary": "#ff6a1a",
+              "surface-container": "#e8e8e5",
+              "surface-dim": "#d3d5d1",
+              "inverse-on-surface": "#9c9d9b",
+              "surface-container-highest": "#dcddda",
+              "tertiary-fixed": "#a8fec6",
+              "background": "#f7f7f4",
+              "tertiary-dim": "#005c36",
+              "surface": "#f7f7f4",
+              "primary-container": "#ff793a",
+              "error-container": "#fb5151",
+              "primary-fixed": "#ff793a",
+              "tertiary": "#06693f",
+              "secondary-fixed-dim": "#d7d4d3",
+              "on-tertiary": "#cbffda",
+              "surface-container-high": "#e2e3df"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #f7f7f4; color: #2d2f2d; }
+        .headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .action-gradient { background: linear-gradient(135deg, #ff793a 0%, #9f3b00 100%); }
+        .glass-header { background: rgba(247, 247, 244, 0.85); backdrop-filter: blur(20px); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen pb-32">
+<!-- TopAppBar -->
+<nav class="fixed top-0 left-0 right-0 z-50 glass-header flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container shadow-sm border-2 border-surface-container-lowest">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a creative professional woman with warm lighting and a soft artistic background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4EPhm6xXcwr5b_gbGJs1E5GnJWKBRKRV1nW9gjXmtET98_nhheukDyc3WXGjM04fxD9odfUGeCBL1LEGA3ThwxsRmniUA3F2zWzPZvAWuz3xlbaU_QRdrnUljShGxGiCUPMF6zNN_Iwl--EFzp_DPOFWNTJ9rnG4YP9kNslhfaY8kXhMeYqo7xDmT3qsrDrcPPqUfaiKjkIlTSoQYeRpZrQO5K4Fi-Q10D7B9dlIG4q-G6oLX9OKEvT7pFPdrFaEYSmr82aOfj7iS"/>
+</div>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2">
+<h1 class="font-headline font-bold tracking-tight text-xl text-[#2D2F2D]">Studio</h1>
+</div>
+<div class="flex items-center">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-primary text-2xl">notifications</span>
+</button>
+</div>
+</nav>
+<main class="pt-24 px-6 space-y-10">
+<!-- Hero Section -->
+<section class="space-y-8">
+<div class="space-y-2">
+<h2 class="font-headline text-4xl font-extrabold tracking-tight text-on-surface leading-[1.1]">
+                    What will you<br/>create today?
+                </h2>
+</div>
+<!-- Prompt Input -->
+<div class="relative group">
+<div class="p-4 bg-surface-container-lowest rounded-lg shadow-[0_12px_24px_rgba(159,59,0,0.04)] transition-all duration-300">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline-variant mt-2">image</span>
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-on-surface font-body text-lg placeholder:text-outline-variant resize-none" placeholder="Describe a 3D accessory or outfit, like a holographic dragon-scale visor..." rows="3"></textarea>
+</div>
+<div class="flex justify-end mt-2">
+<button class="action-gradient w-14 h-14 rounded-full flex items-center justify-center text-on-primary shadow-lg active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Chips -->
+<div class="flex overflow-x-auto gap-3 pb-2 -mx-6 px-6 no-scrollbar">
+<button class="whitespace-nowrap px-6 py-3 bg-surface-container-low hover:bg-surface-container-high rounded-full text-on-surface font-label text-[10px] font-bold uppercase tracking-widest transition-colors">
+                    fantasy wings
+                </button>
+<button class="whitespace-nowrap px-6 py-3 bg-surface-container-low hover:bg-surface-container-high rounded-full text-on-surface font-label text-[10px] font-bold uppercase tracking-widest transition-colors">
+                    cyberpunk helmet
+                </button>
+<button class="whitespace-nowrap px-6 py-3 bg-surface-container-low hover:bg-surface-container-high rounded-full text-on-surface font-label text-[10px] font-bold uppercase tracking-widest transition-colors">
+                    cute hoodie
+                </button>
+<button class="whitespace-nowrap px-6 py-3 bg-surface-container-low hover:bg-surface-container-high rounded-full text-on-surface font-label text-[10px] font-bold uppercase tracking-widest transition-colors">
+                    fire staff
+                </button>
+<button class="whitespace-nowrap px-6 py-3 bg-surface-container-low hover:bg-surface-container-high rounded-full text-on-surface font-label text-[10px] font-bold uppercase tracking-widest transition-colors">
+                    crystal crown
+                </button>
+</div>
+</section>
+<!-- Shortcut Cards -->
+<section class="grid grid-cols-3 gap-4">
+<div class="flex flex-col gap-3 group">
+<div class="aspect-square bg-surface-container-lowest rounded-lg flex items-center justify-center transition-transform duration-200 group-active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl">trending_up</span>
+</div>
+<span class="text-[11px] font-bold text-center leading-tight px-1 font-label uppercase tracking-tighter">Curate from trends</span>
+</div>
+<div class="flex flex-col gap-3 group">
+<div class="aspect-square bg-surface-container-lowest rounded-lg flex items-center justify-center transition-transform duration-200 group-active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl">auto_fix_high</span>
+</div>
+<span class="text-[11px] font-bold text-center leading-tight px-1 font-label uppercase tracking-tighter">Remix design</span>
+</div>
+<div class="flex flex-col gap-3 group">
+<div class="aspect-square bg-surface-container-lowest rounded-lg flex items-center justify-center transition-transform duration-200 group-active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl">add_box</span>
+</div>
+<span class="text-[11px] font-bold text-center leading-tight px-1 font-label uppercase tracking-tighter">Create blank</span>
+</div>
+</section>
+<!-- What others are creating -->
+<section class="space-y-6">
+<div class="flex justify-between items-end">
+<h3 class="font-headline text-2xl font-bold tracking-tight">Community Feed</h3>
+<button class="text-primary font-label text-xs font-bold uppercase tracking-widest">See all</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-3">
+<div class="aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-low relative">
+<img alt="3D Wing Design" class="w-full h-full object-cover" data-alt="Abstract iridescent 3D mechanical angel wings floating in a minimalist cream studio setting with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtdkATyoD4A1jnD6PWfkELneZH4KxKvG5O7MbSrSVludeyOiIyYjiFf2yO5_Pr7bjEROL5OW73Bpls7eYm6GWlrj9GkkbLVay1uh1qfd_ygNkfPPqYrFiosidmOolda7A-wafRymezGFgnx1DWgk5rnyG-KP9Ot2-fbK8-qDDDIif2IGEXTduzO3iJNobn-SMc5lg2noZDJdDiWPcP5tGHgGpDwU3Nzw3lsVihxL6Ogif_5lUV9PgA4RZB-FbBjZRRkCkUK3dDMwt7"/>
+<div class="absolute bottom-3 left-3 flex items-center gap-2 bg-black/20 backdrop-blur-md px-2 py-1 rounded-full border border-white/20">
+<div class="w-4 h-4 rounded-full bg-white/40"></div>
+<span class="text-[9px] text-white font-bold">@neo_flux</span>
+</div>
+</div>
+</div>
+<div class="space-y-3 translate-y-6">
+<div class="aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-low relative">
+<img alt="Cyberpunk Mask" class="w-full h-full object-cover" data-alt="Detailed 3D render of a futuristic glass and chrome helmet with orange neon glow details, editorial photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnpxv0vdBwVd3adUCF0p36RgWhhtuGXpbNWkmdlmgkqlCQqM2XdaIm1-7oHQ5AgLp3uZnQtHdevKT04KudojwT3V4kqb2q_amBZssWgFgyUe5dHoYPPkEt-e_HM9iF3MHGV5DIkFS8V7eslKv4WiwTLDqIObBE3wx5GMB1FHZH5pPrKiWZNdTSq8N8oq4XFyYPqQdzNA5eftfzlHQ6LBIYS7gvJK5cVNK1xYqrSjh1cGlmOmgcRB47pr84rAagiM2Gwd4G_sfpHaSU"/>
+<div class="absolute bottom-3 left-3 flex items-center gap-2 bg-black/20 backdrop-blur-md px-2 py-1 rounded-full border border-white/20">
+<div class="w-4 h-4 rounded-full bg-white/40"></div>
+<span class="text-[9px] text-white font-bold">@arca_studio</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-8 pt-3 glass-header rounded-t-xl shadow-[0_-12px_24px_rgba(159,59,0,0.04)] z-50">
+<div class="flex flex-col items-center justify-center text-[#9F3B00] bg-[#FF793A]/10 rounded-full px-5 py-2 transition-transform duration-200 active:scale-90">
+<span class="material-symbols-outlined mb-0.5" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Manrope'] text-[9px] font-bold uppercase tracking-widest">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#2D2F2D]/50 hover:text-[#9F3B00] transition-colors duration-200 active:scale-90">
+<span class="material-symbols-outlined mb-0.5">add_circle</span>
+<span class="font-['Manrope'] text-[9px] font-bold uppercase tracking-widest">Create</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#2D2F2D]/50 hover:text-[#9F3B00] transition-colors duration-200 active:scale-90">
+<span class="material-symbols-outlined mb-0.5">inventory_2</span>
+<span class="font-['Manrope'] text-[9px] font-bold uppercase tracking-widest">Library</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#2D2F2D]/50 hover:text-[#9F3B00] transition-colors duration-200 active:scale-90">
+<span class="material-symbols-outlined mb-0.5">shopping_bag</span>
+<span class="font-['Manrope'] text-[9px] font-bold uppercase tracking-widest">Store</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#2D2F2D]/50 hover:text-[#9F3B00] transition-colors duration-200 active:scale-90">
+<span class="material-symbols-outlined mb-0.5">explore</span>
+<span class="font-['Manrope'] text-[9px] font-bold uppercase tracking-widest">Explore</span>
+</div>
+</nav>
+</body></html>

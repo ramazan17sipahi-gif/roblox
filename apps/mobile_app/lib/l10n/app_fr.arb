@@ -1,0 +1,1177 @@
+{
+  "@@locale": "fr",
+  "appTitle": "Creator Platform",
+  "navHome": "Accueil",
+  "navExplore": "Explorer",
+  "navCreate": "Créer",
+  "navLibrary": "Bibliothèque",
+  "navTemplates": "Modèles",
+  "homeTitle": "Que vas-tu\ncréer aujourd'hui ?",
+  "homePromptHint": "Décris un accessoire 3D ou une tenue...\nex. visière holographique en écailles de dragon",
+  "homeEnterPrompt": "Entrez une description pour générer",
+  "homeRecentOutputs": "Résultats récents",
+  "homeLibrary": "BIBLIOTHÈQUE",
+  "homeNoRecentCreations": "Aucune création récente",
+  "homeRecentCreationsEmpty": "Vos éléments 3D générés apparaîtront ici.",
+  "homeErrorLoadingJobs": "Erreur de chargement : {error}",
+  "@homeErrorLoadingJobs": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "homeCreate3DAccessory": "Créer un accessoire\n3D",
+  "homeCreateClassicClothing": "Créer un vêtement\nclassique",
+  "homeOrDivider": "OU",
+  "homeTrendingTemplates": "Modèles tendance",
+  "homeViewAll": "Tout afficher",
+  "homeGenerationStyle": "Style de génération",
+  "homeTargetPlatform": "Plateforme cible",
+  "homeAttachReference": "Joindre une référence",
+  "homeImage": "Image",
+  "homeImageFormats": "PNG, JPG",
+  "home3DModel": "Modèle 3D",
+  "home3DModelFormats": "OBJ, FBX",
+  "homeSketch": "Croquis",
+  "homeSketchDesc": "Dessiner ou scanner",
+  "homeUrl": "URL",
+  "homeUrlDesc": "Coller un lien",
+  "homeAttached": "{title} joint",
+  "@homeAttached": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "homePreviewReady": "APERÇU PRÊT",
+  "homeRefining": "AFFINAGE...",
+  "homeGenerating": "GÉNÉRATION...",
+  "commonError": "Erreur : {code} - {message}",
+  "@commonError": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "commonFunctionError": "Erreur de fonction : {reason}",
+  "@commonFunctionError": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "commonUnexpectedError": "Inattendu : {error}",
+  "@commonUnexpectedError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "commonCancel": "Annuler",
+  "commonDone": "Terminé",
+  "commonSave": "Enregistrer",
+  "commonDelete": "Supprimer",
+  "commonCopy": "Copier",
+  "commonPaste": "Coller",
+  "commonClose": "Fermer",
+  "commonRetry": "Réessayer",
+  "commonLoading": "Chargement...",
+  "commonSearch": "Rechercher",
+  "commonBack": "Retour",
+  "commonNext": "Suivant",
+  "commonYes": "Oui",
+  "commonNo": "Non",
+  "commonOk": "OK",
+  "commonConfirm": "Confirmer",
+  "commonCopied": "Copié !",
+  "commonApply": "Appliquer",
+  "studioTitle": "Studio",
+  "studioVersion": "STUDIO V2.4.12 BUILD 890",
+  "onboardingTitle1": "Créez des éléments 3D\nen quelques secondes",
+  "onboardingDesc1": "Exploitez la puissance de l'IA pour transformer du texte en ressources professionnelles. Utilisez des modèles et des outils simples pour des résultats de qualité studio.",
+  "onboardingTitle2": "Publiez sur n'importe\nquelle plateforme",
+  "onboardingDesc2": "Créez des conceptions détaillées avec des calques, des autocollants et des modèles sélectionnés synchronisés depuis le cloud.",
+  "onboardingTitle3": "Exporter et télécharger\nà Roblox",
+  "onboardingDesc3": "Exportez les textures PNG depuis l'application, puis téléchargez-les manuellement sur le tableau de bord Roblox Creator.",
+  "onboardingContinue": "Continuer",
+  "onboardingGetStarted": "Commencer",
+  "onboardingSkip": "PASSER",
+  "onboardingProcessing": "TRAITEMENT",
+  "onboardingPublished": "Publié !",
+  "onboardingLiveOnRoblox": "En ligne sur le Roblox Store",
+  "splashBrandName": "Fabricant de vêtements RBLX",
+  "splashTagline": "CHEMISES ET PANTALONS",
+  "authLogin": "Se connecter",
+  "authSignup": "S'inscrire",
+  "authEmail": "E-mail",
+  "authPassword": "Mot de passe",
+  "authForgotPassword": "Mot de passe oublié ?",
+  "authLoginWithGoogle": "Continuer avec Google",
+  "authLoginWithApple": "Continuer avec Apple",
+  "authNoAccount": "Pas de compte ? Inscrivez-vous",
+  "authHaveAccount": "Déjà un compte ? Connectez-vous",
+  "authLoginFailed": "Échec de connexion. Veuillez vérifier vos identifiants.",
+  "authSignupFailed": "Échec d'inscription. Veuillez réessayer.",
+  "authLogoutConfirmTitle": "Se déconnecter",
+  "authLogoutConfirmBody": "Êtes-vous sûr de vouloir vous déconnecter de Studio ? Vous pourrez toujours vous reconnecter plus tard.",
+  "authLogoutButton": "Se déconnecter de Studio",
+  "authLoggedOut": "Déconnexion réussie",
+  "authWelcomeBack": "Bon retour",
+  "authSignInContinue": "Connectez-vous pour continuer à créer.",
+  "authEmailAddress": "Adresse e-mail",
+  "authEmailHint": "nom@exemple.com",
+  "authPasswordHint": "••••••••",
+  "authSignIn": "Se connecter",
+  "authSignUpWithEmail": "S'inscrire par e-mail",
+  "authOrUseEmail": "OU PAR E-MAIL",
+  "authStartCreating": "Commencez à créer.",
+  "authEnterEmailPassword": "Veuillez entrer l'e-mail et le mot de passe",
+  "authSignupFailed2": "Inscription échouée : {error}",
+  "@authSignupFailed2": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "authLoginFailed2": "Connexion échouée : {error}",
+  "@authLoginFailed2": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "authTermsAgreement": "En continuant, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité.",
+  "authTermsAgreementPrefix": "En continuant, vous acceptez notre",
+  "authTermsAgreementMiddle": "et",
+  "authTermsAgreementSuffix": ".",
+  "authEnterEmailOnly": "Veuillez entrer votre adresse e-mail",
+  "authEmailAlreadyRegistered": "Un compte avec cette adresse email existe déjà. Essayez de vous connecter.",
+  "authPasswordTooShort": "Le mot de passe doit comporter au moins 6 caractères.",
+  "authInvalidEmail": "S'il vous plaît, mettez une adresse email valide.",
+  "authRateLimited": "Trop de tentatives. Veuillez patienter un moment et réessayer.",
+  "authCheckEmailSignup": "Vérifiez votre courrier électronique pour confirmer votre compte, puis connectez-vous.",
+  "authResetPasswordTitle": "Réinitialiser le mot de passe",
+  "authResetPasswordDesc": "Saisissez l'adresse e-mail de votre compte. Nous vous enverrons un lien de réinitialisation du mot de passe.",
+  "authResetPasswordSent": "Si un compte existe pour cet e-mail, un lien de réinitialisation a été envoyé. Vérifiez votre boîte de réception et votre dossier spam.",
+  "authSendResetLink": "Envoyer le lien de réinitialisation",
+  "authBackToLogin": "Retour à la connexion",
+  "settingsTitle": "Paramètres",
+  "settingsAccount": "Compte",
+  "settingsProMember": "MEMBRE PRO",
+  "settingsPersonalInfo": "Informations personnelles",
+  "settingsPersonalInfoSub": "Nom, e-mail et téléphone",
+  "settingsSecurity": "Sécurité et mot de passe",
+  "settingsSecuritySub": "2FA et activité de connexion",
+  "settingsLinkedPlatforms": "Plateformes liées",
+  "settingsExports": "Exportations",
+  "settingsExportsSub": "Format et qualité",
+  "settingsNotifications": "Notifications",
+  "settingsNotificationsSub": "Alertes et newsletter",
+  "settingsToolsFeatures": "Outils et fonctionnalités",
+  "settingsInviteEarn": "Inviter et gagner des crédits",
+  "settingsTutorials": "Tutoriels et guides",
+  "settings3DFileViewer": "Visionneuse de fichiers 3D",
+  "settingsAnalytics": "Tableau de bord analytique",
+  "settingsHelpLegal": "Aide et mentions légales",
+  "settingsHelpCenter": "Centre d'aide",
+  "settingsSupportEmail": "Contacter l'assistance",
+  "settingsSupportEmailSub": "Obtenir de l'aide par e-mail",
+  "settingsDeleteAccount": "Supprimer le compte",
+  "settingsDeleteAccountSub": "Supprimez définitivement votre compte et vos données",
+  "settingsDeleteConfirmTitle": "Supprimer le compte ?",
+  "settingsDeleteConfirmBody": "Cela supprime définitivement votre compte, vos conceptions et vos données enregistrées. Cette action ne peut pas être annulée.",
+  "settingsDeleteSuccess": "Votre compte a été supprimé.",
+  "settingsDeleteFailed": "Impossible de supprimer votre compte. Veuillez contacter l'assistance.",
+  "settingsPreferences": "Préférences",
+  "settingsLanguage": "Langue",
+  "settingsDarkMode": "Mode sombre",
+  "settingsDarkModeOn": "Sombre",
+  "settingsDarkModeOff": "Lumière",
+  "settingsAccountName": "Nom",
+  "settingsAccountEmail": "E-mail",
+  "settingsAccountId": "Identifiant du compte",
+  "settingsAccountCreated": "Rejoint",
+  "settingsEmailVerified": "E-mail vérifié",
+  "settingsEmailNotVerified": "E-mail non vérifié",
+  "settingsLastSignIn": "Dernière connexion",
+  "settingsLoginMethod": "Méthode de connexion",
+  "legalDocumentUnavailable": "Ce document est en cours de finalisation et sera disponible prochainement.",
+  "legalLinkOpenFailed": "Impossible d'ouvrir le lien. Veuillez réessayer plus tard.",
+  "robloxDisclaimer": "Non affilié à Roblox Corporation.",
+  "settingsPrivacyPolicy": "Politique de confidentialité",
+  "settingsTermsOfService": "Conditions d'utilisation",
+  "settingsSearchSettings": "Rechercher dans les paramètres...",
+  "settingsConnected": "CONNECTÉ",
+  "settingsNotLinked": "NON LIÉ",
+  "settingsActive": "ACTIF",
+  "settingsCurrentPlan": "PLAN ACTUEL",
+  "settingsStudioPro": "Studio Pro",
+  "settingsProPlan": "Pro",
+  "settingsFreePlan": "Gratuit",
+  "settingsFreePlanDesc": "Effectuez la mise à niveau pour débloquer les modèles Pro, les exportations et la publication communautaire.",
+  "settingsUpgradeToPro": "Passer à Pro",
+  "settingsMonthly": "Mensuel",
+  "settingsPlanDesc": "Débloquez des rendus cloud illimités et des sessions collaboratives.",
+  "settingsManageSubscription": "Gérer l'abonnement",
+  "settingsOpeningHelp": "Ouverture du centre d'aide...",
+  "settingsOpeningPrivacy": "Ouverture de la politique de confidentialité...",
+  "settingsOpeningTerms": "Ouverture des conditions d'utilisation...",
+  "settingsRobloxStudioSync": "Synchronisation des assets Studio",
+  "settingsMinecraftExporter": "Exportateur de packs de textures",
+  "settingsZepetoWearables": "Vêtements d'avatar",
+  "settingsARPublisher": "Métadonnées spatiales",
+  "settingsLinkAccount": "Lier le compte {platform}",
+  "@settingsLinkAccount": {
+    "placeholders": {
+      "platform": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsLinkDesc": "Lier votre compte {platform} vous permet d'exporter et publier des assets directement sur le marché {platform}.",
+  "@settingsLinkDesc": {
+    "placeholders": {
+      "platform": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsConnect": "Connecter {platform}",
+  "@settingsConnect": {
+    "placeholders": {
+      "platform": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsLinkedSuccess": "Compte {platform} lié avec succès !",
+  "@settingsLinkedSuccess": {
+    "placeholders": {
+      "platform": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsZepetoLinked": "Le compte Zepeto est lié",
+  "settingsARActive": "AR Publisher est actif",
+  "settingsPersonalInfoData": "Nom : Alex Rivera|E-mail : alex@studio.design|Téléphone : +1 (555) 0123|Lieu : San Francisco, CA",
+  "settingsSecurityData": "Authentification à deux facteurs : Activée|Dernière connexion : il y a 2 heures|Sessions actives : 2 appareils|Mot de passe modifié : il y a 14 jours",
+  "settingsExportData": "Format : FBX + GLTF|Résolution : 4K Ultra|Qualité de texture : Maximum|Compression : Sans perte",
+  "settingsNotificationData": "Notifications push : Activées|Digest e-mail : Hebdomadaire|Alertes de génération : Instantanées|Marketing : Désactivé",
+  "profileTitle": "Profil",
+  "profileEditProfile": "Modifier le profil",
+  "profileDesigns": "Modèles {count}",
+  "@profileDesigns": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileMyDesigns": "Mes designs",
+  "profileNoDesigns": "Pas encore de designs",
+  "profileCreateFirst": "Créez votre premier design pour le voir ici.",
+  "profileItems": "{count} éléments",
+  "@profileItems": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "myDesignPreviewLoading": "Chargement de l'aperçu...",
+  "myDesignPreviewTitle": "Aperçu du design",
+  "myDesignPreviewEditDesign": "Modifier le design",
+  "myDesignPreviewError": "Échec du chargement de l'aperçu",
+  "myDesignPreviewRetry": "Réessayer",
+  "templatePreviewTitle": "Aperçu du modèle",
+  "templatePreviewUseDesign": "Utiliser ce design",
+  "templatePreviewCategory": "Catégorie",
+  "templatePreviewActiveParts": "Parties actives",
+  "templatesTitle": "Modèles",
+  "templatesSearchHint": "Rechercher des modèles...",
+  "templatesAllTemplates": "Tous les modèles",
+  "templates3DAccessory": "Accessoire 3D",
+  "templatesClassicClothing": "Vêtement classique",
+  "templatesItemCount": "{count} modèles",
+  "@templatesItemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "templatesNoResults": "Aucun modèle trouvé",
+  "exploreTitle": "Explorer",
+  "exploreSearchHint": "Rechercher des designs...",
+  "exploreTrending": "Tendance",
+  "exploreNewest": "Les plus récents",
+  "explorePopular": "Populaire",
+  "exploreAddedToFavorites": "Ajouté aux favoris",
+  "designDetailTitle": "Détails du design",
+  "designDetailBy": "par {author}",
+  "@designDetailBy": {
+    "placeholders": {
+      "author": {
+        "type": "String"
+      }
+    }
+  },
+  "designDetailLikes": "{count} j'aime",
+  "@designDetailLikes": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "designDetailComments": "{count} commentaires",
+  "@designDetailComments": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "designDetailOpenInEditor": "Ouvrir dans l'éditeur",
+  "designDetailShare": "Partager",
+  "designDetailReport": "Signaler",
+  "libraryTitle": "Bibliothèque",
+  "libraryEmpty": "Votre bibliothèque est vide",
+  "libraryEmptyDesc": "Les designs que vous créez ou sauvegardez apparaîtront ici.",
+  "editorTitle": "Éditeur",
+  "editorPublish": "Publier",
+  "editorExport": "Exporter",
+  "editorLayers": "Calques",
+  "editorAddLayer": "Ajouter un calque",
+  "editorAddedLayer": "Calque ajouté : {name}",
+  "@editorAddedLayer": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "editorLayerCopy": "{name} Copie",
+  "@editorLayerCopy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "editorTemplates": "Modèles",
+  "editorAccessories": "Accessoires",
+  "editorMedia": "Médias",
+  "editorAIMedia": "Médias IA",
+  "editor3DItems": "Éléments 3D",
+  "editorUploadImage": "Télécharger une image",
+  "editorAddText": "Ajouter du texte",
+  "editorTextHint": "Saisissez le texte...",
+  "editorAddedText": "Texte ajouté : \"{text}\"",
+  "@editorAddedText": {
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "editorAdded3DItem": "Élément 3D ajouté : {name}",
+  "@editorAdded3DItem": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "editorAccessoryHub": "Hub d'accessoires",
+  "editorAccessoryBlankStart": "Démarrage vierge d'accessoire",
+  "editorPublishTitle": "Publier l'asset",
+  "editorPublishDesc": "Ajoutez un nom et une description pour votre asset",
+  "editorPublishName": "Nom de l'asset",
+  "editorPublishDescription": "Description",
+  "editorPublishToRoblox": "Publier sur Roblox",
+  "editorPublishToMarketplace": "Publier sur le marché",
+  "editorPublishSuccess": "Publié ! Votre design est maintenant en ligne sur le marché.",
+  "editorPublishSavedDraft": "{name} enregistré comme brouillon privé",
+  "@editorPublishSavedDraft": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "editorPublishLive": "{name} est maintenant en ligne sur le marché",
+  "@editorPublishLive": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "editorPublishInventory": "{name} est maintenant dans votre inventaire Roblox",
+  "@editorPublishInventory": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "editorExportedFiles": "Fichiers {name} enregistrés sur l'appareil",
+  "@editorExportedFiles": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "clothingEditorTitle": "Éditeur de vêtements",
+  "clothingEditorLayerEdit": "Modifier le calque",
+  "clothingEditorColor1": "Couleur 1",
+  "clothingEditorColor2": "Couleur 2",
+  "clothingEditorColor3": "Couleur 3",
+  "clothingEditorOpacity": "Opacité",
+  "clothingEditorBringForward": "Avant",
+  "clothingEditorSendBackward": "Arrière",
+  "clothingEditorDraw": "Dessiner",
+  "clothingEditorFill": "Remplir",
+  "clothingEditorErase": "Effacer",
+  "clothingEditorGradient": "Dégradé",
+  "clothingEditorShape": "Forme",
+  "clothingEditorSticker": "Sticker",
+  "clothingEditorAITexture": "Texture IA",
+  "clothingEditorExport": "Exporter",
+  "clothingEditorClear": "Effacer tout",
+  "clothingEditorLayerSaved": "Calque enregistré",
+  "clothingEditorSelectElement": "Sélectionnez un élément à avancer",
+  "clothingEditorSelectElementBack": "Sélectionnez un élément à reculer",
+  "clothingEditorDrawHint": "Touchez pour dessiner",
+  "clothingEditorFillHint": "Touchez pour remplir",
+  "clothingEditorEraseHint": "Dessinez pour effacer",
+  "clothingEditorGradientHint": "Touchez pour appliquer le dégradé",
+  "clothingEditorShapeHint": "Faites glisser pour dessiner une forme",
+  "clothingEditorStickerHint": "Sélectionnez un sticker",
+  "clothingEditorStrokes": "{count} traits",
+  "@clothingEditorStrokes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "clothingEditorElements": "{count} éléments",
+  "@clothingEditorElements": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "clothingEditorExported": "PNG {width}×{height} exporté ({size} Ko)",
+  "@clothingEditorExported": {
+    "placeholders": {
+      "width": {
+        "type": "int"
+      },
+      "height": {
+        "type": "int"
+      },
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "clothingEditorExportFailed": "Échec de l'exportation : {error}",
+  "@clothingEditorExportFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "clothingEditorGradientLinear": "Linéaire",
+  "clothingEditorGradientRadial": "Radial",
+  "clothingEditorGradientEnd": "Fin :",
+  "clothingEditorGradientLabel": "Dégradé :",
+  "clothingEditorShapeRect": "Rectangle",
+  "clothingEditorShapeCircle": "Cercle",
+  "clothingEditorShapeTriangle": "Triangle",
+  "clothingEditorShapeLine": "Ligne",
+  "clothingEditorShapeStar": "Étoile",
+  "clothingEditorShapeFilled": "Rempli",
+  "clothingEditorShapeOutline": "Contour",
+  "clothingSelectorTitle": "Type de vêtement classique",
+  "clothingSelectorBlankShirt": "Chemise vierge",
+  "clothingSelectorBlankPants": "Pantalon vierge",
+  "clothingSelectorBlankTShirt": "T-Shirt vierge",
+  "clothingSelectorBlankSet": "Set vierge",
+  "clothingSelectorUVTemplate": "Modèle UV 585×559",
+  "clothingSelectorFrontDecal": "Décalque avant 128×128",
+  "clothingSelectorFullOutfit": "Modèle de tenue complète",
+  "clothingSelectorSubtitle": "Choisissez un modèle pour commencer à concevoir",
+  "clothingSelectorReadySets": "Ensembles prêts à l'emploi",
+  "clothingSelectorNoTemplates": "Aucun modèle disponible pour l'instant",
+  "aiTextureTitle": "Générateur de textures IA",
+  "aiTextureComingSoon": "La génération de textures IA arrive bientôt !",
+  "aiTextureDesc": "Génération de textures par IA",
+  "aiMediaTitle": "Générateur de médias IA",
+  "aiMediaGenerate": "Générer",
+  "aiMediaHint": "Décrivez ce que vous souhaitez générer...",
+  "stickerSheetTitle": "Autocollants",
+  "stickerSheetSearch": "Rechercher des stickers...",
+  "imageUploadTitle": "Télécharger une image",
+  "imageUploadFromGallery": "Depuis la galerie",
+  "imageUploadFromCamera": "Depuis la caméra",
+  "imageUploadFromFiles": "Depuis les fichiers",
+  "colorPickerTitle": "Sélecteur de couleur",
+  "colorPickerHex": "HEX",
+  "colorPickerApply": "Appliquer la couleur",
+  "textToolTitle": "Ajouter du texte",
+  "textToolPlaceholder": "Entrez votre texte...",
+  "textToolFont": "Police",
+  "textToolSize": "Taille",
+  "textToolBold": "Gras",
+  "textToolItalic": "Italique",
+  "elementControlsCopy": "Copier",
+  "elementControlsPaste": "Coller",
+  "elementControlsDelete": "Supprimer",
+  "elementControlsFlipH": "Retourner H",
+  "elementControlsFlipV": "Retourner V",
+  "elementControlsRotateCW": "Rotation horaire",
+  "elementControlsRotateCCW": "Rotation anti-horaire",
+  "layerPanelTitle": "Calques",
+  "layerPanelAdd": "Ajouter",
+  "layerPanelEmpty": "Pas encore de calques",
+  "layerPanelOpacity": "Opacité",
+  "layerPanelBlendMode": "Mode de fusion",
+  "layerPanelVisible": "Visible",
+  "layerPanelLocked": "Verrouillé",
+  "notificationsTitle": "Notifications",
+  "notificationsEmpty": "Tout est à jour !",
+  "notificationsEmptyDesc": "Aucune nouvelle notification.",
+  "notificationsCleared": "Toutes les notifications effacées",
+  "notificationsDismissed": "\"{title}\" fermé",
+  "@notificationsDismissed": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "analyticsTitle": "Analytique",
+  "analyticsOverview": "Vue d'ensemble",
+  "analyticsTotalViews": "Vues totales",
+  "analyticsLikes": "J'aime",
+  "analyticsDownloads": "Téléchargements",
+  "analyticsRevenue": "Revenus",
+  "analyticsAllTime": "Tout le temps",
+  "analyticsActiveItems": "ÉLÉMENTS ACTIFS",
+  "analytics3DModel": "MODÈLE 3D",
+  "analytics3DPrint": "IMPRESSION 3D",
+  "analyticsGrowth": "Croissance",
+  "referralTitle": "Parrainage",
+  "referralInviteFriends": "Inviter des amis",
+  "referralEarnCredits": "Gagner des crédits",
+  "referralShareCode": "Partagez votre code de parrainage",
+  "referralCopied": "Code de parrainage copié !",
+  "referralDesc": "Partagez votre code de parrainage avec vos amis et gagnez des crédits pour chaque inscription.",
+  "tutorialsTitle": "Tutoriels",
+  "tutorialsSearch": "Rechercher des tutoriels...",
+  "tutorialsSteps": "{count} étapes",
+  "@tutorialsSteps": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fileViewerTitle": "Visionneuse de fichiers 3D",
+  "fileViewerOpen": "Ouvrir le fichier",
+  "fileViewerSupported": "Supporté : OBJ, FBX, GLB, GLTF",
+  "paywallTitle": "Passer Pro",
+  "paywallSubtitle": "Débloquez un potentiel illimité",
+  "subscriptionSheetRenewsOn": "Renouvelle",
+  "subscriptionSheetUpgradePlan": "Plan de mise à niveau",
+  "subscriptionSheetManagePlan": "Gérer l'abonnement",
+  "subscriptionSheetLoadError": "Impossible de charger l'abonnement",
+  "subscriptionSheetFreeTitle": "Forfait gratuit",
+  "subscriptionSheetFreeDesc": "Effectuez la mise à niveau pour débloquer les modèles Pro, les exportations et la publication communautaire.",
+  "subscriptionSheetActiveTitle": "Abonnement actif",
+  "publishInsufficientCredits": "Crédits insuffisants. 10 crédits requis par exportation.",
+  "paywallUnlockPro": "Débloquez Pro",
+  "paywallBuyCredits": "Acheter des crédits",
+  "paywallFeatureProTemplates": "Accédez à des modèles de vêtements premium",
+  "paywallFeatureExport": "Exporter sans filigrane",
+  "paywallFeaturePriority": "Files d'attente de traitement prioritaire",
+  "paywallFeatureUnlimitedTemplates": "Projets de vêtements classiques illimités",
+  "paywallMonthly": "Mensuel",
+  "paywallYearly": "Annuel",
+  "paywallFeature1": "Générations 3D illimitées",
+  "paywallFeature2": "File de traitement prioritaire",
+  "paywallFeature3": "Accès aux modèles 3D premium",
+  "paywallFeature4": "Crédits IA",
+  "paywallSubscribe": "S'abonner maintenant",
+  "paywallRestorePurchases": "Restaurer les achats",
+  "paywall12Credits": "12 crédits",
+  "generationTitle": "Statut de génération",
+  "generationGenerating": "L'IA génère...",
+  "generationAlmostThere": "Presque terminé.",
+  "generationAddingShapes": "Ajout de formes et stickers",
+  "generationAddingTextures": "Ajout de textures et détails",
+  "generationFailed": "Échec de la génération",
+  "generationCompleted": "Génération terminée !",
+  "linkRobloxTitle": "Intégration du compte",
+  "linkRobloxNotLinked": "Compte non lié",
+  "linkRobloxDesc": "Liez votre compte Roblox pour synchroniser les assets et autoriser la synchronisation.",
+  "linkRobloxConnect": "Connecter le compte Roblox",
+  "linkRoblox2DTemplates": "Modèles de textures 2D → UV-mappés sur le corps R15",
+  "threejsLoadingEngine": "Chargement du moteur 3D...",
+  "threejsSyncing": "Synchronisation...",
+  "createLandingTitle": "Créer",
+  "createLanding3DAccessory": "Accessoire 3D",
+  "createLandingClassicClothing": "Vêtement classique",
+  "timeAgoMinutes": "il y a {count}m",
+  "@timeAgoMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoHours": "il y a {count}h",
+  "@timeAgoHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoDays": "il y a {count}j",
+  "@timeAgoDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "splashTitle": "RBLX Clothing Maker",
+  "splashSubtitle": "Concevoir. Créer. Publier.",
+  "accessoryPickerTitle": "Modèles d'accessoires 3D",
+  "accessoryPickerSearch": "Rechercher des accessoires...",
+  "errorGeneric": "Quelque chose s'est mal passé",
+  "errorNoInternet": "Pas de connexion internet",
+  "errorTryAgain": "Veuillez réessayer",
+  "errorInvalidRoute": "Données de route invalides",
+  "errorRouteGuard": "Données de navigation invalides. Retour.",
+  "drawToolBrush": "Pinceau",
+  "drawToolPencil": "Crayon",
+  "drawToolMarker": "Marqueur",
+  "drawToolSpray": "Pulvérisation",
+  "templateType3D": "Généré en 3D",
+  "templateTypeClassic": "Vêtement classique",
+  "appliedTexture": "{name} appliqué au canevas",
+  "@appliedTexture": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "addedToCanvas": "Ajouté : {name}",
+  "@addedToCanvas": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "mediaPanelTitle": "Médias",
+  "mediaPanelUpload": "Télécharger",
+  "mediaPanelCamera": "Caméra",
+  "itemsPanelTitle": "Éléments 3D",
+  "itemsPanelSearch": "Rechercher des éléments...",
+  "templatesBrowseTitle": "Parcourez nos modèles",
+  "templatesBrowseSubtitle": "Découvrez les meilleurs designs et\nmodèles de notre communauté",
+  "templatesUnlimitedAccess": "Accès illimité",
+  "templatesGetStarted": "Commencer",
+  "templatesSeeAll": "Tout voir",
+  "templateDetailSize": "Taille du modèle",
+  "templateDetailParts": "Parties actives",
+  "templateDetailClass": "Classe Roblox",
+  "templateDetailType": "Taper",
+  "templateDetailCategory": "Catégorie",
+  "templateDetailMode": "Mode",
+  "templateProAccess": "Pro — Obtenir l'accès",
+  "templateUseDesign": "Utiliser ce design",
+  "templatePreview": "Aperçu",
+  "stickerSheetTitleFull": "Stickers et Clipart",
+  "stickerCategoryGaming": "Jeux",
+  "stickerCategoryEmoji": "Emoji",
+  "stickerCategoryBadges": "Insignes",
+  "stickerCategoryNature": "Nature",
+  "stickerCategorySymbols": "Symboles",
+  "stickerCategoryPatterns": "Motifs",
+  "layerPanelNoLayers": "Aucun calque",
+  "layerPanelAddLayerTitle": "Ajouter un calque",
+  "layerPanelAddLayerHint": "Nom du calque (ex. Effet Néon Lumineux)",
+  "layerPanelAddButton": "Ajouter",
+  "layerPanelDuplicated": "Dupliqué : {name}",
+  "@layerPanelDuplicated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "layerPanelRemoved": "Calque supprimé : {name}",
+  "@layerPanelRemoved": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "layerPanelReordered": "Calques réorganisés",
+  "layerPanelOpacityPct": "Opacité : {pct}%",
+  "@layerPanelOpacityPct": {
+    "placeholders": {
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
+  "accessoryComingSoon": "Bientôt disponible",
+  "accessoryNoModel": "Aucun modèle disponible",
+  "publishFinishTitle": "Terminer la création",
+  "publishFinishSubtitle": "Choisissez comment publier votre travail.",
+  "publishToMarketplace": "Publier sur le marché",
+  "publishToMarketplaceSub": "Mettre en vente pour les autres créateurs",
+  "publishToMarketplaceConfirm": "Votre design sera disponible publiquement à l'achat.",
+  "publishUploadToRoblox": "Télécharger sur Roblox",
+  "publishUploadToRobloxSub": "Injection directe dans votre inventaire",
+  "publishAccountNotLinked": "Compte non lié",
+  "publishAccountNotLinkedDesc": "Veuillez lier votre compte Roblox dans les Paramètres pour télécharger directement.",
+  "publishLinkAccount": "Lier le compte",
+  "publishExportJobCreated": "Tâche d'exportation créée ! Vérifiez vos tâches.",
+  "publishPleaseWait": "Veuillez patienter...",
+  "publishProRequired": "Pro requis",
+  "publishProRequiredDesc": "La publication sur le marché est une fonctionnalité Pro. Mettez à niveau pour débloquer.",
+  "publishUpgradeToPro": "Passer à Pro",
+  "publishExportNote": "Les téléchargements externes nécessitent un compte lié. Les assets doivent respecter la limite de 10k triangles.",
+  "publishCopyLink": "Copier le lien",
+  "publishCopyLinkSub": "Partagez un lien direct vers votre conception",
+  "publishDownload": "Télécharger",
+  "publishDownloadSub": "Enregistrez les fichiers de conception sur votre appareil",
+  "publishLinkCopied": "Lien copié dans le presse-papier !",
+  "publishDownloadSuccess": "Design téléchargé avec succès !",
+  "fineTuneTitle": "Ajustement fin du placement",
+  "fineTuneReset": "Réinitialiser",
+  "fineTuneYAxis": "Y  Haut / Bas",
+  "fineTuneXAxis": "X  Gauche / Droite",
+  "fineTuneZAxis": "Z  Proche / Loin",
+  "fineTuneRotate": "Rotation",
+  "fineTuneScale": "Échelle",
+  "customUploads": "Téléchargements personnalisés",
+  "comingSoon": "Bientôt.",
+  "viewportModes": "Modes d'affichage : Complet / Grille / Filaire",
+  "baseAvatarFailed": "Échec du chargement de l'avatar de base",
+  "libraryTabDrafts": "Brouillons",
+  "libraryTabPublished": "Publié",
+  "libraryTabPrivate": "Privé",
+  "libraryTabExports": "Exportations",
+  "libraryNoDrafts": "Aucun brouillon",
+  "libraryNoDraftsDesc": "Vous n'avez pas encore commencé de design.",
+  "libraryNoPublished": "Aucun design publié",
+  "libraryNoPublishedDesc": "Publiez un design pour le partager avec le monde.",
+  "libraryNoPrivate": "Aucun design privé",
+  "libraryNoPrivateDesc": "Votre collection privée est vide.",
+  "libraryNoExports": "Aucune exportation",
+  "libraryNoExportsDesc": "Les designs téléchargés apparaîtront ici.",
+  "editorDrawToolDraw": "Dessiner",
+  "editorDrawToolNavigate": "Déplacer",
+  "editorDrawToolFill": "Remplir",
+  "editorDrawToolErase": "Effacer",
+  "editorDrawToolGradient": "Pente",
+  "editorDrawToolShape": "Forme",
+  "editorDrawToolSticker": "Sticker",
+  "editorDrawToolAITexture": "Texture IA",
+  "editorHintDraw": "Touchez pour dessiner",
+  "editorHintNavigate": "Faites glisser pour effectuer un panoramique · Pincez pour zoomer",
+  "editorHintFill": "Touchez pour remplir",
+  "editorHintErase": "Dessiner pour effacer",
+  "editorHintGradient": "Touchez pour appliquer un dégradé",
+  "editorHintShape": "Faites glisser pour dessiner la forme",
+  "editorHintSticker": "Sélectionnez un autocollant",
+  "editorHintDefault": "Touchez pour dessiner",
+  "editorCopied": "Copié!",
+  "editorColorApplied": "Couleur appliquée",
+  "editorBringToFront": "Sélectionnez un élément et mettez-le au premier plan",
+  "editorSendToBack": "Sélectionnez un élément et renvoyez-le en arrière-plan",
+  "editorImageUploadSoon": "Image upload - coming soon",
+  "editorUploadFromGallery": "Télécharger depuis une galerie ou des fichiers",
+  "editorAddButton": "Ajouter",
+  "editorColors": "Couleurs",
+  "editorAvatarSettings": "Paramètres de l'avatar",
+  "editorHelp": "Aide",
+  "editorGradientLabel": "Pente:",
+  "editorGradientLinear": "Linéaire",
+  "editorGradientRadial": "Radial",
+  "editorGradientEnd": "Fin:",
+  "editorShapeFilled": "Rempli",
+  "editorShapeOutline": "Contour",
+  "editorHelpDrawTip": "Faites glisser votre doigt sur la toile 2D pour dessiner",
+  "editorHelpStickerTip": "Appuyez et faites glisser pour déplacer l'autocollant/le texte",
+  "editorHelpZoomTip": "Pincez avec deux doigts pour zoomer",
+  "editorHelpPreviewTip": "Prévisualisez les vêtements en direct en mode 3D",
+  "editorHelpColorTip": "Choisissez une couleur de peinture dans l'onglet Couleurs en mode 3D",
+  "editorHelpSyncTip": "Les dessins se synchronisent automatiquement en 3D",
+  "editorExportedPng": "{width}x{height} PNG exported ({size} KB)",
+  "@editorExportedPng": {
+    "placeholders": {
+      "width": {},
+      "height": {},
+      "size": {}
+    }
+  },
+  "editorExportFailed": "Échec de l'exportation : {error}",
+  "@editorExportFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "editorDiscardTitle": "Supprimer les modifications ?",
+  "editorDiscardBody": "Vous avez des modifications non enregistrées. Revenir en arrière les éliminera.",
+  "editorDiscard": "Jeter",
+  "editorPlacementGridSoon": "Grille de placement – à venir",
+  "editorViewportModes": "Modes de fenêtre : Complet / Grille / Filaire",
+  "editorUndoAction": "Annuler : {action}",
+  "@editorUndoAction": {
+    "placeholders": {
+      "action": {}
+    }
+  },
+  "editorRedoAction": "Refaire : {action}",
+  "@editorRedoAction": {
+    "placeholders": {
+      "action": {}
+    }
+  },
+  "editorAvatarLoadFailed": "L'avatar de base n'a pas pu être chargé",
+  "editorRetry": "Réessayer",
+  "editorAssetApplied": "Appliqué : {name}",
+  "@editorAssetApplied": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "editorAssetAdded": "Ajouté : {name}",
+  "@editorAssetAdded": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "editorCustomUploads": "Téléchargements personnalisés",
+  "layerNoLayers": "Pas de couches",
+  "layerOpacityBlend": "Opacity: {opacity}% · {blend}",
+  "@layerOpacityBlend": {
+    "placeholders": {
+      "opacity": {},
+      "blend": {}
+    }
+  },
+  "aiTextureSubtitle": "Décrire une texture, l'IA la crée",
+  "aiTextureHint": "Décrivez la texture souhaitée...",
+  "aiTextureStyleLabel": "Style",
+  "aiTextureQuickPrompts": "Invites rapides",
+  "aiTextureGenerating": "Génération de textures...",
+  "aiTextureGenerateApply": "Générer et appliquer",
+  "aiTextureEnterDesc": "Veuillez saisir une description de la texture",
+  "aiTextureNoTaskId": "Aucun ID de tâche renvoyé",
+  "aiTextureGenFailed": "La génération a échoué. Utiliser la solution de secours.",
+  "aiTextureTimeout": "Timeout - using fallback texture",
+  "aiTextureLoadFailed": "Échec du chargement de la texture : {error}",
+  "@aiTextureLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "aiTextureFallbackFailed": "Échec de la génération de secours : {error}",
+  "@aiTextureFallbackFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "editorFront": "Devant",
+  "editorBack": "Derrière",
+  "editorColorPalette": "Palette de couleurs",
+  "editorRegionUpper": "Haut",
+  "editorRegionLower": "Bas",
+  "editorRegionAll": "Tout",
+  "editorAddSticker": "Ajouter un autocollant",
+  "editorStickerDescription": "Ajoute un autocollant au canevas UV, visible en 3D",
+  "editorTextDescription": "Ajoutez du texte, choisissez la taille et la couleur",
+  "editorExportButton": "Exporter",
+  "linkRobloxStudio": "Studio",
+  "linkRobloxConnectAccount": "CONNECTER LE COMPTE",
+  "linkRobloxExpandReach": "Développez votre\nPortée créative.",
+  "linkRobloxGameTitle": "Jeu Hypervers",
+  "linkRobloxAccountIntegration": "Intégration de compte",
+  "linkRobloxSignIn": "Connectez-vous au compte de jeu",
+  "linkRobloxSelectDestination": "Sélectionnez une destination",
+  "linkRobloxDestinationHint": "Où publier vos créations ?",
+  "linkRobloxPersonalProfile": "Profil personnel",
+  "linkRobloxDemoUsername": "alex_creator_99",
+  "linkRobloxTeamName": "L'équipe du Studio Néon",
+  "linkRobloxProfessionalWorkspace": "Espace de travail professionnel",
+  "linkRobloxContinueWith": "Continuer avec Alex",
+  "linkRobloxSafeConnect": "CONNEXION SÉCURISÉE",
+  "linkRobloxAlmostThere": "Presque là.",
+  "linkRobloxPermissionsDesc": "Studio souhaite disposer des autorisations suivantes pour synchroniser vos éléments.",
+  "linkRobloxConfirmLink": "Confirmer et lier le compte",
+  "linkRobloxCancelRequest": "Annuler la demande",
+  "aiAccessoryTitle": "Générateur d'accessoires IA",
+  "aiAccessorySubtitle": "Décrire un accessoire, l'IA le génère",
+  "aiAccessoryHint": "Décrivez l'accessoire 3D que vous souhaitez...",
+  "aiAccessoryAttachmentSlot": "Fente de fixation",
+  "aiAccessoryStyleLabel": "Style",
+  "aiAccessoryQuickPrompts": "Invites rapides",
+  "aiAccessoryGenerating": "Générateur...",
+  "aiAccessoryPromptRequired": "Veuillez saisir une description",
+  "aiAccessoryNoTaskId": "Aucun ID de tâche renvoyé",
+  "aiAccessoryGenFailed": "La génération a échoué",
+  "aiAccessoryGenTimeout": "La génération a expiré",
+  "aiAccessoryGenComplete": "Génération terminée",
+  "aiAccessoryGenApply": "Générer et appliquer",
+  "designDetailShareDesign": "Partager la conception",
+  "designDetailLinkCopied": "Lien copié dans le presse-papier",
+  "designDetailOpeningMessages": "Ouverture des messages...",
+  "designDetailDownloading": "Téléchargement du rendu...",
+  "designDetailDragToRotate": "Faites glisser pour faire pivoter",
+  "designDetailDemoTitle": "Couronne de halo céleste",
+  "designDetailDemoAuthor": "Aria Sterling",
+  "designDetailAvailableMaterials": "MATÉRIAUX DISPONIBLES",
+  "designDetailLoadingEditor": "Chargement du design dans l'éditeur...",
+  "designDetailRemixing": "Remixage de Celestial Halo Crown...",
+  "designDetailYouMightLike": "Vous aimerez peut-être aussi",
+  "designDetailViewAll": "Voir tout",
+  "designDetailCopyLink": "Copier le lien",
+  "designDetailMessage": "Message",
+  "designDetailDownload": "Télécharger",
+  "analyticsStoreTitle": "Analyse du magasin",
+  "analyticsTotalSales": "Ventes totales",
+  "analyticsConversionRate": "Taux de conversion",
+  "analyticsPageViews": "Pages vues",
+  "analyticsTopItems": "Articles les plus performants",
+  "analyticsRevenueChart": "Tableau des revenus",
+  "analyticsNoData": "Aucune donnée analytique pour l'instant",
+  "analyticsNoDataDesc": "Commencez à vendre pour voir vos analyses ici",
+  "analyticsPeriodWeek": "Cette semaine",
+  "analyticsPeriodMonth": "Ce mois-ci",
+  "analyticsPeriodYear": "Cette année",
+  "analyticsSelectStore": "Sélectionnez un magasin",
+  "analyticsDateRange": "Plage de dates",
+  "analyticsStudio": "Studio",
+  "analyticsTotalRevenue": "REVENUS TOTALS",
+  "analyticsEarningsFlow": "Flux de bénéfices",
+  "analyticsTrending": "TENDANCE",
+  "analyticsConversion": "CONVERSION",
+  "analyticsTopProduct": "Produit phare",
+  "analyticsViewStore": "Voir la boutique",
+  "notificationsClearAll": "Tout effacer",
+  "notificationsAllCaughtUp": "Tous rattrapés !",
+  "notificationsNoNew": "Aucune nouvelle notification",
+  "notificationsRetryGeneration": "Réessayer la génération",
+  "notificationsRetryBody": "Souhaitez-vous réessayer cette génération ? 1 crédit sera utilisé.",
+  "notificationsRetryQueued": "Génération en file d'attente – revenez sous peu",
+  "notificationsRetry": "Réessayer",
+  "imageUploadGallery": "Galerie",
+  "imageUploadCamera": "Caméra",
+  "imageUploadFile": "Fichier",
+  "imageUploadNoUploads": "Aucun téléchargement pour l'instant",
+  "imageUploadDesc": "Téléchargez des images ou des modèles 3D à utiliser dans votre conception",
+  "imageUploadUploading": "Téléchargement...",
+  "imageUploadSuccess": "Téléchargement réussi",
+  "fileViewerLoadingModel": "Chargement du modèle...",
+  "fileViewerNoFile": "Aucun fichier chargé",
+  "fileViewerNoFileHint": "Appuyez sur le bouton ci-dessous pour charger un fichier 3D",
+  "fileViewerOpen3DFile": "Ouvrir le fichier 3D",
+  "fileViewerLoadFailed": "Échec du chargement du fichier : {error}",
+  "@fileViewerLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "fileViewerFileInfo": "Informations sur le fichier",
+  "fileViewerClose": "Fermer",
+  "textToolAddText": "Ajouter du texte",
+  "textToolColor": "Couleur",
+  "textToolAlign": "Aligner",
+  "textToolApplied": "Texte \"{text}\" appliqué",
+  "@textToolApplied": {
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "exploreDiscover": "Découvrez",
+  "exploreSortFilter": "Trier et filtrer",
+  "exploreSortBy": "TRIER PAR",
+  "exploreApplyFilter": "Appliquer le filtre",
+  "referralGiveGet": "Donnez 3, obtenez 5",
+  "referralYourCode": "Votre code de parrainage",
+  "referralCodeCopied": "Code copié ! ğŸ‰",
+  "referralShareInvite": "Partager le lien d'invitation",
+  "referralHowItWorks": "Comment ça marche",
+  "publishConfirm": "Confirmer",
+  "mediaPanelNoMedia": "Aucun média",
+  "mediaPanelNoMediaDesc": "Aucun média dans cette catégorie pour l'instant.",
+  "templatesPanelTitle": "Modèles",
+  "templatesPanelNoTemplates": "Aucun modèle",
+  "templatesPanelNoTemplatesDesc": "Aucun modèle dans cette catégorie pour l'instant.",
+  "items3DNoItems": "Aucun article",
+  "items3DNoItemsDesc": "Aucun article dans cette catégorie pour l'instant.",
+  "editorSyncing": "Synchronisation...",
+  "editorScreenshotFailed": "Échec de la capture d'écran : {error}",
+  "@editorScreenshotFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "drawToolBrushSize": "Taille du pinceau",
+  "drawToolOpacity": "Opacité",
+  "drawToolBlendMode": "Mode de fusion",
+  "drawToolGradientDirection": "Direction du dégradé",
+  "drawToolShapeType": "Type de forme",
+  "generationStatusTitle": "Statut de génération",
+  "commonDismiss": "Rejeter",
+  "profileUpdated": "Profil mis à jour",
+  "paywallNoPlans": "Aucun forfait disponible",
+  "paywallBestValue": "MEILLEURE VALEUR",
+  "paywallTabPlans": "Forfaits",
+  "paywallTabCredits": "Crédits",
+  "colorPickerCustom": "Couleur personnalisée",
+  "classicSelectorBlankTemplate": "Modèle vierge",
+  "accessoryPickerTemplateTitle": "Modèles d'accessoires 3D",
+  "accessoryPickerTemplateSubtitle": "Parcourez les modèles rigides, superposés et de démarrage",
+  "accessoryPickerTemplateCount": "Modèles {count}",
+  "@accessoryPickerTemplateCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchComingSoon": "Recherche à venir",
+  "tutorialsLearn": "Apprendre",
+  "tutorialsStepOf": "Etape « PH0 » de « PH1 »",
+  "@tutorialsStepOf": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "genStatusQueued": "En attente dans la file d'attente...",
+  "genStatusProcessing": "L'IA génère...",
+  "genStatusNotify": "Vous serez averti lorsqu'il sera prêt. Vous pouvez fermer cette page.",
+  "genStatusReturnToLibrary": "Retour à la bibliothèque",
+  "genStatusComplete": "Génération terminée !",
+  "genStatusCompleteMsg": "Votre actif a été généré et est prêt à être utilisé.",
+  "genStatusOpenInEditor": "Ouvrir dans l'éditeur",
+  "genStatusFailed": "Échec de la génération",
+  "genStatusFailedMsg": "Une erreur s'est produite lors de la génération à partir de votre invite. Vos crédits ont été restitués.",
+  "genStatusTryAgain": "Réessayez",
+  "designDetailSavedToLibrary": "Enregistré dans la bibliothèque",
+  "designDetailRemovedFromLibrary": "Supprimé de la bibliothèque",
+  "designDetailAddedToFavorites": "Ajouté aux favoris",
+  "designDetailRemovedFromFavorites": "Supprimé des favoris",
+  "designDetailRemoved": "Supprimé",
+  "exploreSearchCreators": "Rechercher des designs, des créateurs...",
+  "exploreOpening": "Ouverture : {name}",
+  "@exploreOpening": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "profileDisplayName": "Nom d'affichage",
+  "profileEnterName": "Entrez le nom",
+  "profileBio": "Biographie",
+  "profileBioHint": "Écrivez quelque chose sur vous-même",
+  "accessoryRigidDesc": "Rigide – attacher au point du corps",
+  "accessoryLayeredDesc": "Couches – vêtements enveloppés dans une cage",
+  "accessoryRigidTitle": "Accessoires rigides",
+  "accessoryLayeredTitle": "Vêtements superposés",
+  "accessory3DBadge": "3D",
+  "noTemplatesYet": "Aucun modèle pour l'instant",
+  "noDesignsYet": "Aucun dessin pour l'instant",
+  "robloxAccountLinkedSuccess": "Compte Roblox lié avec succès : @{username}",
+  "@robloxAccountLinkedSuccess": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "connectionError": "Erreur de connexion : {error}",
+  "@connectionError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "unlinkAccount": "Dissocier le compte",
+  "unlinkAccountConfirm": "Êtes-vous sûr de vouloir dissocier votre compte Roblox ?",
+  "cancel": "Annuler",
+  "unlink": "Dissocier",
+  "robloxAccountUnlinked": "Compte Roblox dissocié",
+  "accountLinked": "Compte lié",
+  "robloxAccountLinkedDesc": "Votre compte Roblox est lié avec succès",
+  "robloxAccount": "Compte Roblox",
+  "linkedStatus": "LIÉ",
+  "notLinkedStatus": "NON LIÉ",
+  "activeFeatures": "Fonctionnalités actives",
+  "directUpload": "Exporter des textures",
+  "directUploadDesc": "Exporter des fichiers PNG pour un téléchargement manuel dans le tableau de bord du créateur",
+  "livePreview": "Aperçu 3D",
+  "livePreviewDesc": "Prévisualiser les vêtements sur un modèle de personnage dans l'éditeur",
+  "autoSync": "Profil lié",
+  "autoSyncDesc": "Votre nom d'utilisateur Roblox est enregistré pour les flux de travail d'exportation",
+  "linkAccountHeader": "LIER LE COMPTE",
+  "linkRobloxSubtitle": "Connectez-vous en toute sécurité avec Roblox OAuth pour vérifier votre compte créateur.",
+  "robloxUsername": "Nom d'utilisateur Roblox",
+  "enterUsername": "Entrez le nom d'utilisateur...",
+  "linkRobloxButton": "Connectez-vous avec Roblox",
+  "linkRobloxOAuthVerified": "OAuth vérifié",
+  "linkRobloxOAuthVerifiedDesc": "Votre identité Roblox est confirmée via la connexion Roblox",
+  "linkTerms": "En vous connectant, vous acceptez nos conditions d'utilisation et autorisez la synchronisation des actifs.",
+  "enterRobloxUsername": "Veuillez entrer votre nom d'utilisateur Roblox",
+  "connectionCheck": "Vérifiez votre connexion et réessayez",
+  "errorPrefix": "Erreur : {error}",
+  "@errorPrefix": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "homeAttach": "Joindre",
+  "authContinueWithRoblox": "Continuer avec Roblox",
+  "authRobloxLoginFailed": "Échec de la connexion Roblox. Veuillez réessayer."
+}

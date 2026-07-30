@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#403f3f",
+              "surface-bright": "#f7f7f4",
+              "error-dim": "#9f0519",
+              "on-primary-fixed": "#000000",
+              "on-surface-variant": "#5a5c5a",
+              "secondary-fixed": "#e5e2e1",
+              "secondary-dim": "#504f4f",
+              "on-secondary": "#f5f2f1",
+              "on-error-container": "#570008",
+              "primary-dim": "#8c3300",
+              "primary-fixed-dim": "#f86513",
+              "error": "#b31b25",
+              "on-primary-container": "#421400",
+              "surface-container-low": "#f0f1ee",
+              "surface-variant": "#dcddda",
+              "secondary": "#5c5b5b",
+              "on-background": "#2d2f2d",
+              "on-primary": "#ffefea",
+              "on-error": "#ffefee",
+              "on-secondary-fixed-variant": "#5c5b5b",
+              "secondary-container": "#e5e2e1",
+              "on-primary-fixed-variant": "#511a00",
+              "on-secondary-container": "#525151",
+              "surface-tint": "#9f3b00",
+              "on-tertiary-fixed": "#004f2e",
+              "outline-variant": "#acadab",
+              "on-tertiary-fixed-variant": "#126f44",
+              "tertiary-fixed-dim": "#9aefb9",
+              "on-surface": "#2d2f2d",
+              "primary": "#9f3b00",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-container": "#a8fec6",
+              "inverse-surface": "#0d0f0d",
+              "on-tertiary-container": "#00643b",
+              "outline": "#767775",
+              "inverse-primary": "#ff6a1a",
+              "surface-container": "#e8e8e5",
+              "surface-dim": "#d3d5d1",
+              "inverse-on-surface": "#9c9d9b",
+              "surface-container-highest": "#dcddda",
+              "tertiary-fixed": "#a8fec6",
+              "background": "#f7f7f4",
+              "tertiary-dim": "#005c36",
+              "surface": "#f7f7f4",
+              "primary-container": "#ff793a",
+              "error-container": "#fb5151",
+              "primary-fixed": "#ff793a",
+              "tertiary": "#06693f",
+              "secondary-fixed-dim": "#d7d4d3",
+              "on-tertiary": "#cbffda",
+              "surface-container-high": "#e2e3df"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body { background-color: #F6F6F3; font-family: 'Manrope', sans-serif; }
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+      .perspective-text { transform: rotateX(2deg); }
+      .action-sheet-overlay { background: linear-gradient(to bottom, rgba(246, 246, 243, 0) 0%, rgba(246, 246, 243, 0.4) 30%, rgba(0,0,0,0.4) 100%); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex items-center justify-center min-h-screen text-[#111111]">
+<!-- iPhone 15 Pro Canvas -->
+<div class="relative w-[393px] h-[852px] bg-[#F6F6F3] overflow-hidden rounded-[55px] shadow-2xl ring-8 ring-[#2d2f2d]/5 border-[12px] border-[#2d2f2d]">
+<!-- Status Bar Mock -->
+<div class="absolute top-0 w-full h-12 flex justify-between items-center px-8 z-20">
+<span class="text-sm font-bold">9:41</span>
+<div class="flex gap-1.5 items-center">
+<span class="material-symbols-outlined text-[18px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[18px]">wifi</span>
+<span class="material-symbols-outlined text-[18px]">battery_very_low</span>
+</div>
+</div>
+<!-- Top App Bar (Shared Component Style) -->
+<header class="bg-[#F7F7F4]/85 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full fixed top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="profile portrait of a digital artist with soft studio lighting and neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDALlYqOpX5zROzPkeC_AyduCY780U8Cv_PTpv6zeFf26MBw7002lYOdaI6QjliGQMWuCrgkbgC92nl6PjQGMaRF2DfJW_oe6cx01Yt5SyPOXngV6-CthZillL64qXMmKn2Yx1aL13E4W3vJT-KjPmnppt0yde1Ony5HmIiU3W45e8j_7CSTKZfzCvkKFNDLztQnWXRqdLjxB-gkIZyAFYawlCYg1_gRFjMij7AsMGYAwIokckxc2mz1km0FbpWYLNi4Uu9gCaDST57"/>
+</div>
+<h1 class="text-xl font-extrabold text-[#2D2F2D] font-['Plus_Jakarta_Sans'] tracking-tight">Studio</h1>
+</div>
+<span class="material-symbols-outlined text-[#2D2F2D]/60 hover:opacity-80 transition-opacity cursor-pointer">notifications</span>
+</header>
+<!-- Main Design Detail View (Background) -->
+<main class="pt-24 px-6 h-full flex flex-col">
+<div class="mb-6">
+<p class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest text-[#9F3B00] mb-1">Current Workspace</p>
+<h2 class="text-3xl font-['Plus_Jakarta_Sans'] font-extrabold tracking-tight">Ethereal Wings V4</h2>
+</div>
+<!-- 3D Item Visualization (Partially Visible) -->
+<div class="relative flex-1 rounded-lg overflow-hidden bg-surface-container-low flex items-center justify-center">
+<div class="absolute inset-0 bg-gradient-to-tr from-surface-container-low to-surface-container-lowest opacity-50"></div>
+<!-- Mock 3D Wing Asset -->
+<div class="relative w-full h-full flex items-center justify-center opacity-40 grayscale-[0.2]">
+<img class="w-4/5 h-auto rotate-12 transform hover:scale-105 transition-transform duration-700" data-alt="magnificent translucent white feathered wings isolated on a neutral studio background with soft cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1yR_2EyOwGi_HnCKcr-jZqMpHYeIJnGFHbJKCq38HXu2UJOpQwZ2vRbdfJKcWtXxKfvor2mH2dSi_yUgg_UO3i6RprZpTH90JZKRdejP7whQsQlA6Asw9aCbp1TLs71LSaf5sX4h2r54PFA3nl0zZ-KG9z6W7fYGFWngJod0WjWrD8EwAfozMFTNhWhbZJ6xpZYt8EBy_uulr4MSTjYFns2XC7j1pNhJdJ8BztBKI5UYNHhRaLJ3SRG5Au4e9Xfk7pVHH0nRFry2s"/>
+</div>
+<!-- Floating Info Tags -->
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<div class="bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold tracking-tight text-[#111111]">VERTICES: 12.4K</div>
+<div class="bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold tracking-tight text-[#111111]">RIGGED: YES</div>
+</div>
+</div>
+<!-- Bottom Spacer for the Action Sheet -->
+<div class="h-40"></div>
+</main>
+<!-- Action Sheet Overlay -->
+<div class="absolute inset-0 action-sheet-overlay z-40 pointer-events-none"></div>
+<!-- The Action Sheet (Modal) -->
+<div class="absolute bottom-0 left-0 w-full bg-[#FFFFFF] rounded-t-[2.5rem] shadow-[0_-12px_48px_rgba(0,0,0,0.12)] z-50 flex flex-col pt-3 pb-10 px-6">
+<!-- Drag Handle -->
+<div class="w-12 h-1 bg-surface-variant/50 rounded-full mx-auto mb-8"></div>
+<!-- Sheet Header -->
+<div class="mb-8">
+<h3 class="text-xl font-['Plus_Jakarta_Sans'] font-bold text-[#111111]">Finish Creation</h3>
+<p class="text-sm font-['Manrope'] text-[#6B6B6B] mt-1">Select how you want to output your work.</p>
+</div>
+<!-- Action Rows -->
+<div class="space-y-4">
+<!-- Primary Action: Marketplace -->
+<button class="w-full group flex items-center justify-between p-5 rounded-lg bg-[#FF6A1A] text-white shadow-[0_8px_16px_rgba(255,106,26,0.25)] transition-all active:scale-[0.96]">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">storefront</span>
+</div>
+<div class="text-left">
+<span class="block font-bold text-sm">Publish to marketplace</span>
+<span class="block text-[11px] opacity-80 font-medium">List for sale to other creators</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[20px] opacity-60">chevron_right</span>
+</button>
+<!-- Roblox Export -->
+<button class="w-full group flex items-center justify-between p-5 rounded-lg bg-surface-container-low text-[#111111] transition-all hover:bg-surface-container hover:shadow-sm active:scale-[0.98]">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-surface-variant/30">
+<span class="material-symbols-outlined text-[#111111]">cloud_upload</span>
+</div>
+<div class="text-left">
+<span class="block font-bold text-sm">Upload to Roblox</span>
+<span class="block text-[11px] text-[#6B6B6B] font-medium">Direct injection to your inventory</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[20px] text-[#6B6B6B]">chevron_right</span>
+</button>
+<!-- Grid of Secondary Options -->
+<div class="grid grid-cols-3 gap-3 pt-2">
+<button class="flex flex-col items-center gap-3 p-4 rounded-lg bg-surface-container-low/50 hover:bg-surface-container transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[#111111]">folder_zip</span>
+<span class="text-[11px] font-bold text-[#111111]">Export files</span>
+</button>
+<button class="flex flex-col items-center gap-3 p-4 rounded-lg bg-surface-container-low/50 hover:bg-surface-container transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[#111111]">visibility_off</span>
+<span class="text-[11px] font-bold text-[#111111]">Save privately</span>
+</button>
+<button class="flex flex-col items-center gap-3 p-4 rounded-lg bg-surface-container-low/50 hover:bg-surface-container transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[#111111]">ios_share</span>
+<span class="text-[11px] font-bold text-[#111111]">Share render</span>
+</button>
+</div>
+</div>
+<!-- Helper Note -->
+<div class="mt-8 flex items-start gap-3 px-2">
+<span class="material-symbols-outlined text-[#9F3B00] text-[18px]">info</span>
+<p class="text-[11px] leading-relaxed text-[#6B6B6B] font-medium italic">
+                    External uploads require a linked 3rd-party account. Ensure your asset meets the 10k triangle limit for marketplace compatibility.
+                </p>
+</div>
+<!-- iPhone Home Indicator -->
+<div class="w-32 h-1.5 bg-[#111111]/20 rounded-full mx-auto mt-8 mb-2"></div>
+</div>
+<!-- Bottom Navigation (Hidden on Detail Focused Task) -->
+<!-- Suppressed per Semantic Shell Mandate for focused task-focused page -->
+</div>
+</body></html>

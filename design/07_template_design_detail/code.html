@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Design Detail - The Editorial Studio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#403f3f",
+              "surface-bright": "#f7f7f4",
+              "error-dim": "#9f0519",
+              "on-primary-fixed": "#000000",
+              "on-surface-variant": "#5a5c5a",
+              "secondary-fixed": "#e5e2e1",
+              "secondary-dim": "#504f4f",
+              "on-secondary": "#f5f2f1",
+              "on-error-container": "#570008",
+              "primary-dim": "#8c3300",
+              "primary-fixed-dim": "#f86513",
+              "error": "#b31b25",
+              "on-primary-container": "#421400",
+              "surface-container-low": "#f0f1ee",
+              "surface-variant": "#dcddda",
+              "secondary": "#5c5b5b",
+              "on-background": "#2d2f2d",
+              "on-primary": "#ffefea",
+              "on-error": "#ffefee",
+              "on-secondary-fixed-variant": "#5c5b5b",
+              "secondary-container": "#e5e2e1",
+              "on-primary-fixed-variant": "#511a00",
+              "on-secondary-container": "#525151",
+              "surface-tint": "#9f3b00",
+              "on-tertiary-fixed": "#004f2e",
+              "outline-variant": "#acadab",
+              "on-tertiary-fixed-variant": "#126f44",
+              "tertiary-fixed-dim": "#9aefb9",
+              "on-surface": "#2d2f2d",
+              "primary": "#9f3b00",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-container": "#a8fec6",
+              "inverse-surface": "#0d0f0d",
+              "on-tertiary-container": "#00643b",
+              "outline": "#767775",
+              "inverse-primary": "#ff6a1a",
+              "surface-container": "#e8e8e5",
+              "surface-dim": "#d3d5d1",
+              "inverse-on-surface": "#9c9d9b",
+              "surface-container-highest": "#dcddda",
+              "tertiary-fixed": "#a8fec6",
+              "background": "#f7f7f4",
+              "tertiary-dim": "#005c36",
+              "surface": "#f7f7f4",
+              "primary-container": "#ff793a",
+              "error-container": "#fb5151",
+              "primary-fixed": "#ff793a",
+              "tertiary": "#06693f",
+              "secondary-fixed-dim": "#d7d4d3",
+              "on-tertiary": "#cbffda",
+              "surface-container-high": "#e2e3df"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .action-gradient {
+            background: linear-gradient(135deg, #ff793a 0%, #9f3b00 100%);
+        }
+        body {
+            background-color: #f7f7f4;
+            color: #2d2f2d;
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex items-center justify-center min-h-screen p-4 md:p-8">
+<!-- Mobile Frame Simulation (iPhone 15 Pro aspect) -->
+<main class="relative w-full max-w-[400px] h-[860px] bg-background overflow-hidden rounded-[3rem] shadow-2xl border-[8px] border-on-background/5">
+<!-- Header / Top Bar -->
+<header class="absolute top-0 left-0 w-full z-20 flex justify-between items-center px-6 py-8">
+<button class="w-11 h-11 flex items-center justify-center bg-surface-container-lowest/80 backdrop-blur-md rounded-full shadow-sm hover:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<div class="flex gap-3">
+<button class="w-11 h-11 flex items-center justify-center bg-surface-container-lowest/80 backdrop-blur-md rounded-full shadow-sm hover:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-surface">favorite</span>
+</button>
+<button class="w-11 h-11 flex items-center justify-center bg-surface-container-lowest/80 backdrop-blur-md rounded-full shadow-sm hover:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-surface">share</span>
+</button>
+</div>
+</header>
+<!-- Main Scrollable Canvas -->
+<div class="h-full overflow-y-auto pb-32 hide-scrollbar">
+<!-- 3D Preview Stage -->
+<section class="relative w-full aspect-square bg-surface-container-lowest flex items-center justify-center overflow-hidden">
+<!-- Subtle Gradient Shadow Base -->
+<div class="absolute bottom-12 w-48 h-12 bg-on-background/5 blur-2xl rounded-full"></div>
+<!-- Main Wearable Image -->
+<img alt="hyper-realistic 3D rendering of a celestial fantasy crown floating in a minimal white studio with soft volumetric lighting" class="relative z-10 w-4/5 h-4/5 object-contain" data-alt="hyper-realistic 3D rendering of a celestial fantasy crown floating in a minimal white studio with soft volumetric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKJPfohr1qLGVirzsQ5RakOG1h9r32gUlVI2uYua1td_jO1Gt3KpiM3N025k_VqfNtRpq-qCHh1vKOxZfcB6oJKVyidGw1Zv-oDj1cvqQPhvKnHcc0O98sKyn3EJz-flXNLz6mcN4VWb4PsTt2jbvvKTVZGf3P519SXOwEEtwQEyr9YpV04laKfIu95aUuuFsMKwj--zl5qPIxU4zemI9X0-_2cjMB-M7tKnwAY7zUSSKkBFfbiQ8As1T8vXSrIxybX2HdRrOoTYzE"/>
+<!-- Interaction Indicator -->
+<div class="absolute bottom-6 flex items-center gap-2 px-3 py-1 bg-surface-container-low/50 backdrop-blur-sm rounded-full">
+<span class="material-symbols-outlined text-[14px] text-outline">3d_rotation</span>
+<span class="text-[10px] font-label font-bold uppercase tracking-wider text-outline">Drag to rotate</span>
+</div>
+</section>
+<!-- Product Details Section -->
+<section class="px-6 pt-8 space-y-6">
+<!-- Title & Creator -->
+<div class="space-y-1">
+<h1 class="text-3xl font-headline font-extrabold tracking-tight text-on-surface leading-tight">Celestial Halo Crown</h1>
+<div class="flex items-center gap-2 pt-1">
+<img alt="portrait of a digital artist with soft aesthetic lighting" class="w-5 h-5 rounded-full object-cover" data-alt="professional portrait of a digital artist in a bright studio with soft morning sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCXwMvVMPU37rCwnwURIs1c2joNkgczCDg5geCkAAPpFi8yILhv-Cwm4pSRsR1feksfZqysE7nRUSTCadAG_uccUADQoRZfKNqUw1YcqoEtzvHZPV8xzNX4hbSyRh_G1jjaU9EDFtTjh3jGaXs-I5n6kw4q3s0z0eN3nJ51oJr66sG7140T1uxxGmuuPiFZfmb7i89Wd7iSPrsqNgP7JoeGppRZVQy3ekrmbO-nuki-tUgLWHxy-HecJsMQBbJ80h75Unp9DCSlT3v"/>
+<span class="text-sm font-body font-semibold text-secondary">Aria Sterling</span>
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<!-- Tags -->
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container-low rounded-full text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant">UGC</span>
+<span class="px-3 py-1 bg-surface-container-low rounded-full text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant">Fantasy</span>
+<span class="px-3 py-1 bg-surface-container-low rounded-full text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant">Trending</span>
+</div>
+<!-- Variants -->
+<div class="space-y-3">
+<h3 class="text-xs font-label font-bold uppercase tracking-widest text-outline">Available Materials</h3>
+<div class="flex gap-3">
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border-2 border-primary-container p-1 ring-4 ring-primary/5">
+<img alt="gold texture" class="w-full h-full rounded-md object-cover" data-alt="close-up detail of shimmering polished gold texture with warm highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA_tIcI1rov88LbsHFvbnx7ImnQR67ApCyY25-7l5-Hvu9_hGF0GhRC5eI1dUYRxAjpsxltEWSjH3GOLZANsv0VIZuIIg3R23CNERm-eK3e0YsbuVty5ldDW4aPTeuxTdffY658a3v2NTV2CRar43odfm_gV6Abmhz4KtVlk25chpJUakPCPaVB-qOFhgzvVX0z4uRV8C1u3-EPQ5MdVZlOv1UEberfqEpYSInyjHI_GJ32J-bvdQdrWNF6melRiqoSBcxfGABqbkd"/>
+</div>
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/20 p-1">
+<img alt="silver texture" class="w-full h-full rounded-md object-cover" data-alt="close-up detail of brushed ethereal silver texture with cool blue reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ52QlajPIkk6LUfHjILPzdTeU9dHZib1KQN0S2YLnbNlDjf3VUwc63KwAQ_4aOAGDg7GsY9lY2vi5tlhhav6aMWb-8ES3fV_gVJxLVW8EkqC9WbJ0Ub4acgqb8y_Rr0-I6kfDVe4YYQclVznIqOwI833Vusaa8FHKRjwmFoqPIFmkqHVcejHjSNc_6eXxkDWg34kQHdbuRuzGC3Ic1muGfP31xxQ_jM9QKxJYD8D7H7dchxAZiF48uOY1X3qSAA44A9UHS_aXRZ3z"/>
+</div>
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/20 p-1">
+<img alt="obsidian texture" class="w-full h-full rounded-md object-cover" data-alt="close-up detail of dark obsidian glass texture with iridescent purple highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpSeUQOkUH30arQenEODuVdE-Jfy9xRlzL3rPFfiyMqaHDrnBnZyn32eKBekUIRI79HJH_BWQkMjS-Baq6H7MYzzTbIVYayeHvEVMIwAWIS1Dy9455Sd9kG_BDc4aYbuNw9EQfj53CkiB2rvNUYedh672O6QL0XZSBzNcYYCfJIqp1LJdR20kFf0InA5Ah9nllr51r5ie7qSme8vrLCWgENZw4i5dzEuLRgs-e7HdeLDj-VGwhODYY1wDYdhn717UOXIjpVeIvCx3P"/>
+</div>
+<div class="w-14 h-14 rounded-lg bg-surface-container-lowest border border-outline-variant/20 p-1">
+<img alt="pearl texture" class="w-full h-full rounded-md object-cover" data-alt="close-up detail of iridescent white pearl texture with soft rainbow sheen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl5Rb923PJo2tY7IUfjP3wJFbDgta92PK-Wf4ZjBOVcTmnrzrKjJBdN616etDrYBUbxUOMHam09EB4TsywBM69AcgvyBkz1dbZhOAxTy3hgM2IX9OfAwXCunbNVpPuM2Zp1EeyR7EPrTtsF5IYHFVWEfBPNmCARvp8NlYu3o4PJUg-Ge2Y4geARZZWPTUsZx6Ypu0bdml98e8xfUD8IFzSZKQBl7Q2n6HWp1Q32Mm3UlOc4jHHzG1AuAC1wd7yU8UZKi5Spc4TWuH5"/>
+</div>
+</div>
+</div>
+<!-- Main Actions -->
+<div class="space-y-4 pt-4">
+<button class="w-full py-5 action-gradient text-on-primary-fixed font-headline font-bold rounded-full shadow-[0_12px_24px_rgba(159,59,0,0.15)] hover:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                        Use this design
+                    </button>
+<div class="grid grid-cols-3 gap-3">
+<button class="flex flex-col items-center gap-1.5 py-3 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-secondary">auto_fix_high</span>
+<span class="text-[11px] font-label font-bold uppercase tracking-wider text-secondary">Remix</span>
+</button>
+<button class="flex flex-col items-center gap-1.5 py-3 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-secondary">bookmark</span>
+<span class="text-[11px] font-label font-bold uppercase tracking-wider text-secondary">Save</span>
+</button>
+<button class="flex flex-col items-center gap-1.5 py-3 rounded-2xl bg-surface-container-low hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-secondary">favorite</span>
+<span class="text-[11px] font-label font-bold uppercase tracking-wider text-secondary">Like</span>
+</button>
+</div>
+</div>
+<!-- Horizontal Carousel -->
+<div class="space-y-4 pt-8">
+<div class="flex justify-between items-end">
+<h3 class="text-xl font-headline font-extrabold tracking-tight text-on-surface">You might also like</h3>
+<span class="text-sm font-body font-bold text-primary">View all</span>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-4 hide-scrollbar snap-x -mx-6 px-6">
+<div class="flex-shrink-0 w-40 snap-start space-y-2">
+<div class="h-48 bg-surface-container-low rounded-lg overflow-hidden">
+<img alt="fantasy wing item" class="w-full h-full object-cover" data-alt="ethereal translucent fairy wings with golden filigree floating on a soft cream background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-HL57YN5ElkgpmYpuZwa2kG83BqSCAqfzy2IJzNZlcKM85SsYo4gQLVzBiYoQHYv6he_8cchn5KBASxqMZSNL-Ioi_izCPgdM50JKUyj1BXuvHFK8QkkHgvKpoQvgqxRNIEfL7v2D0_f6FJc_LXWyJL6aA4Y9BECx20LHjY5LPowA2AjxUny1N28mMO3ItFGOOkUgoU3ZfLBa7p01uCWnCX2Vz-3wyJH8IxHQeyb0oPaCn42NoRZ2mV2RENOhMwrcWQEShJwIKdK8"/>
+</div>
+<div class="px-1">
+<p class="text-sm font-body font-bold text-on-surface truncate">Aether Wings</p>
+<p class="text-xs text-secondary">by Leo.VFX</p>
+</div>
+</div>
+<div class="flex-shrink-0 w-40 snap-start space-y-2">
+<div class="h-48 bg-surface-container-low rounded-lg overflow-hidden">
+<img alt="cyber necklace" class="w-full h-full object-cover" data-alt="sleek futuristic chrome necklace with glowing blue circuits on a minimal white pedestal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9bzfG8YOBpEaEkxytuBs0KFq8uwzibp8-E9Ssqsr2nbCy1I8dOhthkoXhVqTsYHxdioI7Gzgi_AOl1zoib6qAoxlcQKw2d7FMNKxE1OQYjxNnvZmp6s8zXMAJuM_4iyZSA6rnP3DH8-hXS7f9x7gKwB_tS6b-wu3PaSKbQNz6BIbZ9hi71pLz7I8Gq1mXUpgx9oLuYXzVpzWjsQR9s2es8qkRrxp6mUqaccRTw2CukvvioBTvA3DApy7qdClB602bt9qEJugrdTYa"/>
+</div>
+<div class="px-1">
+<p class="text-sm font-body font-bold text-on-surface truncate">Neon Choker</p>
+<p class="text-xs text-secondary">by StudioX</p>
+</div>
+</div>
+<div class="flex-shrink-0 w-40 snap-start space-y-2">
+<div class="h-48 bg-surface-container-low rounded-lg overflow-hidden">
+<img alt="mystic orb" class="w-full h-full object-cover" data-alt="glowing magical floating orb with arcane symbols swirling around it in a clean studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCezDYYYBa6HY7fhkEpBWZWd2yQsycZM5V8AUrX6UjjhV5XS0WZjaSI4OalEtUiQclIkpGQpoEpGUMXFi7Or7FjOSMGkKxrPGq818_ltVs2tiWV0Gi1WDDE7_qtDa4LDFCpvvu8xcJSrbL6RVsL3_n4KJlKdPuBEp8Xfy0ovKg50bJcdFxAN1FmTAzAUNJ4XLiJcvdajw4ANas8hANyBT-cXBLmYyA0_yZxPCSvdv7mQeZMRL-y4yxesXHdhRgZ97o1dPQy-bbkOrSo"/>
+</div>
+<div class="px-1">
+<p class="text-sm font-body font-bold text-on-surface truncate">Arcane Soul</p>
+<p class="text-xs text-secondary">by MysticCreations</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Bottom Bar Simulation (Shared Component Style) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-8 pt-4 bg-surface-container-lowest/80 backdrop-blur-xl rounded-t-[2.5rem] shadow-[0_-12px_24px_rgba(159,59,0,0.04)] z-50">
+<button class="flex flex-col items-center justify-center text-on-surface/50">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary bg-primary/10 rounded-full px-4 py-1">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Explore</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface/50">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Create</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface/50">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Library</span>
+</button>
+</nav>
+<!-- Notch / Indicator Simulation -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-on-background rounded-b-2xl z-50"></div>
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-28 h-1 bg-on-background/20 rounded-full z-50"></div>
+</main>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

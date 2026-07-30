@@ -1,0 +1,15 @@
+{
+  "name": "creator-platform",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "build:shared": "echo 'legacy workers — skipped'",
+    "build:workers": "echo 'legacy workers — skipped'",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.103.0"
+  }
+}

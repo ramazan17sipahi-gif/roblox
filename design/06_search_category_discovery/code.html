@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Studio - Discover</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#403f3f",
+              "surface-bright": "#f7f7f4",
+              "error-dim": "#9f0519",
+              "on-primary-fixed": "#000000",
+              "on-surface-variant": "#5a5c5a",
+              "secondary-fixed": "#e5e2e1",
+              "secondary-dim": "#504f4f",
+              "on-secondary": "#f5f2f1",
+              "on-error-container": "#570008",
+              "primary-dim": "#8c3300",
+              "primary-fixed-dim": "#f86513",
+              "error": "#b31b25",
+              "on-primary-container": "#421400",
+              "surface-container-low": "#f0f1ee",
+              "surface-variant": "#dcddda",
+              "secondary": "#5c5b5b",
+              "on-background": "#2d2f2d",
+              "on-primary": "#ffefea",
+              "on-error": "#ffefee",
+              "on-secondary-fixed-variant": "#5c5b5b",
+              "secondary-container": "#e5e2e1",
+              "on-primary-fixed-variant": "#511a00",
+              "on-secondary-container": "#525151",
+              "surface-tint": "#9f3b00",
+              "on-tertiary-fixed": "#004f2e",
+              "outline-variant": "#acadab",
+              "on-tertiary-fixed-variant": "#126f44",
+              "tertiary-fixed-dim": "#9aefb9",
+              "on-surface": "#2d2f2d",
+              "primary": "#9f3b00",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-container": "#a8fec6",
+              "inverse-surface": "#0d0f0d",
+              "on-tertiary-container": "#00643b",
+              "outline": "#767775",
+              "inverse-primary": "#ff6a1a",
+              "surface-container": "#e8e8e5",
+              "surface-dim": "#d3d5d1",
+              "inverse-on-surface": "#9c9d9b",
+              "surface-container-highest": "#dcddda",
+              "tertiary-fixed": "#a8fec6",
+              "background": "#f7f7f4",
+              "tertiary-dim": "#005c36",
+              "surface": "#f7f7f4",
+              "primary-container": "#ff793a",
+              "error-container": "#fb5151",
+              "primary-fixed": "#ff793a",
+              "tertiary": "#06693f",
+              "secondary-fixed-dim": "#d7d4d3",
+              "on-tertiary": "#cbffda",
+              "surface-container-high": "#e2e3df"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body { background-color: #f7f7f4; color: #2d2f2d; font-family: 'Manrope', sans-serif; }
+      .glass-header { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+      .action-gradient { background: linear-gradient(135deg, #ff793a 0%, #9f3b00 100%); }
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-[#F7F7F4]/85 dark:bg-stone-900/85 backdrop-blur-xl docked full-width top-0 z-50 fixed flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-variant">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="close-up portrait of a creative individual with soft natural lighting and minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6pYsTVThS5rqv4SMuceCFAJQ_TpHyuFn4BudR5FLhbYFViALHIuH8bEGE5bOv0-VUdzufljJsYHSX8PC0a3hbzhT6gUw8Nfp9IQB_Wbn9Bq4oyg1BpD6TmUxaZnQgtAqrOHS7xavR8Cr9OqJW2xfBz9Swvmru2dQ94F9RSonVhNcUg7V1sAjcCv3qHhNVs8BBsaVRKOvN5PhvraXqpsikcaA_V0xblZlSa4d2kgA1Vwf5tg_PLUW56OjtYzlpiIQSm-zKqL5h8W3C"/>
+</div>
+<h1 class="text-xl font-extrabold text-[#2D2F2D] dark:text-stone-100 font-['Plus_Jakarta_Sans'] font-bold tracking-tight">Studio</h1>
+</div>
+<button class="text-[#2D2F2D]/60 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="pt-24 px-6">
+<!-- Search & Filter Row -->
+<div class="flex gap-3 mb-6">
+<div class="flex-1 relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container-lowest rounded-lg border-none focus:ring-2 focus:ring-primary-container font-body text-on-surface transition-all" placeholder="Search creators &amp; assets" type="text"/>
+</div>
+<button class="w-14 h-14 flex items-center justify-center bg-surface-container-lowest rounded-lg hover:bg-surface-container-low transition-colors group">
+<span class="material-symbols-outlined text-primary group-active:scale-95 transition-transform" data-icon="tune">tune</span>
+</button>
+</div>
+<!-- Platform Chips -->
+<div class="flex gap-2 overflow-x-auto pb-4 -mx-6 px-6 no-scrollbar">
+<!-- Selected Chip -->
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-primary-container text-on-primary-container font-label font-bold text-sm tracking-wide shadow-sm border border-transparent">
+                Roblox
+            </button>
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label font-bold text-sm tracking-wide border border-outline-variant/20 hover:bg-surface-container-low transition-colors">
+                UGC
+            </button>
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label font-bold text-sm tracking-wide border border-outline-variant/20 hover:bg-surface-container-low transition-colors">
+                Minecraft
+            </button>
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label font-bold text-sm tracking-wide border border-outline-variant/20 hover:bg-surface-container-low transition-colors">
+                Zepeto
+            </button>
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label font-bold text-sm tracking-wide border border-outline-variant/20 hover:bg-surface-container-low transition-colors">
+                AR Filters
+            </button>
+</div>
+<!-- Section Title -->
+<div class="flex items-center justify-between mt-6 mb-6">
+<h2 class="text-2xl font-headline font-extrabold tracking-tight text-on-surface">Browse categories</h2>
+<button class="text-sm font-bold text-primary hover:opacity-80 transition-opacity">View All</button>
+</div>
+<!-- Category Grid -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Category Tile: Shirts -->
+<div class="relative aspect-[4/5] rounded-lg overflow-hidden group cursor-pointer">
+<img alt="Shirts" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="folded stack of minimalist premium cotton t-shirts in neutral tones with soft overhead studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4SRmWnNrDEysKHjSsM_SIpPl4WUqJvXzjlQTVsOPrFHGVJfN1_pB0iw0BZbcXKOvKxnXFd82LWDLv5c4SiiFhFEv6n94BurUwHBQs1wAN5a1-gQu75rOGIALVKpDXI05JLqhWn0ADmGWDQZvD7YNgea7n26Wcjhu3G22AP3JTpSlcHHMQFVohrgvb1-f4ucnz7eH3ryfIiFc_Wlbs_wY8Bhgj-d0X531SWRVq1K5t3zTO9JchM8xabtIrOTjYjFxn_qZ37GKZ-IPn"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-5 right-5">
+<p class="text-white font-label font-bold tracking-widest text-xs uppercase">Shirts</p>
+</div>
+</div>
+<!-- Category Tile: Pants -->
+<div class="relative aspect-[4/5] rounded-lg overflow-hidden group cursor-pointer">
+<img alt="Pants" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="pair of premium denim trousers draped over a wooden chair in a sunlit bright studio space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr8ULJhJFTkGIDgfJXBb5GoKDavl9Nli_5sUZwfGsqPLp2nGtsclUTA2fUXVz6lKvewjBbgAmglaw8q70NXVibwF4fDH6JDBnwP8X-ckvVeUc_0CCvIu9eI1ss7cjqZK5-dQGFrfT-i99yXThuVd4cEhNIxPXmEoX0uuh9-PiQ7uTg07PNnPlbIrW8_cBAmQWOcDXvu0HLV-Q1oYtq3kAffOw5qb5lAorFSBClHSjFcKpjAI7edVZVPH0nUXypOtkgkFsoxMTXcClW"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-5 right-5">
+<p class="text-white font-label font-bold tracking-widest text-xs uppercase">Pants</p>
+</div>
+</div>
+<!-- Category Tile: Wings -->
+<div class="relative aspect-[4/5] rounded-lg overflow-hidden group cursor-pointer">
+<img alt="Wings" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="iridescent butterfly wings with ethereal glowing texture against a soft dreamlike pastel background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUYRYlVDLii9g3jzEa7LOfPohehzpGZiWpRnPT1UdUg9VS4Tl0YzZgYRNcGCVxcEBG3V8s2kIJeuKIl1QVpt7TFq_REoXLwTkvnBPzfkPP2q08Tn4RkdPPwbXoFr6XcTh6P7r-3PwrsqHMwjDsKzELKo3nj7-ZW2mp_dSLJ_dOfbhYd8-nWZ_N0nxPG_kCWis_nYixSvhhK7OREEFxmnHcgDvNQ9UM6tp_pwUlex4uSc1UzHk7Knys7Rvlfjsul5IPRVI1PUTV0-QW"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-5 right-5">
+<p class="text-white font-label font-bold tracking-widest text-xs uppercase">Wings</p>
+</div>
+</div>
+<!-- Category Tile: Hats -->
+<div class="relative aspect-[4/5] rounded-lg overflow-hidden group cursor-pointer">
+<img alt="Hats" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="stylish wide-brimmed felt hat sitting on a designer table with dramatic shadow patterns from a nearby window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3x3oahMjM4hnZBUqOIvkG9CGirkbfq_d0U9x_dYKnCv6w8zYuLZr8MyTeJJBJvtHEcOmWeJDrLAwFMG-acHk5IJTQQSIz0WFmjHIK0rPhyvIixdhCyvWPwT2z6Hj4GoIpxzCFJNBUreZws3feDAOwZLewxVBpbpQwbUEXKOLWhDIHuRz8A5mQPdEYUxBvQub5GVHzglC5dkqxAb631RMtnaF4AcjmJ2T2IuiT5IJ1TkLKxFVJhNbbBLQqD5stNOPVbdomVWxIf1aP"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-5 right-5">
+<p class="text-white font-label font-bold tracking-widest text-xs uppercase">Hats</p>
+</div>
+</div>
+<!-- Category Tile: Masks -->
+<div class="relative aspect-[4/5] rounded-lg overflow-hidden group cursor-pointer">
+<img alt="Masks" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="intricate metallic ceramic mask with golden accents on a dark velvet background with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8MfC1yegmgGZWFlD1opN-V0dllPQriR9AMlvWYDbyIaPxTDeviGZ9LjW5QbBXE4AZ1UbjH8lNtCLRaz9Mhvksfkw6FSvHxJE2fBtuDDRM6nDfNoy4NifkPlcajop2vLQWZJkdjyAvpjUIBJLtBf1eIpcvmDT3A9Qh6DLt3AMZObexa7GzoZG2Rhn_hYCv_zzYXff_BMoSqcg90d6qltAG9puXPqVvcQpefrN_zIKYcNvHi6RaaAuRV9GsCZlYWE-TEiTLc5kmhn_t"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-5 right-5">
+<p class="text-white font-label font-bold tracking-widest text-xs uppercase">Masks</p>
+</div>
+</div>
+<!-- Category Tile: Weapons -->
+<div class="relative aspect-[4/5] rounded-lg overflow-hidden group cursor-pointer">
+<img alt="Weapons" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="highly detailed sci-fi energy sword handle with blue neon glowing details in a futuristic dark environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBslrssP4YRBZ2kx5Lo8ldAYBcLBmBJSeaMU1AB-Zi9zBr1SPVeR2r0OKZaxgKY-tnEvXi1NyTrCnSmTRGV_99FT0bQ4J8jzR3quRVXxSgwpdfRJor5aUBljj5ypq7pQVVhrsxayMx8YPPTObyj1xYIXK9zfyfsCEYN0tSLxWM055i3xwouMZDc-ujb1XSsL6BY6W96ZC6hiqkzD8cC2Zf2d13TUoVlabJ3KuisU1dj-qbm96WWPbdhD56fuFdkgxZ9VdRFZKOg1evj"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-5 right-5">
+<p class="text-white font-label font-bold tracking-widest text-xs uppercase">Weapons</p>
+</div>
+</div>
+<!-- Category Tile: Streetwear -->
+<div class="relative aspect-[4/5] rounded-lg overflow-hidden group cursor-pointer">
+<img alt="Streetwear" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="urban fashion photography of oversized hoodie and sneakers against a concrete wall with architectural shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzqT8IpgFtCClrxlJIcCoYmQbOJYyqzVENXlFCBzbIdUwEWFZFjO9RwTrvMMCqoUBtTKFfznL42ZPleDtBix53YdKkHji269FeJQWuIEMakyMQW-mMs1Iw5gplIrNnwt5TgJqFRcE5eP_jogfOXTMUc4JFSn4fJt120Ye8hQwTYXNiPyMDojoRiN3m84B2Ree_JYbDLlU-VvUUDkWP5jIBQBfTIWUfWbX4cbV70-gbHiG-GaNcOEOdflvyz5IkeS87mnn3dgoXKnFP"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-5 right-5">
+<p class="text-white font-label font-bold tracking-widest text-xs uppercase">Streetwear</p>
+</div>
+</div>
+<!-- Category Tile: Fantasy -->
+<div class="relative aspect-[4/5] rounded-lg overflow-hidden group cursor-pointer">
+<img alt="Fantasy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="mystical glowing forest with floating magical orbs and ancient gnarled trees at twilight with deep emerald and gold tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8wmPyGdJ1ekMHgCOe3vVFLqZfUehdVy1jD_eKQ9PdQcsUiLXex9v6trULyGORIkKlTNFH4e9nPkNM5P1j1uaoIFRE1fbWscrIMOzig6olGGcKNO7hWXP9PMAQwQOENdhI7mC1xeh8Tn144at7YU-Vf7SJ3WrggILrdicx3aN6AXtGcVGRm6IAgMm_26OMXGIltA_K66LAnj93gptJ2Z6jCASpc72hdhVNumE1XfTJMW15ZaZyZUGFEgBHr_bvX8mXuFde6z2U1Ptx"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-5 right-5">
+<p class="text-white font-label font-bold tracking-widest text-xs uppercase">Fantasy</p>
+</div>
+</div>
+</div>
+<!-- Featured Section -->
+<div class="mt-12 mb-8 p-8 rounded-lg bg-surface-container-low relative overflow-hidden group">
+<div class="relative z-10">
+<span class="inline-block px-3 py-1 bg-primary text-on-primary text-[10px] font-bold uppercase tracking-widest rounded-full mb-4">Limited Edition</span>
+<h3 class="text-2xl font-headline font-extrabold text-on-background mb-2">Summer Drop '24</h3>
+<p class="text-sm text-on-surface-variant font-body leading-relaxed max-w-[200px] mb-6">Explore the new curated collection of 100+ exclusive UGC assets.</p>
+<button class="action-gradient text-on-primary-fixed px-8 py-3 rounded-full font-label font-bold text-xs uppercase tracking-widest shadow-lg active:scale-95 transition-all">Explore Now</button>
+</div>
+<div class="absolute -right-4 -bottom-4 w-48 h-48 opacity-20 group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-[12rem] text-primary" data-icon="auto_awesome">auto_awesome</span>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-[#F7F7F4]/85 dark:bg-stone-900/85 backdrop-blur-xl rounded-t-[2.5rem] z-50 shadow-[0_-12px_24px_rgba(159,59,0,0.04)]">
+<a class="flex flex-col items-center justify-center text-[#2D2F2D]/50 dark:text-stone-400 hover:text-[#9F3B00] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#2D2F2D]/50 dark:text-stone-400 hover:text-[#9F3B00] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="add_circle">add_circle</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest">Create</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#2D2F2D]/50 dark:text-stone-400 hover:text-[#9F3B00] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="inventory_2">inventory_2</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest">Library</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#2D2F2D]/50 dark:text-stone-400 hover:text-[#9F3B00] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest">Store</span>
+</a>
+<!-- Active Item: Explore -->
+<a class="flex flex-col items-center justify-center text-[#9F3B00] dark:text-[#FF793A] bg-[#FF793A]/10 rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="explore">explore</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest">Explore</span>
+</a>
+</nav>
+</body></html>

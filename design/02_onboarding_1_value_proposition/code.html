@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Studio Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#403f3f",
+              "surface-bright": "#f7f7f4",
+              "error-dim": "#9f0519",
+              "on-primary-fixed": "#000000",
+              "on-surface-variant": "#5a5c5a",
+              "secondary-fixed": "#e5e2e1",
+              "secondary-dim": "#504f4f",
+              "on-secondary": "#f5f2f1",
+              "on-error-container": "#570008",
+              "primary-dim": "#8c3300",
+              "primary-fixed-dim": "#f86513",
+              "error": "#b31b25",
+              "on-primary-container": "#421400",
+              "surface-container-low": "#f0f1ee",
+              "surface-variant": "#dcddda",
+              "secondary": "#5c5b5b",
+              "on-background": "#2d2f2d",
+              "on-primary": "#ffefea",
+              "on-error": "#ffefee",
+              "on-secondary-fixed-variant": "#5c5b5b",
+              "secondary-container": "#e5e2e1",
+              "on-primary-fixed-variant": "#511a00",
+              "on-secondary-container": "#525151",
+              "surface-tint": "#9f3b00",
+              "on-tertiary-fixed": "#004f2e",
+              "outline-variant": "#acadab",
+              "on-tertiary-fixed-variant": "#126f44",
+              "tertiary-fixed-dim": "#9aefb9",
+              "on-surface": "#2d2f2d",
+              "primary": "#9f3b00",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-container": "#a8fec6",
+              "inverse-surface": "#0d0f0d",
+              "on-tertiary-container": "#00643b",
+              "outline": "#767775",
+              "inverse-primary": "#ff6a1a",
+              "surface-container": "#e8e8e5",
+              "surface-dim": "#d3d5d1",
+              "inverse-on-surface": "#9c9d9b",
+              "surface-container-highest": "#dcddda",
+              "tertiary-fixed": "#a8fec6",
+              "background": "#f7f7f4",
+              "tertiary-dim": "#005c36",
+              "surface": "#f7f7f4",
+              "primary-container": "#ff793a",
+              "error-container": "#fb5151",
+              "primary-fixed": "#ff793a",
+              "tertiary": "#06693f",
+              "secondary-fixed-dim": "#d7d4d3",
+              "on-tertiary": "#cbffda",
+              "surface-container-high": "#e2e3df"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .action-gradient {
+        background: linear-gradient(135deg, #FF793A 0%, #9F3B00 100%);
+      }
+      .iphone-frame {
+        box-shadow: 0 40px 80px -20px rgba(159, 59, 0, 0.12);
+      }
+      .glass-bg {
+        backdrop-filter: blur(32px);
+        -webkit-backdrop-filter: blur(32px);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface min-h-screen flex justify-center items-center overflow-hidden">
+<!-- Mobile Device Mockup Container (iPhone 15 Pro Ratio) -->
+<main class="relative w-[393px] h-[852px] bg-background overflow-hidden flex flex-col items-center">
+<!-- Status Bar Mockup -->
+<div class="w-full flex justify-between px-8 pt-4 pb-2 z-20">
+<span class="text-sm font-extrabold font-headline">9:41</span>
+<div class="flex gap-1.5 items-center">
+<span class="material-symbols-outlined text-[18px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[18px]">wifi</span>
+<span class="material-symbols-outlined text-[18px]">battery_full</span>
+</div>
+</div>
+<!-- Top Area: Hero Illustration Section -->
+<section class="relative w-full flex-grow flex flex-col items-center justify-center pt-8 overflow-visible">
+<!-- Decorative Floating Elements (Studio Aesthetic) -->
+<div class="absolute top-20 left-10 w-24 h-24 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute bottom-40 right-4 w-32 h-32 bg-tertiary/5 rounded-full blur-3xl"></div>
+<!-- Stylized Phone Mockup / Preview Container -->
+<div class="relative z-10 w-[240px] h-[480px] bg-surface-container-lowest rounded-[3rem] iphone-frame p-3 ring-8 ring-on-background/5 rotate-[-2deg]">
+<div class="w-full h-full bg-surface-container-low rounded-[2.2rem] overflow-hidden relative group">
+<!-- The 3D Item Preview (Mockup Image) -->
+<img alt="A high-quality 3D render of a futuristic glass and chrome sneaker floating in a minimal bright white studio space" class="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-500" data-alt="A high-quality 3D render of a futuristic glass and chrome sneaker floating in a minimal bright white studio space with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASNH_IwEkVerD6RkuSRRMIBYwGiUofaYNhQ61j3cTP0kSObssqytNPYTQqm7D3D8KydvU4LnrvicYbrc2l9HjOK6tVzxkVQPKfZDGLO-ZtQdfXnNO8iVcgxRX69mmIf7c5NExWAPD6H7bvrU4TfGTVN2FnfjOIHlP-5d1ZogwHu62UsAmGabNDn5EKvzjk-yTmsLNsjcOOd3FGMmTA_uYalM3yufBJ0wYbONOdv8aRMRnvSBNDNhIdk7BLcF0AyviYQ94ucMdXMNEo"/>
+<!-- Editor Overlays (Editorial Intent) -->
+<div class="absolute bottom-6 left-6 right-6 flex flex-col gap-2">
+<div class="h-1 w-full bg-on-background/10 rounded-full overflow-hidden">
+<div class="h-full w-2/3 bg-primary-container rounded-full"></div>
+</div>
+<div class="flex justify-between items-center px-1">
+<span class="text-[10px] font-bold font-label uppercase tracking-widest text-on-background/40">Processing</span>
+<span class="text-[10px] font-bold font-label uppercase tracking-widest text-on-background/60">68%</span>
+</div>
+</div>
+<div class="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-1.5 bg-on-background/10 rounded-full"></div>
+</div>
+<!-- Floating Tooltip Icons -->
+<div class="absolute -right-8 top-1/4 w-12 h-12 bg-surface-container-lowest rounded-2xl shadow-xl flex items-center justify-center text-primary transform rotate-12 transition-transform duration-300 hover:scale-110">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">deployed_code</span>
+</div>
+<div class="absolute -left-10 bottom-1/4 w-14 h-14 bg-surface-container-lowest rounded-2xl shadow-xl flex items-center justify-center text-tertiary transform -rotate-12 transition-transform duration-300 hover:scale-110">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+</div>
+</section>
+<!-- Bottom Content Area -->
+<section class="w-full bg-surface-container-lowest rounded-t-[3.5rem] pt-12 pb-12 px-8 flex flex-col items-center gap-8 z-20">
+<!-- Headline & Subheadline -->
+<div class="text-center space-y-4 max-w-[280px]">
+<h1 class="text-3xl font-extrabold font-headline leading-tight tracking-tight text-on-background">
+                    Create 3D items in seconds
+                </h1>
+<p class="text-on-surface-variant font-body text-[15px] leading-relaxed">
+                    Harness the power of AI to transform text into professional assets. Use templates and simple tools for studio-quality results.
+                </p>
+</div>
+<!-- Progress Indicators -->
+<div class="flex gap-2.5 pt-2">
+<div class="w-8 h-2 bg-primary rounded-full transition-all duration-300"></div>
+<div class="w-2 h-2 bg-outline-variant/30 rounded-full"></div>
+<div class="w-2 h-2 bg-outline-variant/30 rounded-full"></div>
+</div>
+<!-- Interactive Actions -->
+<div class="w-full flex flex-col items-center gap-4">
+<button class="w-full h-16 action-gradient text-on-primary-fixed font-bold text-lg rounded-full shadow-[0_12px_24px_rgba(159,59,0,0.12)] active:scale-95 transition-transform duration-200">
+                    Continue
+                </button>
+<button class="px-6 py-2 text-on-surface-variant font-bold font-label uppercase tracking-widest text-[11px] hover:text-on-background transition-colors active:scale-95 duration-200">
+                    Skip
+                </button>
+</div>
+<!-- iPhone Home Indicator Spacer -->
+<div class="w-32 h-1.5 bg-on-background/10 rounded-full mt-2"></div>
+</section>
+</main>
+<!-- Background Decorative Mesh (Abstract) -->
+<div class="fixed inset-0 -z-10 bg-background flex justify-center items-center">
+<div class="w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] absolute -top-40 -left-40"></div>
+<div class="w-[600px] h-[600px] bg-tertiary/5 rounded-full blur-[100px] absolute -bottom-20 -right-20"></div>
+</div>
+</body></html>

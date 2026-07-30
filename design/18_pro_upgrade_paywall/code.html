@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-secondary-fixed": "#403f3f",
+            "surface-bright": "#f7f7f4",
+            "error-dim": "#9f0519",
+            "on-primary-fixed": "#000000",
+            "on-surface-variant": "#5a5c5a",
+            "secondary-fixed": "#e5e2e1",
+            "secondary-dim": "#504f4f",
+            "on-secondary": "#f5f2f1",
+            "on-error-container": "#570008",
+            "primary-dim": "#8c3300",
+            "primary-fixed-dim": "#f86513",
+            "error": "#b31b25",
+            "on-primary-container": "#421400",
+            "surface-container-low": "#f0f1ee",
+            "surface-variant": "#dcddda",
+            "secondary": "#5c5b5b",
+            "on-background": "#2d2f2d",
+            "on-primary": "#ffefea",
+            "on-error": "#ffefee",
+            "on-secondary-fixed-variant": "#5c5b5b",
+            "secondary-container": "#e5e2e1",
+            "on-primary-fixed-variant": "#511a00",
+            "on-secondary-container": "#525151",
+            "surface-tint": "#9f3b00",
+            "on-tertiary-fixed": "#004f2e",
+            "outline-variant": "#acadab",
+            "on-tertiary-fixed-variant": "#126f44",
+            "tertiary-fixed-dim": "#9aefb9",
+            "on-surface": "#2d2f2d",
+            "primary": "#9f3b00",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-container": "#a8fec6",
+            "inverse-surface": "#0d0f0d",
+            "on-tertiary-container": "#00643b",
+            "outline": "#767775",
+            "inverse-primary": "#ff6a1a",
+            "surface-container": "#e8e8e5",
+            "surface-dim": "#d3d5d1",
+            "inverse-on-surface": "#9c9d9b",
+            "surface-container-highest": "#dcddda",
+            "tertiary-fixed": "#a8fec6",
+            "background": "#f7f7f4",
+            "tertiary-dim": "#005c36",
+            "surface": "#f7f7f4",
+            "primary-container": "#ff793a",
+            "error-container": "#fb5151",
+            "primary-fixed": "#ff793a",
+            "tertiary": "#06693f",
+            "secondary-fixed-dim": "#d7d4d3",
+            "on-tertiary": "#cbffda",
+            "surface-container-high": "#e2e3df"
+          },
+          fontFamily: {
+            "headline": ["Plus Jakarta Sans"],
+            "body": ["Manrope"],
+            "label": ["Manrope"]
+          },
+          borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .action-gradient {
+      background: linear-gradient(135deg, #FF793A 0%, #9F3B00 100%);
+    }
+    .glass-nav {
+      background: rgba(247, 247, 244, 0.85);
+      backdrop-filter: blur(32px);
+    }
+    body {
+      background-color: #f7f7f4;
+      color: #2d2f2d;
+      font-family: 'Manrope', sans-serif;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex items-center justify-center min-h-screen p-4 bg-surface-container">
+<!-- Mobile Container (iPhone 15 Pro Sim) -->
+<main class="relative w-[393px] h-[852px] bg-background overflow-hidden rounded-[3.5rem] shadow-2xl border-[8px] border-on-background/5">
+<!-- Top Header Navigation -->
+<header class="absolute top-0 left-0 w-full z-20 flex justify-between items-center px-8 py-6">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-lowest/50 backdrop-blur-md active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-background">close</span>
+</button>
+<div class="px-4 py-1.5 rounded-full bg-primary/10 backdrop-blur-sm">
+<span class="text-xs font-bold font-label tracking-widest text-primary uppercase">Special Offer</span>
+</div>
+</header>
+<div class="h-full overflow-y-auto no-scrollbar pb-32">
+<!-- Hero Section -->
+<section class="relative pt-16 px-6 pb-4 flex flex-col items-center text-center">
+<div class="relative w-64 h-64 mb-4">
+<div class="absolute inset-0 bg-primary/5 rounded-full blur-3xl"></div>
+<img alt="Unlock Pro" class="w-full h-full object-contain relative z-10 drop-shadow-2xl" data-alt="abstract 3D iridescent floating spheres and liquid shapes with soft warm studio lighting on a clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTo-SByaF4oPcVAnt5gVIAfenjmrAPio6cGW5nMdn9J8kmOa9c1P3pkgqdTTZWJp7wMoRhntAgkT81dHmF1Qa5TkVov8x5N6FGoJ7wwIkSUu6lmgaDj9v6TkLEcNSQabZ57OeDMdjY7XqT5o2w_N7mCGn9Yq4pM_XoROFq_syV-3-LcvYUfrhobn0A16CI1ii5IzcUqtjKcWRuCGyPGhm-GeT8dM3zuMLjU13Lfm5QLuyxOMwW8DMd3elzynzKoL0xGkZwpjX74jhT"/>
+</div>
+<h1 class="text-4xl font-headline font-extrabold tracking-tight text-on-background mb-2">Unlock Pro</h1>
+<p class="text-on-surface-variant font-body px-8 leading-relaxed">
+          Take your creativity to the next level with our most powerful tools.
+        </p>
+</section>
+<!-- Benefits Bento Grid -->
+<section class="px-6 py-6 grid grid-cols-2 gap-4">
+<!-- Benefit 1 (Wide) -->
+<div class="col-span-2 bg-surface-container-lowest p-5 rounded-lg flex items-center gap-5">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-background">unlimited exports</h3>
+<p class="text-xs text-on-surface-variant font-body">Share as much as you create</p>
+</div>
+</div>
+<!-- Benefit 2 -->
+<div class="bg-surface-container-lowest p-5 rounded-lg flex flex-col gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<h3 class="font-headline font-bold text-sm text-on-background">AI credits</h3>
+<p class="text-[11px] text-on-surface-variant font-body">500 monthly generations</p>
+</div>
+<!-- Benefit 3 -->
+<div class="bg-surface-container-lowest p-5 rounded-lg flex flex-col gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">cloud_upload</span>
+</div>
+<h3 class="font-headline font-bold text-sm text-on-background">direct upload</h3>
+<p class="text-[11px] text-on-surface-variant font-body">Instant cloud syncing</p>
+</div>
+<!-- Benefit 4 -->
+<div class="bg-surface-container-lowest p-5 rounded-lg flex flex-col gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">layers</span>
+</div>
+<h3 class="font-headline font-bold text-sm text-on-background">premium templates</h3>
+<p class="text-[11px] text-on-surface-variant font-body">Exclusively curated looks</p>
+</div>
+<!-- Benefit 5 -->
+<div class="bg-surface-container-lowest p-5 rounded-lg flex flex-col gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">branding_watermark</span>
+</div>
+<h3 class="font-headline font-bold text-sm text-on-background">watermark removal</h3>
+<p class="text-[11px] text-on-surface-variant font-body">Clean, professional finish</p>
+</div>
+</section>
+<!-- Pricing Section -->
+<section class="px-6 py-4 flex flex-col gap-4">
+<!-- Monthly Card -->
+<div class="bg-surface-container-lowest p-6 rounded-lg flex justify-between items-center outline outline-1 outline-outline-variant/10 active:scale-[0.98] transition-transform">
+<div>
+<h4 class="font-headline font-bold text-on-background">Monthly</h4>
+<p class="text-sm text-on-surface-variant">Cancel anytime</p>
+</div>
+<div class="text-right">
+<span class="text-xl font-headline font-extrabold text-on-background">$14.99</span>
+<p class="text-[10px] uppercase tracking-wider font-label text-on-surface-variant">per month</p>
+</div>
+</div>
+<!-- Yearly Card (Best Value) -->
+<div class="relative bg-surface-container-lowest p-6 rounded-lg flex justify-between items-center outline outline-2 outline-primary active:scale-[0.98] transition-transform shadow-lg shadow-primary/5">
+<div class="absolute -top-3 left-6 px-3 py-1 bg-primary rounded-full">
+<span class="text-[10px] font-bold font-label text-on-primary uppercase tracking-widest">Best Value</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-headline font-bold text-on-background text-lg">Annual</h4>
+<span class="bg-tertiary-container text-on-tertiary-container text-[10px] font-bold px-2 py-0.5 rounded-full">SAVE 40%</span>
+</div>
+<p class="text-sm text-on-surface-variant">7-day free trial</p>
+</div>
+<div class="text-right">
+<span class="text-xl font-headline font-extrabold text-on-background">$99.99</span>
+<p class="text-[10px] uppercase tracking-wider font-label text-on-surface-variant">per year</p>
+</div>
+</div>
+</section>
+<!-- Legal Context -->
+<section class="px-8 pt-4 pb-8">
+<p class="text-[10px] text-center text-on-surface-variant font-body leading-relaxed opacity-60">
+          Recurring billing. Your subscription will automatically renew at the end of each billing period unless you cancel it 24 hours prior. Manage your subscription in account settings.
+        </p>
+</section>
+</div>
+<!-- Bottom Action Bar (Fixed) -->
+<div class="absolute bottom-0 left-0 w-full px-8 pb-10 pt-6 glass-nav rounded-t-[2.5rem]">
+<div class="flex flex-col gap-4">
+<button class="w-full py-4 rounded-full action-gradient flex items-center justify-center gap-3 active:scale-[0.96] transition-transform">
+<span class="text-on-primary font-headline font-bold">Start Free Trial</span>
+<span class="material-symbols-outlined text-on-primary text-xl">arrow_forward</span>
+</button>
+<div class="flex justify-center gap-8">
+<button class="text-xs font-bold font-label uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors">Restore Purchases</button>
+<button class="text-xs font-bold font-label uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors">Terms of Service</button>
+</div>
+</div>
+</div>
+<!-- Notch Emulation -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-8 bg-on-background rounded-b-2xl z-50"></div>
+</main>
+</body></html>
