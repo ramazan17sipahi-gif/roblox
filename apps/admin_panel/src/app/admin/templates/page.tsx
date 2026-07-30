@@ -76,11 +76,11 @@ export default function TemplatesPage() {
   };
 
   return (
-    <div>
+    <div className="admin-page">
       <div className="page-header">
         <div>
           <h1 className="page-title">Kıyafet Şablonları</h1>
-          <p className="page-subtitle">Classic Clothing template yönetimi • Roblox UV Layout (585×559)</p>
+          <p className="page-subtitle">Classic clothing UV şablonları · 585×559 · Pro erişim kontrolü</p>
         </div>
         <button className="btn btn-primary" onClick={() => { setEditing(null); setShowForm(true); }}>
           <span className="material-symbols-rounded" style={{ fontSize: 18 }}>add</span>
@@ -120,65 +120,57 @@ export default function TemplatesPage() {
           <p>Henüz şablon eklenmedi</p>
         </div>
       ) : (
-        <div style={{ display: "grid", gap: 16 }}>
-          {templates.map((t, i) => (
-            <div key={t.id} className="form-card" style={{ padding: 0, overflow: "hidden" }}>
-              <div style={{ display: "flex", gap: 16, padding: 16 }}>
-                {/* Preview thumbnail */}
-                <div style={{
-                  width: 80, height: 80, borderRadius: 12, overflow: "hidden",
-                  background: "var(--bg-secondary)", flexShrink: 0,
-                  display: "flex", alignItems: "center", justifyContent: "center"
-                }}>
+        <div style={{ display: "grid", gap: 12 }}>
+          {templates.map((t) => (
+            <div key={t.id} className="form-card template-row">
+              <div className="template-row-inner">
+                <div className="template-thumb">
                   {(t.preview_front_url || t.shirt_texture_url || t.cover_image_url) ? (
                     <img
                       src={t.preview_front_url || t.shirt_texture_url || t.cover_image_url || ""}
                       alt={t.name}
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
                   ) : (
-                    <span className="material-symbols-rounded" style={{ fontSize: 32, color: "var(--text-muted)" }}>checkroom</span>
+                    <span className="material-symbols-rounded" style={{ fontSize: 30, color: "var(--text-muted)" }}>checkroom</span>
                   )}
                 </div>
 
-                {/* Info */}
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-                    <span style={{ fontWeight: 800, fontSize: 14 }}>{t.name}</span>
-                    <span className={`badge ${typeBadge(t.template_type)}`} style={{ fontSize: 10 }}>{t.template_type}</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
+                    <span style={{ fontWeight: 800, fontSize: 15, letterSpacing: "-0.02em" }}>{t.name}</span>
+                    <span className={`badge ${typeBadge(t.template_type)}`}>{typeLabel(t.template_type).split(" (")[0]}</span>
                   </div>
-                  <div style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 6 }}>{t.slug}</div>
+                  <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 8 }}>{t.slug}</div>
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                     {t.shirt_texture_url && (
-                      <span className="badge badge-purple" style={{ fontSize: 9 }}>
-                        <span className="material-symbols-rounded" style={{ fontSize: 10 }}>checkroom</span> Shirt
+                      <span className="badge badge-purple">
+                        <span className="material-symbols-rounded" style={{ fontSize: 12 }}>checkroom</span> Shirt
                       </span>
                     )}
                     {t.pants_texture_url && (
-                      <span className="badge badge-cyan" style={{ fontSize: 9 }}>
-                        <span className="material-symbols-rounded" style={{ fontSize: 10 }}>styler</span> Pants
+                      <span className="badge badge-cyan">
+                        <span className="material-symbols-rounded" style={{ fontSize: 12 }}>styler</span> Pants
                       </span>
                     )}
                     {t.preview_front_url && (
-                      <span className="badge badge-accent" style={{ fontSize: 9 }}>
-                        <span className="material-symbols-rounded" style={{ fontSize: 10 }}>image</span> Preview
+                      <span className="badge badge-accent">
+                        <span className="material-symbols-rounded" style={{ fontSize: 12 }}>image</span> Preview
                       </span>
                     )}
                   </div>
                 </div>
 
-                {/* Actions */}
-                <div style={{ display: "flex", flexDirection: "column", gap: 6, alignItems: "flex-end" }}>
-                  <div style={{ display: "flex", gap: 6 }}>
+                <div className="template-actions">
+                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap", justifyContent: "flex-end" }}>
                     <button className={`toggle-btn ${t.is_active ? "toggle-active" : "toggle-inactive"}`} onClick={() => handleToggleActive(t)}>
                       <span className="material-symbols-rounded" style={{ fontSize: 14 }}>
                         {t.is_active ? "check_circle" : "cancel"}
                       </span>
                       {t.is_active ? "Aktif" : "Pasif"}
                     </button>
-                    <button className={`toggle-btn ${t.is_pro ? "toggle-active" : "toggle-inactive"}`} onClick={() => handleTogglePro(t)}>
+                    <button className={`toggle-btn ${t.is_pro ? "toggle-pro" : "toggle-free"}`} onClick={() => handleTogglePro(t)}>
                       <span className="material-symbols-rounded" style={{ fontSize: 14 }}>
-                        {t.is_pro ? "workspace_premium" : "remove"}
+                        workspace_premium
                       </span>
                       {t.is_pro ? "Pro" : "Free"}
                     </button>
@@ -214,6 +206,7 @@ function TemplateForm({ initial, onSave, onCancel }: {
   const [templateType, setTemplateType] = useState(initial?.template_type || "classic_set");
   const [description, setDescription] = useState(initial?.description || "");
   const [sortOrder, setSortOrder] = useState(initial?.sort_order || 0);
+  const [isPro, setIsPro] = useState(initial?.is_pro ?? false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -329,6 +322,7 @@ function TemplateForm({ initial, onSave, onCancel }: {
         shirt_texture_url: shirtUrl,
         pants_texture_url: pantsUrl,
         sort_order: sortOrder,
+        is_pro: isPro,
       };
 
       if (initial) {
@@ -388,6 +382,35 @@ function TemplateForm({ initial, onSave, onCancel }: {
         <div style={{ gridColumn: "1 / -1" }}>
           <label className="form-label">Açıklama</label>
           <input className="form-input" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Şablon açıklaması..." />
+        </div>
+        <div style={{ gridColumn: "1 / -1" }}>
+          <label className="form-label">Erişim</label>
+          <label
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 10,
+              cursor: "pointer",
+              padding: "10px 14px",
+              borderRadius: 10,
+              border: `1px solid ${isPro ? "rgba(251, 191, 36, 0.45)" : "var(--border)"}`,
+              background: isPro ? "rgba(251, 191, 36, 0.08)" : "var(--bg-secondary)",
+              userSelect: "none",
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={isPro}
+              onChange={(e) => setIsPro(e.target.checked)}
+              style={{ width: 16, height: 16, accentColor: "#fbbf24" }}
+            />
+            <span className="material-symbols-rounded" style={{ fontSize: 18, color: isPro ? "#fbbf24" : "var(--text-muted)" }}>
+              workspace_premium
+            </span>
+            <span style={{ fontSize: 13, fontWeight: 700 }}>
+              Pro şablon — sadece Pro aboneler kullanabilir
+            </span>
+          </label>
         </div>
       </div>
 
