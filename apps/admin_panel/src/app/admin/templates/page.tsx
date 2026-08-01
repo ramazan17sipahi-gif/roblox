@@ -1,11 +1,5 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
-import { getSupabaseAdmin } from "@/lib/supabase";
-import { getSupabaseBrowser } from "@/lib/supabase-browser";
-
-// Prefer service_role for admin writes when configured
-const supabaseAdmin = getSupabaseAdmin();
-const supabase = getSupabaseBrowser();
 
 interface ClothingTemplate {
   id: string;
@@ -39,11 +33,15 @@ export default function TemplatesPage() {
 
   const fetchTemplates = async () => {
     setLoading(true);
-    const { data } = await supabaseAdmin
-      .from("clothing_templates")
-      .select("*")
-      .order("sort_order", { ascending: true });
-    if (data) setTemplates(data);
+    try {
+      const res = await fetch("/api/admin/templates", { cache: "no-store" });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "Şablonlar yüklenemedi");
+      setTemplates(json.data ?? []);
+    } catch (e) {
+      console.error(e);
+      setTemplates([]);
+    }
     setLoading(false);
   };
 
@@ -51,17 +49,40 @@ export default function TemplatesPage() {
 
   const handleDelete = async (id: string) => {
     if (!confirm("Bu şablonu silmek istediğinize emin misiniz?")) return;
-    await supabaseAdmin.from("clothing_templates").delete().eq("id", id);
+    const res = await fetch(`/api/admin/templates/${id}`, { method: "DELETE" });
+    if (!res.ok) {
+      const json = await res.json().catch(() => ({}));
+      alert(json.error || "Silme başarısız");
+      return;
+    }
     fetchTemplates();
   };
 
   const handleToggleActive = async (t: ClothingTemplate) => {
-    await supabaseAdmin.from("clothing_templates").update({ is_active: !t.is_active }).eq("id", t.id);
+    const res = await fetch(`/api/admin/templates/${t.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ is_active: !t.is_active }),
+    });
+    if (!res.ok) {
+      const json = await res.json().catch(() => ({}));
+      alert(json.error || "Güncelleme başarısız");
+      return;
+    }
     fetchTemplates();
   };
 
   const handleTogglePro = async (t: ClothingTemplate) => {
-    await supabaseAdmin.from("clothing_templates").update({ is_pro: !t.is_pro }).eq("id", t.id);
+    const res = await fetch(`/api/admin/templates/${t.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ is_pro: !t.is_pro }),
+    });
+    if (!res.ok) {
+      const json = await res.json().catch(() => ({}));
+      alert(json.error || "Pro güncellemesi başarısız");
+      return;
+    }
     fetchTemplates();
   };
 
@@ -265,17 +286,16 @@ function TemplateForm({ initial, onSave, onCancel }: {
   };
 
   const uploadFile = async (file: File, path: string): Promise<string | null> => {
-    const { data, error } = await supabaseAdmin.storage
-      .from("clothing-assets")
-      .upload(path, file, { upsert: true, contentType: file.type });
-
-    if (error) {
-      console.error("Upload error:", error);
+    const form = new FormData();
+    form.append("file", file);
+    form.append("path", path);
+    const res = await fetch("/api/admin/upload", { method: "POST", body: form });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      console.error("Upload error:", json.error);
       return null;
     }
-
-    const { data: urlData } = supabaseAdmin.storage.from("clothing-assets").getPublicUrl(data.path);
-    return urlData.publicUrl;
+    return (json.publicUrl as string) || null;
   };
 
   const handleSubmit = async () => {
@@ -321,21 +341,32 @@ function TemplateForm({ initial, onSave, onCancel }: {
         description: description || null,
         shirt_texture_url: shirtUrl,
         pants_texture_url: pantsUrl,
-        sort_order: sortOrder,
-        is_pro: isPro,
+        sort_order: Number(sortOrder) || 0,
+        is_pro: Boolean(isPro),
       };
 
-      if (initial) {
-        const { error: dbErr } = await supabaseAdmin.from("clothing_templates").update(payload).eq("id", initial.id);
-        if (dbErr) { setError(`DB hatası: ${dbErr.message}`); setSaving(false); return; }
-      } else {
-        const { error: dbErr } = await supabaseAdmin.from("clothing_templates").insert(payload);
-        if (dbErr) { setError(`DB hatası: ${dbErr.message}`); setSaving(false); return; }
+      const res = initial
+        ? await fetch(`/api/admin/templates/${initial.id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          })
+        : await fetch("/api/admin/templates", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setError(`DB hatası: ${json.error || res.statusText}`);
+        setSaving(false);
+        return;
       }
 
       onSave();
-    } catch (e: any) {
-      setError(e.message || "Beklenmeyen hata");
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Beklenmeyen hata");
     }
     setSaving(false);
   };
