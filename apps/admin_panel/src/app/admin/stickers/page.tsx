@@ -20,7 +20,17 @@ interface Sticker {
   image_url: string;
   is_active: boolean;
   is_pro: boolean;
+  access_tier?: "free" | "ad" | "pro";
   sort_order: number;
+}
+
+type AccessTier = "free" | "ad" | "pro";
+
+function resolveAccessTier(row: { access_tier?: string | null; is_pro?: boolean }): AccessTier {
+  if (row.access_tier === "ad" || row.access_tier === "pro" || row.access_tier === "free") {
+    return row.access_tier;
+  }
+  return row.is_pro ? "ad" : "free";
 }
 
 export default function StickersPage() {
@@ -153,7 +163,8 @@ export default function StickersPage() {
                 >
                   {s.is_active ? "Aktif" : "Pasif"}
                 </button>
-                {s.is_pro && <span className="badge badge-yellow">Pro</span>}
+                {resolveAccessTier(s) === "ad" && <span className="badge badge-cyan">Reklam Pro</span>}
+                {resolveAccessTier(s) === "pro" && <span className="badge badge-yellow">Pro</span>}
               </div>
 
               <div className="sticker-actions">
@@ -221,10 +232,19 @@ function StickerForm({ categories, initial, defaultCategoryId, onSave, onCancel 
   const [imageUrl, setImageUrl] = useState(initial?.image_url || "");
   const [categoryId, setCategoryId] = useState(initial?.category_id || defaultCategoryId || categories[0]?.id || "");
   const [sortOrder, setSortOrder] = useState(initial?.sort_order || 0);
-  const [isPro, setIsPro] = useState(initial?.is_pro || false);
+  const [accessTier, setAccessTier] = useState<AccessTier>(
+    initial ? resolveAccessTier(initial) : "free",
+  );
 
   const handleSubmit = async () => {
-    const payload = { name, image_url: imageUrl, category_id: categoryId, sort_order: sortOrder, is_pro: isPro };
+    const payload = {
+      name,
+      image_url: imageUrl,
+      category_id: categoryId,
+      sort_order: sortOrder,
+      access_tier: accessTier,
+      is_pro: accessTier !== "free",
+    };
     if (initial) {
       await supabase.from("stickers").update(payload).eq("id", initial.id);
     } else {
@@ -261,12 +281,17 @@ function StickerForm({ categories, initial, defaultCategoryId, onSave, onCancel 
             <label className="form-label">Sıra</label>
             <input className="form-input" type="number" value={sortOrder} onChange={(e) => setSortOrder(Number(e.target.value))} />
           </div>
-          <div style={{ flex: 1, display: "flex", alignItems: "flex-end", paddingBottom: 10 }}>
-            <label style={{ fontSize: 13, color: "var(--text-secondary)", display: "flex", alignItems: "center", gap: 6, cursor: "pointer" }}>
-              <input type="checkbox" checked={isPro} onChange={(e) => setIsPro(e.target.checked)} />
-              <span className="material-symbols-rounded" style={{ fontSize: 16, color: isPro ? "var(--yellow)" : "var(--text-muted)" }}>workspace_premium</span>
-              Pro İçerik
-            </label>
+          <div style={{ flex: 1 }}>
+            <label className="form-label">Rank</label>
+            <select
+              className="form-select"
+              value={accessTier}
+              onChange={(e) => setAccessTier(e.target.value as AccessTier)}
+            >
+              <option value="free">Free — herkese açık</option>
+              <option value="ad">Reklam Pro — reklam izleyerek açılır</option>
+              <option value="pro">Pro — sadece üyelik, reklam yok</option>
+            </select>
           </div>
         </div>
       </div>

@@ -62,7 +62,7 @@ export default function DashboardPage() {
           icon="checkroom"
           label="Kıyafet şablonları"
           value={loading ? "—" : String(stats.templates)}
-          tone="orange"
+          tone="blue"
         />
         <StatCard
           icon="category"
@@ -123,8 +123,7 @@ export default function DashboardPage() {
               <strong>Canlı içerik akışı</strong>
               <p>
                 Aktif şablonlar ve stickerlar Supabase üzerinden mobil uygulamaya
-                yansır. Pro işaretli şablonlar yalnızca Pro aboneler tarafından
-                açılabilir.
+                yansır. Reklam Pro reklamla açılır; Pro yalnızca üyelikle açılır.
               </p>
             </div>
           </div>
@@ -143,7 +142,7 @@ function StatCard({
   icon: string;
   label: string;
   value: string;
-  tone: "orange" | "teal" | "slate" | "green";
+  tone: "blue" | "teal" | "slate" | "green";
 }) {
   return (
     <div className={`stat-card tone-${tone}`}>
@@ -171,7 +170,7 @@ function QuickAction({
 }) {
   return (
     <Link href={href} className="quick-action-row">
-      <div className="stat-icon-wrap tone-orange">
+      <div className="stat-icon-wrap tone-blue">
         <span className="material-symbols-rounded">{icon}</span>
       </div>
       <div className="quick-action-copy">

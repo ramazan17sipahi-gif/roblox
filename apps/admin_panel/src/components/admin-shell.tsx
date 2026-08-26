@@ -38,8 +38,8 @@ export function SidebarNav() {
           <span className="material-symbols-rounded brand-icon">checkroom</span>
         </div>
         <div className="brand-text">
-          <div className="brand-title">RBLX Studio</div>
-          <div className="brand-subtitle">Admin Console</div>
+          <div className="brand-title">Studio</div>
+          <div className="brand-subtitle">Admin</div>
         </div>
       </div>
 
@@ -107,14 +107,13 @@ export function AdminTopBar() {
   return (
     <header className="topbar">
       <div>
-        <div className="topbar-eyebrow">RBLX Clothing Maker</div>
         <h2 className="topbar-title">{current.title}</h2>
         <p className="topbar-desc">{current.desc}</p>
       </div>
       <div className="topbar-actions">
         <span className="topbar-pill">
-          <span className="material-symbols-rounded">cloud_done</span>
-          Mobil senkron aktif
+          <span className="status-dot" />
+          Senkron aktif
         </span>
       </div>
     </header>

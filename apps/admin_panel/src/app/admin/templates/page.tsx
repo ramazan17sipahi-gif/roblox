@@ -14,8 +14,35 @@ interface ClothingTemplate {
   preview_back_url: string | null;
   is_active: boolean;
   is_pro: boolean;
+  access_tier: AccessTier;
   sort_order: number;
   created_at: string;
+}
+
+type AccessTier = "free" | "ad" | "pro";
+
+const ACCESS_TIERS: { value: AccessTier; label: string; hint: string; icon: string }[] = [
+  { value: "free", label: "Free", hint: "Herkese açık", icon: "public" },
+  { value: "ad", label: "Reklam Pro", hint: "Kullanıcı 2 reklam izleyerek veya Pro üyelikle açar", icon: "smart_display" },
+  { value: "pro", label: "Pro", hint: "Sadece Pro üyelik — reklamla alınamaz", icon: "workspace_premium" },
+];
+
+function resolveAccessTier(row: { access_tier?: string | null; is_pro?: boolean }): AccessTier {
+  if (row.access_tier === "ad" || row.access_tier === "pro" || row.access_tier === "free") {
+    return row.access_tier;
+  }
+  return row.is_pro ? "ad" : "free";
+}
+
+function nextAccessTier(current: AccessTier): AccessTier {
+  const order: AccessTier[] = ["free", "ad", "pro"];
+  return order[(order.indexOf(current) + 1) % order.length];
+}
+
+function accessTierToggleClass(tier: AccessTier): string {
+  if (tier === "pro") return "toggle-pro";
+  if (tier === "ad") return "toggle-ad";
+  return "toggle-free";
 }
 
 const TEMPLATE_TYPES = [
@@ -72,15 +99,16 @@ export default function TemplatesPage() {
     fetchTemplates();
   };
 
-  const handleTogglePro = async (t: ClothingTemplate) => {
+  const handleCycleRank = async (t: ClothingTemplate) => {
+    const next = nextAccessTier(resolveAccessTier(t));
     const res = await fetch(`/api/admin/templates/${t.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ is_pro: !t.is_pro }),
+      body: JSON.stringify({ access_tier: next, is_pro: next !== "free" }),
     });
     if (!res.ok) {
       const json = await res.json().catch(() => ({}));
-      alert(json.error || "Pro güncellemesi başarısız");
+      alert(json.error || "Rank güncellemesi başarısız");
       return;
     }
     fetchTemplates();
@@ -101,7 +129,7 @@ export default function TemplatesPage() {
       <div className="page-header">
         <div>
           <h1 className="page-title">Kıyafet Şablonları</h1>
-          <p className="page-subtitle">Classic clothing UV şablonları · 585×559 · Pro erişim kontrolü</p>
+          <p className="page-subtitle">Classic clothing UV şablonları · 585×559 · Free / Reklam Pro / Pro</p>
         </div>
         <button className="btn btn-primary" onClick={() => { setEditing(null); setShowForm(true); }}>
           <span className="material-symbols-rounded" style={{ fontSize: 18 }}>add</span>
@@ -115,8 +143,8 @@ export default function TemplatesPage() {
           <strong>Uygulama senkronu</strong>
           <p>
             <strong>Aktif</strong> şablonlar mobil uygulamada Templates sekmesinde ve oluştur ekranında görünür.
-            Uygulama açılışında veya sayfa yenilendiğinde Supabase&apos;ten çekilir.
-            <strong> Pro</strong> işaretli şablonlar yalnızca Pro aboneliği olan kullanıcılar tarafından açılabilir.
+            <strong> Reklam Pro</strong> tanımlı skin reklam izlenerek de açılır.
+            <strong> Pro</strong> tanımlı skin reklamla alınamaz — yalnızca Pro üyelik.
             Pasif şablonlar uygulamada gizlenir.
           </p>
         </div>
@@ -189,11 +217,14 @@ export default function TemplatesPage() {
                       </span>
                       {t.is_active ? "Aktif" : "Pasif"}
                     </button>
-                    <button className={`toggle-btn ${t.is_pro ? "toggle-pro" : "toggle-free"}`} onClick={() => handleTogglePro(t)}>
+                    <button
+                      className={`toggle-btn ${accessTierToggleClass(resolveAccessTier(t))}`}
+                      onClick={() => handleCycleRank(t)}
+                    >
                       <span className="material-symbols-rounded" style={{ fontSize: 14 }}>
-                        workspace_premium
+                        {ACCESS_TIERS.find((x) => x.value === resolveAccessTier(t))?.icon}
                       </span>
-                      {t.is_pro ? "Pro" : "Free"}
+                      {ACCESS_TIERS.find((x) => x.value === resolveAccessTier(t))?.label}
                     </button>
                   </div>
                   <div style={{ display: "flex", gap: 6 }}>
@@ -227,7 +258,9 @@ function TemplateForm({ initial, onSave, onCancel }: {
   const [templateType, setTemplateType] = useState(initial?.template_type || "classic_set");
   const [description, setDescription] = useState(initial?.description || "");
   const [sortOrder, setSortOrder] = useState(initial?.sort_order || 0);
-  const [isPro, setIsPro] = useState(initial?.is_pro ?? false);
+  const [accessTier, setAccessTier] = useState<AccessTier>(
+    initial ? resolveAccessTier(initial) : "free",
+  );
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -342,7 +375,8 @@ function TemplateForm({ initial, onSave, onCancel }: {
         shirt_texture_url: shirtUrl,
         pants_texture_url: pantsUrl,
         sort_order: Number(sortOrder) || 0,
-        is_pro: Boolean(isPro),
+        access_tier: accessTier,
+        is_pro: accessTier !== "free",
       };
 
       const res = initial
@@ -415,33 +449,38 @@ function TemplateForm({ initial, onSave, onCancel }: {
           <input className="form-input" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Şablon açıklaması..." />
         </div>
         <div style={{ gridColumn: "1 / -1" }}>
-          <label className="form-label">Erişim</label>
-          <label
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 10,
-              cursor: "pointer",
-              padding: "10px 14px",
-              borderRadius: 10,
-              border: `1px solid ${isPro ? "rgba(251, 191, 36, 0.45)" : "var(--border)"}`,
-              background: isPro ? "rgba(251, 191, 36, 0.08)" : "var(--bg-secondary)",
-              userSelect: "none",
-            }}
-          >
-            <input
-              type="checkbox"
-              checked={isPro}
-              onChange={(e) => setIsPro(e.target.checked)}
-              style={{ width: 16, height: 16, accentColor: "#fbbf24" }}
-            />
-            <span className="material-symbols-rounded" style={{ fontSize: 18, color: isPro ? "#fbbf24" : "var(--text-muted)" }}>
-              workspace_premium
-            </span>
-            <span style={{ fontSize: 13, fontWeight: 700 }}>
-              Pro şablon — sadece Pro aboneler kullanabilir
-            </span>
-          </label>
+          <label className="form-label">Rank</label>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
+            {ACCESS_TIERS.map((tier) => {
+              const selected = accessTier === tier.value;
+              const accent = tier.value === "pro" ? "#fbbf24" : tier.value === "ad" ? "#00b4d8" : "var(--text-muted)";
+              return (
+                <button
+                  key={tier.value}
+                  type="button"
+                  onClick={() => setAccessTier(tier.value)}
+                  style={{
+                    textAlign: "left",
+                    cursor: "pointer",
+                    padding: "10px 12px",
+                    borderRadius: 10,
+                    border: `1px solid ${selected ? accent : "var(--border)"}`,
+                    background: selected ? `${accent}14` : "var(--bg-secondary)",
+                    color: "inherit",
+                    fontFamily: "inherit",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
+                    <span className="material-symbols-rounded" style={{ fontSize: 18, color: selected ? accent : "var(--text-muted)" }}>
+                      {tier.icon}
+                    </span>
+                    <span style={{ fontSize: 13, fontWeight: 800 }}>{tier.label}</span>
+                  </div>
+                  <div style={{ fontSize: 11, color: "var(--text-muted)", lineHeight: 1.35 }}>{tier.hint}</div>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
