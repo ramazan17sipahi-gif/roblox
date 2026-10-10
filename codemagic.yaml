@@ -6,6 +6,7 @@
 #   APP_STORE_CONNECT_KEY_IDENTIFIER
 #   APP_STORE_CONNECT_ISSUER_ID
 #   APP_STORE_CONNECT_PRIVATE_KEY   (.p8 file contents)
+#   CERTIFICATE_PRIVATE_KEY         (RSA PEM for Apple Distribution cert)
 
 workflows:
   ios-app-store:
@@ -17,13 +18,11 @@ workflows:
       flutter: 3.32.7
       xcode: latest
       cocoapods: default
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.rblxclothingmaker.app
       groups:
         - rblx_ios
       vars:
         APP_ENVIRONMENT: production
+        BUNDLE_ID: com.rblxclothingmaker.app
     scripts:
       - name: Write env.local.json from Codemagic secrets
         script: |
@@ -57,7 +56,16 @@ workflows:
           find . -name "Podfile" -exec dirname {} \; | while read dir; do
             (cd "$dir" && pod install --repo-update)
           done
-      - name: Set up code signing
+      - name: Set up keychain
+        script: keychain initialize
+      - name: Fetch signing files from App Store Connect
+        script: |
+          app-store-connect fetch-signing-files "$BUNDLE_ID" \
+            --type IOS_APP_STORE \
+            --create
+      - name: Add certificates to keychain
+        script: keychain add-certificates
+      - name: Set up code signing settings on Xcode project
         script: xcode-project use-profiles
       - name: Build signed IPA with dart-defines
         script: |
