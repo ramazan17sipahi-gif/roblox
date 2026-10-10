@@ -1,7 +1,7 @@
 # iOS App Store / TestFlight via Codemagic (Personal account, no Team).
 # White-screen fix: IPA is always built with env.local.json dart-defines.
 #
-# Environment group `rblx_ios` (secure):
+# Environment group `rblx ios` (secure):
 #   APP_SUPABASE_URL, APP_SUPABASE_ANON_KEY
 #   APP_STORE_CONNECT_KEY_IDENTIFIER
 #   APP_STORE_CONNECT_ISSUER_ID
@@ -19,7 +19,7 @@ workflows:
       xcode: latest
       cocoapods: default
       groups:
-        - rblx_ios
+        - "rblx ios"
       vars:
         APP_ENVIRONMENT: production
         BUNDLE_ID: com.rblxclothingmaker.app
@@ -43,7 +43,7 @@ workflows:
           data = {k: os.environ.get(k, "") for k in keys}
           data["APP_ENVIRONMENT"] = os.environ.get("APP_ENVIRONMENT", "production")
           if not data["APP_SUPABASE_URL"] or not data["APP_SUPABASE_ANON_KEY"]:
-              raise SystemExit("Missing APP_SUPABASE_URL or APP_SUPABASE_ANON_KEY in group rblx_ios")
+              raise SystemExit("Missing APP_SUPABASE_URL or APP_SUPABASE_ANON_KEY in group rblx ios")
           with open("env.local.json", "w", encoding="utf-8") as f:
               json.dump(data, f)
           print("Wrote env.local.json (values hidden)")
