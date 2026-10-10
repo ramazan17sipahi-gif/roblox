@@ -1,0 +1,82 @@
+# iOS App Store / TestFlight via Codemagic.
+# White-screen fix: IPA is always built with env.local.json dart-defines.
+#
+# Codemagic UI (once):
+# 1. Add GitHub repo ramazan17sipahi-gif/roblox
+# 2. Team integrations → Developer Portal → App Store Connect API key (App Manager)
+# 3. Code signing identities → fetch App Store profile for com.rblxclothingmaker.app
+# 4. Environment variables group `rblx_ios` (secure):
+#    APP_SUPABASE_URL, APP_SUPABASE_ANON_KEY
+#    optional: APP_ADMOB_* , APP_REVENUECAT_PUBLIC_KEY
+# 5. Start workflow `ios-app-store`
+
+workflows:
+  ios-app-store:
+    name: iOS App Store
+    instance_type: mac_mini_m2
+    max_build_duration: 120
+    working_directory: apps/mobile_app
+    environment:
+      flutter: 3.32.7
+      xcode: latest
+      cocoapods: default
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.rblxclothingmaker.app
+      groups:
+        - rblx_ios
+      vars:
+        APP_ENVIRONMENT: production
+    scripts:
+      - name: Write env.local.json from Codemagic secrets
+        script: |
+          python3 <<'PY'
+          import json, os
+          keys = [
+              "APP_SUPABASE_URL",
+              "APP_SUPABASE_ANON_KEY",
+              "APP_REVENUECAT_PUBLIC_KEY",
+              "APP_ADMOB_PUBLISHER_ID",
+              "APP_ADMOB_ANDROID_APP_ID",
+              "APP_ADMOB_IOS_APP_ID",
+              "APP_ADMOB_REWARDED_ANDROID_UNIT_ID",
+              "APP_ADMOB_REWARDED_IOS_UNIT_ID",
+              "APP_ADMOB_APP_OPEN_ANDROID_UNIT_ID",
+              "APP_ADMOB_APP_OPEN_IOS_UNIT_ID",
+          ]
+          data = {k: os.environ.get(k, "") for k in keys}
+          data["APP_ENVIRONMENT"] = os.environ.get("APP_ENVIRONMENT", "production")
+          if not data["APP_SUPABASE_URL"] or not data["APP_SUPABASE_ANON_KEY"]:
+              raise SystemExit("Missing APP_SUPABASE_URL or APP_SUPABASE_ANON_KEY in group rblx_ios")
+          with open("env.local.json", "w", encoding="utf-8") as f:
+              json.dump(data, f)
+          print("Wrote env.local.json (values hidden)")
+          PY
+      - name: Get Flutter packages
+        script: |
+          flutter pub get
+      - name: Install CocoaPods
+        script: |
+          find . -name "Podfile" -exec dirname {} \; | while read dir; do
+            (cd "$dir" && pod install --repo-update)
+          done
+      - name: Set up code signing
+        script: xcode-project use-profiles
+      - name: Build signed IPA with dart-defines
+        script: |
+          flutter build ipa --release \
+            --export-options-plist=/Users/builder/export_options.plist \
+            --dart-define-from-file=env.local.json \
+            --dart-define=APP_ENVIRONMENT=production
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - flutter_drive.log
+    publishing:
+      email:
+        recipients:
+          - yasinhun32@icloud.com
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        expire_build_submitted_for_review: false

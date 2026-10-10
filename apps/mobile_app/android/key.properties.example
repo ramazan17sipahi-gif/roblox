@@ -1,0 +1,16 @@
+# Release signing (Play Console upload key)
+#
+# 1. Generate keystore (run once, pick your own passwords):
+#    keytool -genkeypair -v -keystore upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+#
+# 2. Copy this file to key.properties and fill in values:
+#
+# storePassword=YOUR_STORE_PASSWORD
+# keyPassword=YOUR_KEY_PASSWORD
+# keyAlias=upload
+# storeFile=upload-keystore.jks
+#
+# 3. Place upload-keystore.jks in android/ (same folder as this template).
+# 4. flutter build appbundle --release --no-tree-shake-icons
+#
+# NEVER commit key.properties or *.jks to git.
