@@ -1,14 +1,11 @@
-# iOS App Store / TestFlight via Codemagic.
+# iOS App Store / TestFlight via Codemagic (Personal account, no Team).
 # White-screen fix: IPA is always built with env.local.json dart-defines.
 #
-# Codemagic UI (once):
-# 1. Add GitHub repo ramazan17sipahi-gif/roblox
-# 2. Team integrations → Developer Portal → App Store Connect API key (App Manager)
-# 3. Code signing identities → fetch App Store profile for com.rblxclothingmaker.app
-# 4. Environment variables group `rblx_ios` (secure):
-#    APP_SUPABASE_URL, APP_SUPABASE_ANON_KEY
-#    optional: APP_ADMOB_* , APP_REVENUECAT_PUBLIC_KEY
-# 5. Start workflow `ios-app-store`
+# Environment group `rblx_ios` (secure):
+#   APP_SUPABASE_URL, APP_SUPABASE_ANON_KEY
+#   APP_STORE_CONNECT_KEY_IDENTIFIER
+#   APP_STORE_CONNECT_ISSUER_ID
+#   APP_STORE_CONNECT_PRIVATE_KEY   (.p8 file contents)
 
 workflows:
   ios-app-store:
@@ -16,9 +13,6 @@ workflows:
     instance_type: mac_mini_m2
     max_build_duration: 120
     working_directory: apps/mobile_app
-    integrations:
-      # Must match Team settings → Developer Portal → API key name.
-      app_store_connect: codemagic
     environment:
       flutter: 3.32.7
       xcode: latest
@@ -80,6 +74,8 @@ workflows:
         recipients:
           - yasinhun32@icloud.com
       app_store_connect:
-        auth: integration
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
         submit_to_testflight: true
         expire_build_submitted_for_review: false
