@@ -50,6 +50,8 @@ backend/supabase/.temp/
 # Generated files
 *.g.dart
 *.freezed.dart
+# Pigeon output for the Play Billing 8 fork; required to compile on CI.
+!packages/in_app_purchase_android_play8/lib/src/messages.g.dart
 apps/mobile_app/lib/l10n/generated/
 
 # Android
