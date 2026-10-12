@@ -926,5 +926,20 @@
   },
   "homeAttach": "Anexar",
   "authContinueWithRoblox": "Continuar com Roblox",
-  "authRobloxLoginFailed": "Falha no login do Roblox. Tente novamente."
+  "authRobloxLoginFailed": "Falha no login do Roblox. Tente novamente.",
+  "authOrWithEmail": "ou com e-mail",
+  "authCreateAccount": "Criar conta",
+  "authNoAccountPrompt": "Não tem uma conta?",
+  "authHaveAccountPrompt": "Já tem uma conta?",
+  "authShowPassword": "Mostrar senha",
+  "authHidePassword": "Ocultar senha",
+  "authPasswordMinHint": "Pelo menos 6 caracteres",
+  "onboardingUvTemplate": "MODELO UV",
+  "onboardingLayers": "CAMADAS",
+  "onboardingLayerText": "Texto",
+  "onboardingLayerSticker": "Adesivo",
+  "onboardingLayerTemplate": "Modelo",
+  "onboardingStickerCrown": "Coroa",
+  "onboardingPreview3d": "PRÉVIA 3D",
+  "onboardingReady": "Pronto"
 }

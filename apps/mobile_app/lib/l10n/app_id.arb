@@ -926,5 +926,20 @@
   },
   "homeAttach": "Lampirkan",
   "authContinueWithRoblox": "Lanjutkan dengan Roblox",
-  "authRobloxLoginFailed": "Gagal masuk dengan Roblox. Coba lagi."
+  "authRobloxLoginFailed": "Gagal masuk dengan Roblox. Coba lagi.",
+  "authOrWithEmail": "atau dengan email",
+  "authCreateAccount": "Buat akun",
+  "authNoAccountPrompt": "Belum punya akun?",
+  "authHaveAccountPrompt": "Sudah punya akun?",
+  "authShowPassword": "Tampilkan kata sandi",
+  "authHidePassword": "Sembunyikan kata sandi",
+  "authPasswordMinHint": "Minimal 6 karakter",
+  "onboardingUvTemplate": "TEMPLAT UV",
+  "onboardingLayers": "LAPISAN",
+  "onboardingLayerText": "Teks",
+  "onboardingLayerSticker": "Stiker",
+  "onboardingLayerTemplate": "Templat",
+  "onboardingStickerCrown": "Mahkota",
+  "onboardingPreview3d": "PRATINJAU 3D",
+  "onboardingReady": "Siap"
 }

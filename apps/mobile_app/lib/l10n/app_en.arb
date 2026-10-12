@@ -996,6 +996,20 @@
       "watched": { "type": "int" },
       "required": { "type": "int" }
     }
-  }
+  },
+  "authOrWithEmail": "or with email",
+  "authCreateAccount": "Create account",
+  "authNoAccountPrompt": "Don't have an account?",
+  "authHaveAccountPrompt": "Already have an account?",
+  "authShowPassword": "Show password",
+  "authHidePassword": "Hide password",
+  "authPasswordMinHint": "At least 6 characters",
+  "onboardingUvTemplate": "UV TEMPLATE",
+  "onboardingLayers": "LAYERS",
+  "onboardingLayerText": "Text",
+  "onboardingLayerSticker": "Sticker",
+  "onboardingLayerTemplate": "Template",
+  "onboardingStickerCrown": "Crown",
+  "onboardingPreview3d": "3D PREVIEW",
+  "onboardingReady": "Ready"
 }
-

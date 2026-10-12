@@ -926,5 +926,20 @@
   },
   "homeAttach": "Adjuntar",
   "authContinueWithRoblox": "Continuar con Roblox",
-  "authRobloxLoginFailed": "Error al iniciar sesión con Roblox. Inténtalo de nuevo."
+  "authRobloxLoginFailed": "Error al iniciar sesión con Roblox. Inténtalo de nuevo.",
+  "authOrWithEmail": "o con correo electrónico",
+  "authCreateAccount": "Crear cuenta",
+  "authNoAccountPrompt": "¿No tienes cuenta?",
+  "authHaveAccountPrompt": "¿Ya tienes cuenta?",
+  "authShowPassword": "Mostrar contraseña",
+  "authHidePassword": "Ocultar contraseña",
+  "authPasswordMinHint": "Al menos 6 caracteres",
+  "onboardingUvTemplate": "PLANTILLA UV",
+  "onboardingLayers": "CAPAS",
+  "onboardingLayerText": "Texto",
+  "onboardingLayerSticker": "Sticker",
+  "onboardingLayerTemplate": "Plantilla",
+  "onboardingStickerCrown": "Corona",
+  "onboardingPreview3d": "VISTA 3D",
+  "onboardingReady": "Listo"
 }

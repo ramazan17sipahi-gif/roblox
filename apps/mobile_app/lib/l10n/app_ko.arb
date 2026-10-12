@@ -926,5 +926,20 @@
   },
   "homeAttach": "첨부",
   "authContinueWithRoblox": "Roblox로 계속",
-  "authRobloxLoginFailed": "Roblox 로그인에 실패했습니다. 다시 시도하세요."
+  "authRobloxLoginFailed": "Roblox 로그인에 실패했습니다. 다시 시도하세요.",
+  "authOrWithEmail": "또는 이메일로",
+  "authCreateAccount": "계정 만들기",
+  "authNoAccountPrompt": "계정이 없으신가요?",
+  "authHaveAccountPrompt": "이미 계정이 있으신가요?",
+  "authShowPassword": "비밀번호 표시",
+  "authHidePassword": "비밀번호 숨기기",
+  "authPasswordMinHint": "6자 이상",
+  "onboardingUvTemplate": "UV 템플릿",
+  "onboardingLayers": "레이어",
+  "onboardingLayerText": "텍스트",
+  "onboardingLayerSticker": "스티커",
+  "onboardingLayerTemplate": "템플릿",
+  "onboardingStickerCrown": "왕관",
+  "onboardingPreview3d": "3D 미리보기",
+  "onboardingReady": "준비됨"
 }

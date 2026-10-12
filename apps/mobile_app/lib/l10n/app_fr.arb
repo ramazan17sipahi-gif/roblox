@@ -1173,5 +1173,20 @@
   },
   "homeAttach": "Joindre",
   "authContinueWithRoblox": "Continuer avec Roblox",
-  "authRobloxLoginFailed": "Échec de la connexion Roblox. Veuillez réessayer."
+  "authRobloxLoginFailed": "Échec de la connexion Roblox. Veuillez réessayer.",
+  "authOrWithEmail": "ou avec un e-mail",
+  "authCreateAccount": "Créer un compte",
+  "authNoAccountPrompt": "Pas encore de compte ?",
+  "authHaveAccountPrompt": "Déjà un compte ?",
+  "authShowPassword": "Afficher le mot de passe",
+  "authHidePassword": "Masquer le mot de passe",
+  "authPasswordMinHint": "Au moins 6 caractères",
+  "onboardingUvTemplate": "MODÈLE UV",
+  "onboardingLayers": "CALQUES",
+  "onboardingLayerText": "Texte",
+  "onboardingLayerSticker": "Sticker",
+  "onboardingLayerTemplate": "Modèle",
+  "onboardingStickerCrown": "Couronne",
+  "onboardingPreview3d": "APERÇU 3D",
+  "onboardingReady": "Prêt"
 }

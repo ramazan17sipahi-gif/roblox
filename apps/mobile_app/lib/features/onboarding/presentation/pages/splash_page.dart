@@ -1,12 +1,11 @@
-import 'dart:math' as math;
-import 'dart:ui';
-import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:networking/networking.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../shared/widgets/brand_logo.dart';
+import '../../../../shared/widgets/flow_ui.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 
 class SplashPage extends ConsumerStatefulWidget {
@@ -16,76 +15,40 @@ class SplashPage extends ConsumerStatefulWidget {
   ConsumerState<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends ConsumerState<SplashPage> with TickerProviderStateMixin {
-  late AnimationController _logoController;
-  late AnimationController _pulseController;
-  late AnimationController _blobController;
-  late Animation<double> _logoScale;
-  late Animation<double> _logoOpacity;
-  late Animation<double> _ringRotation;
-  late Animation<double> _textSlide;
-  late Animation<double> _textOpacity;
-  late Animation<double> _subtitleOpacity;
-  late Animation<double> _progressWidth;
-  late Animation<double> _iconsOpacity;
+class _SplashPageState extends ConsumerState<SplashPage>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> _logoOpacity;
+  late final Animation<double> _logoScale;
+  late final Animation<double> _textOpacity;
+  late final Animation<double> _progress;
 
   @override
   void initState() {
     super.initState();
-
-    // Logo entrance animation
-    _logoController = AnimationController(
+    _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2000),
+      duration: const Duration(milliseconds: 2600),
     );
-
-    // Continuous pulse for the logo glow
-    _pulseController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1500),
-    )..repeat(reverse: true);
-
-    // Blob floating motion
-    _blobController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 6),
-    )..repeat(reverse: true);
-
-    // Logo scale: starts small, bounces to full size
-    _logoScale = TweenSequence<double>([
-      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.15).chain(CurveTween(curve: Curves.easeOutCubic)), weight: 70),
-      TweenSequenceItem(tween: Tween(begin: 1.15, end: 1.0).chain(CurveTween(curve: Curves.easeInOut)), weight: 30),
-    ]).animate(CurvedAnimation(parent: _logoController, curve: const Interval(0.0, 0.5)));
-
-    _logoOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _logoController, curve: const Interval(0.0, 0.3, curve: Curves.easeOut)),
+    _logoOpacity = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(0.0, 0.2, curve: Curves.easeOut),
     );
-
-    _ringRotation = Tween<double>(begin: 0.0, end: 12.0 * math.pi / 180).animate(
-      CurvedAnimation(parent: _logoController, curve: const Interval(0.1, 0.6, curve: Curves.elasticOut)),
+    _logoScale = Tween<double>(begin: 0.92, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 0.3, curve: Curves.easeOutCubic),
+      ),
     );
-
-    _textSlide = Tween<double>(begin: 30.0, end: 0.0).animate(
-      CurvedAnimation(parent: _logoController, curve: const Interval(0.35, 0.65, curve: Curves.easeOutCubic)),
+    _textOpacity = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(0.15, 0.4, curve: Curves.easeOut),
     );
-
-    _textOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _logoController, curve: const Interval(0.35, 0.6, curve: Curves.easeOut)),
+    _progress = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(0.2, 1.0, curve: Curves.easeInOut),
     );
-
-    _subtitleOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _logoController, curve: const Interval(0.5, 0.75, curve: Curves.easeOut)),
-    );
-
-    _progressWidth = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _logoController, curve: const Interval(0.6, 1.0, curve: Curves.easeInOut)),
-    );
-
-    _iconsOpacity = Tween<double>(begin: 0.0, end: 0.15).animate(
-      CurvedAnimation(parent: _logoController, curve: const Interval(0.7, 1.0, curve: Curves.easeOut)),
-    );
-
-    _logoController.forward();
+    _controller.forward();
     _navigateToNext();
   }
 
@@ -120,200 +83,165 @@ class _SplashPageState extends ConsumerState<SplashPage> with TickerProviderStat
 
   @override
   void dispose() {
-    _logoController.dispose();
-    _pulseController.dispose();
-    _blobController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: AnimatedBuilder(
-        animation: Listenable.merge([_logoController, _pulseController, _blobController]),
-        builder: (context, _) {
-          return Stack(
-            children: [
-              // Removed paper texture mock
+    final l = AppLocalizations.of(context);
+    final topInset = MediaQuery.of(context).padding.top;
+    final bottomInset = MediaQuery.of(context).padding.bottom;
 
-              // Animated Blur Blobs
-              _buildAnimatedBlob(
-                top: -100 + (_blobController.value * 20),
-                left: -100 + (_blobController.value * 15),
-                color: AppColors.primaryContainer.withOpacity(0.2),
-                size: 300,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark.copyWith(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: FlowUi.orange,
+        systemNavigationBarIconBrightness: Brightness.dark,
+      ),
+      child: Scaffold(
+        backgroundColor: FlowUi.orange,
+        body: Stack(
+          children: [
+            Positioned.fill(
+              child: CustomPaint(
+                painter: FlowGridPainter(
+                  color: FlowUi.ink.withValues(alpha: 0.07),
+                  step: 26,
+                  offset: 0,
+                ),
               ),
-              _buildAnimatedBlob(
-                bottom: -100 + (_blobController.value * 25),
-                right: -100 + (_blobController.value * 10),
-                color: AppColors.outlineVariant.withOpacity(0.2),
-                size: 400,
-              ),
-              _buildAnimatedBlob(
-                top: MediaQuery.of(context).size.height * 0.4,
-                left: MediaQuery.of(context).size.width * 0.3,
-                color: AppColors.primaryContainer.withOpacity(0.2),
-                size: 250,
-              ),
+            ),
 
-              // Main Content
-              Center(
+            // Crop marks + measurement labels.
+            _CropMark(top: topInset + 16, left: 24),
+            _CropMark(top: topInset + 16, right: 24),
+            _CropMark(bottom: bottomInset + 24, left: 24),
+            _CropMark(bottom: bottomInset + 24, right: 24),
+            Positioned(
+              top: topInset + 22,
+              left: 52,
+              child: Text('585 × 559',
+                  style: FlowUi.mono(color: FlowUi.ink)),
+            ),
+            Positioned(
+              top: topInset + 22,
+              right: 52,
+              child: Text('PNG', style: FlowUi.mono(color: FlowUi.ink)),
+            ),
+
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Animated Logo
-                    Opacity(
-                      opacity: _logoOpacity.value,
-                      child: Transform.scale(
-                        scale: _logoScale.value,
-                        child: SizedBox(
-                          width: 120,
-                          height: 120,
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Transform.rotate(
-                                angle: _ringRotation.value,
-                                child: Container(
-                                  width: 120,
-                                  height: 120,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: AppColors.primaryContainer.withValues(alpha: 0.25),
-                                      width: 4,
-                                    ),
-                                    borderRadius: BorderRadius.circular(28),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(24),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: AppColors.primary.withValues(alpha: 0.25),
-                                      blurRadius: 20 + _pulseController.value * 10,
-                                      offset: const Offset(0, 8),
-                                    ),
-                                  ],
-                                ),
-                                child: const BrandLogo(size: 96, borderRadius: 24),
+                    FadeTransition(
+                      opacity: _logoOpacity,
+                      child: ScaleTransition(
+                        scale: _logoScale,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(28),
+                            border: Border.all(color: FlowUi.ink, width: 2),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: FlowUi.ink,
+                                offset: Offset(0, 8),
                               ),
                             ],
                           ),
+                          child: const BrandLogo(size: 108, borderRadius: 26),
                         ),
                       ),
                     ),
-                    SizedBox(height: 40),
-
-                    // Brand Name — slides up
-                    Transform.translate(
-                      offset: Offset(0, _textSlide.value),
-                      child: Opacity(
-                        opacity: _textOpacity.value,
-                        child: Text(
-                          AppLocalizations.of(context).splashBrandName,
-                          style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: -1.0,
+                    const SizedBox(height: 32),
+                    FadeTransition(
+                      opacity: _textOpacity,
+                      child: Column(
+                        children: [
+                          Text(
+                            l.splashBrandName,
+                            textAlign: TextAlign.center,
+                            style: FlowUi.display(size: 30, color: FlowUi.ink)
+                                .copyWith(height: 1.05),
                           ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-
-                    // Tagline — fades in
-                    Opacity(
-                      opacity: _subtitleOpacity.value,
-                      child: Text(
-                        AppLocalizations.of(context).splashTagline,
-                        style: TextStyle(
-                          fontFamily: 'Manrope',
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 4.0,
-                          color: AppColors.outlineVariant,
-                        ),
+                          const SizedBox(height: 10),
+                          Text(
+                            l.splashTagline,
+                            textAlign: TextAlign.center,
+                            style: FlowUi.mono(
+                              size: 12,
+                              color: FlowUi.ink,
+                              tracking: 0.2,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
+            ),
 
-              // Progress Indicator — animated width
-              Positioned(
-                bottom: 64,
-                left: 0,
-                right: 0,
-                child: Center(
-                  child: Container(
-                    width: 48,
-                    height: 3,
-                    decoration: BoxDecoration(
-                      color: AppColors.surfaceContainerHigh,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: FractionallySizedBox(
-                      alignment: Alignment.centerLeft,
-                      widthFactor: _progressWidth.value,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: AppColors.actionGradient,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: bottomInset + 72,
+              child: Center(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(2),
+                  child: SizedBox(
+                    width: 132,
+                    height: 4,
+                    child: AnimatedBuilder(
+                      animation: _progress,
+                      builder: (context, _) => LinearProgressIndicator(
+                        value: _progress.value,
+                        minHeight: 4,
+                        backgroundColor: FlowUi.ink.withValues(alpha: 0.18),
+                        valueColor:
+                            const AlwaysStoppedAnimation<Color>(FlowUi.ink),
                       ),
                     ),
                   ),
                 ),
               ),
-
-              // Decorative bottom icons — fade in
-              Positioned(
-                bottom: 32,
-                left: 48,
-                right: 48,
-                child: Opacity(
-                  opacity: _iconsOpacity.value,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(Icons.auto_awesome, size: 20, color: AppColors.outlineVariant),
-                      Icon(Icons.checkroom, size: 20, color: AppColors.outlineVariant),
-                      Icon(Icons.brush, size: 20, color: AppColors.outlineVariant),
-                      Icon(Icons.storefront, size: 20, color: AppColors.outlineVariant),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          );
-        },
+            ),
+          ],
+        ),
       ),
     );
   }
+}
 
-  Widget _buildAnimatedBlob({
-    double? top,
-    double? left,
-    double? right,
-    double? bottom,
-    required Color color,
-    required double size,
-  }) {
+class _CropMark extends StatelessWidget {
+  final double? top;
+  final double? left;
+  final double? right;
+  final double? bottom;
+
+  const _CropMark({this.top, this.left, this.right, this.bottom});
+
+  @override
+  Widget build(BuildContext context) {
+    const side = BorderSide(color: FlowUi.ink, width: 2);
     return Positioned(
       top: top,
       left: left,
       right: right,
       bottom: bottom,
-      child: ImageFiltered(
-        imageFilter: ImageFilter.blur(sigmaX: 80, sigmaY: 80),
+      child: IgnorePointer(
         child: Container(
-          width: size,
-          height: size,
+          width: 18,
+          height: 18,
           decoration: BoxDecoration(
-            color: color,
-            shape: BoxShape.circle,
+            border: Border(
+              top: top != null ? side : BorderSide.none,
+              bottom: bottom != null ? side : BorderSide.none,
+              left: left != null ? side : BorderSide.none,
+              right: right != null ? side : BorderSide.none,
+            ),
           ),
         ),
       ),

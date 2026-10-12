@@ -926,5 +926,20 @@
   },
   "homeAttach": "إرفاق",
   "authContinueWithRoblox": "المتابعة مع Roblox",
-  "authRobloxLoginFailed": "فشل تسجيل الدخول عبر Roblox. حاول مرة أخرى."
+  "authRobloxLoginFailed": "فشل تسجيل الدخول عبر Roblox. حاول مرة أخرى.",
+  "authOrWithEmail": "أو بالبريد الإلكتروني",
+  "authCreateAccount": "إنشاء حساب",
+  "authNoAccountPrompt": "ليس لديك حساب؟",
+  "authHaveAccountPrompt": "لديك حساب بالفعل؟",
+  "authShowPassword": "إظهار كلمة المرور",
+  "authHidePassword": "إخفاء كلمة المرور",
+  "authPasswordMinHint": "6 أحرف على الأقل",
+  "onboardingUvTemplate": "قالب UV",
+  "onboardingLayers": "الطبقات",
+  "onboardingLayerText": "نص",
+  "onboardingLayerSticker": "ملصق",
+  "onboardingLayerTemplate": "قالب",
+  "onboardingStickerCrown": "تاج",
+  "onboardingPreview3d": "معاينة ثلاثية الأبعاد",
+  "onboardingReady": "جاهز"
 }

@@ -926,5 +926,20 @@
   },
   "homeAttach": "Anhängen",
   "authContinueWithRoblox": "Mit Roblox fortfahren",
-  "authRobloxLoginFailed": "Roblox-Anmeldung fehlgeschlagen. Bitte erneut versuchen."
+  "authRobloxLoginFailed": "Roblox-Anmeldung fehlgeschlagen. Bitte erneut versuchen.",
+  "authOrWithEmail": "oder mit E-Mail",
+  "authCreateAccount": "Konto erstellen",
+  "authNoAccountPrompt": "Noch kein Konto?",
+  "authHaveAccountPrompt": "Schon ein Konto?",
+  "authShowPassword": "Passwort anzeigen",
+  "authHidePassword": "Passwort verbergen",
+  "authPasswordMinHint": "Mindestens 6 Zeichen",
+  "onboardingUvTemplate": "UV-VORLAGE",
+  "onboardingLayers": "EBENEN",
+  "onboardingLayerText": "Text",
+  "onboardingLayerSticker": "Sticker",
+  "onboardingLayerTemplate": "Vorlage",
+  "onboardingStickerCrown": "Krone",
+  "onboardingPreview3d": "3D-VORSCHAU",
+  "onboardingReady": "Fertig"
 }

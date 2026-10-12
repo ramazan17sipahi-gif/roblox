@@ -1,12 +1,12 @@
-import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/widgets/flow_ui.dart';
 import '../../utils/auth_messages.dart';
+import '../widgets/auth_flow_layout.dart';
 import '../widgets/auth_legal_agreement.dart';
-import '../widgets/auth_roblox_button.dart';
 
 class SignupPage extends ConsumerStatefulWidget {
   const SignupPage({super.key});
@@ -75,112 +75,44 @@ class _SignupPageState extends ConsumerState<SignupPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
 
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => context.pop(),
+    return AuthFlowLayout(
+      title: l10n.authCreateAccount,
+      subtitle: l10n.authStartCreating,
+      footerPrompt: l10n.authHaveAccountPrompt,
+      footerAction: l10n.authLogin,
+      onFooterAction: () => context.go('/auth/login'),
+      formChildren: [
+        FlowTextField(
+          label: l10n.authEmailAddress,
+          hint: l10n.authEmailHint,
+          controller: _emailController,
+          keyboardType: TextInputType.emailAddress,
+          autofillHints: const [AutofillHints.email],
+          textInputAction: TextInputAction.next,
         ),
-      ),
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return SingleChildScrollView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                child: IntrinsicHeight(
-                  child: Padding(
-                    padding: const EdgeInsets.all(32.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const SizedBox(height: 16),
-                        Text(
-                          l10n.authSignup,
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          l10n.authStartCreating,
-                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                color: AppColors.textMediumEmphasis,
-                              ),
-                        ),
-                        const SizedBox(height: 32),
-                        const AuthRobloxButton(),
-                        const SizedBox(height: 20),
-                        Row(
-                          children: [
-                            Expanded(child: Divider(color: AppColors.border)),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 12),
-                              child: Text(
-                                l10n.authOrUseEmail,
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w700,
-                                  letterSpacing: 0.8,
-                                  color: AppColors.outlineVariant,
-                                ),
-                              ),
-                            ),
-                            Expanded(child: Divider(color: AppColors.border)),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        DSTextField(
-                          controller: _emailController,
-                          label: l10n.authEmailAddress,
-                          hint: l10n.authEmailHint,
-                          keyboardType: TextInputType.emailAddress,
-                        ),
-                        const SizedBox(height: 24),
-                        DSTextField(
-                          controller: _passwordController,
-                          label: l10n.authPassword,
-                          hint: l10n.authPasswordHint,
-                          obscureText: true,
-                        ),
-                        const SizedBox(height: 48),
-                        DSButton(
-                          label: l10n.authSignUpWithEmail,
-                          onPressed: _isSubmitting ? null : _submit,
-                        ),
-                        const Spacer(),
-                        const AuthLegalAgreement(),
-                        const SizedBox(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              l10n.authHaveAccount,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                            TextButton(
-                              onPressed: () => context.go('/auth/login'),
-                              child: Text(
-                                l10n.authLogin,
-                                style: const TextStyle(
-                                  color: AppColors.primary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            );
+        const SizedBox(height: 16),
+        FlowTextField(
+          label: l10n.authPassword,
+          hint: l10n.authPasswordMinHint,
+          controller: _passwordController,
+          isPassword: true,
+          autofillHints: const [AutofillHints.newPassword],
+          textInputAction: TextInputAction.done,
+          onSubmitted: (_) {
+            if (!_isSubmitting) _submit();
           },
+          showPasswordLabel: l10n.authShowPassword,
+          hidePasswordLabel: l10n.authHidePassword,
         ),
-      ),
+        const SizedBox(height: 24),
+        FlowPrimaryButton(
+          label: l10n.authSignUpWithEmail,
+          isLoading: _isSubmitting,
+          onPressed: _submit,
+        ),
+        const SizedBox(height: 14),
+        const AuthLegalAgreement(),
+      ],
     );
   }
 }

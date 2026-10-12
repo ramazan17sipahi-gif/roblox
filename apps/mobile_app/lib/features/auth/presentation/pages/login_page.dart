@@ -4,8 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/widgets/flow_ui.dart';
 import '../../utils/auth_messages.dart';
-import '../widgets/auth_roblox_button.dart';
+import '../widgets/auth_flow_layout.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -57,122 +58,62 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
 
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => context.pop(),
+    return AuthFlowLayout(
+      title: l10n.authWelcomeBack,
+      subtitle: l10n.authSignInContinue,
+      footerPrompt: l10n.authNoAccountPrompt,
+      footerAction: l10n.authSignup,
+      onFooterAction: () => context.go('/auth/signup'),
+      formChildren: [
+        FlowTextField(
+          label: l10n.authEmailAddress,
+          hint: l10n.authEmailHint,
+          controller: _emailController,
+          keyboardType: TextInputType.emailAddress,
+          autofillHints: const [AutofillHints.email, AutofillHints.username],
+          textInputAction: TextInputAction.next,
         ),
-      ),
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return SingleChildScrollView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                child: IntrinsicHeight(
-                  child: Padding(
-                    padding: const EdgeInsets.all(32.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const SizedBox(height: 16),
-                        Text(
-                          l10n.authWelcomeBack,
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          l10n.authSignInContinue,
-                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                color: AppColors.textMediumEmphasis,
-                              ),
-                        ),
-                        const SizedBox(height: 32),
-                        const AuthRobloxButton(),
-                        const SizedBox(height: 20),
-                        Row(
-                          children: [
-                            Expanded(child: Divider(color: AppColors.border)),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 12),
-                              child: Text(
-                                l10n.authOrUseEmail,
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w700,
-                                  letterSpacing: 0.8,
-                                  color: AppColors.outlineVariant,
-                                ),
-                              ),
-                            ),
-                            Expanded(child: Divider(color: AppColors.border)),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        DSTextField(
-                          controller: _emailController,
-                          label: l10n.authEmailAddress,
-                          hint: l10n.authEmailHint,
-                          keyboardType: TextInputType.emailAddress,
-                        ),
-                        const SizedBox(height: 24),
-                        DSTextField(
-                          controller: _passwordController,
-                          label: l10n.authPassword,
-                          hint: l10n.authPasswordHint,
-                          obscureText: true,
-                        ),
-                        const SizedBox(height: 12),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                            onPressed: () => context.push('/auth/forgot-password'),
-                            child: Text(
-                              l10n.authForgotPassword,
-                              style: const TextStyle(
-                                color: AppColors.primary,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-                        DSButton(
-                          label: l10n.authSignIn,
-                          onPressed: _isSubmitting ? null : _submit,
-                        ),
-                        const Spacer(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(l10n.authNoAccount,
-                                style: Theme.of(context).textTheme.bodyMedium),
-                            TextButton(
-                              onPressed: () => context.go('/auth/signup'),
-                              child: Text(
-                                l10n.authSignup,
-                                style: const TextStyle(
-                                  color: AppColors.primary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            );
+        const SizedBox(height: 16),
+        FlowTextField(
+          label: l10n.authPassword,
+          hint: l10n.authPasswordHint,
+          controller: _passwordController,
+          isPassword: true,
+          autofillHints: const [AutofillHints.password],
+          textInputAction: TextInputAction.done,
+          onSubmitted: (_) {
+            if (!_isSubmitting) _submit();
           },
+          showPasswordLabel: l10n.authShowPassword,
+          hidePasswordLabel: l10n.authHidePassword,
+          trailingLabel: TextButton(
+            onPressed: () => context.push('/auth/forgot-password'),
+            style: TextButton.styleFrom(
+              foregroundColor: AppColors.primary,
+              minimumSize: const Size(44, 32),
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
+            child: Text(
+              l10n.authForgotPassword,
+              style: FlowUi.body(
+                size: 13,
+                weight: FontWeight.w700,
+                color: AppColors.isDark
+                    ? AppColors.primaryContainer
+                    : AppColors.primary,
+                height: 1.2,
+              ),
+            ),
+          ),
         ),
-      ),
+        const SizedBox(height: 24),
+        FlowPrimaryButton(
+          label: l10n.authSignIn,
+          isLoading: _isSubmitting,
+          onPressed: _submit,
+        ),
+      ],
     );
   }
 }

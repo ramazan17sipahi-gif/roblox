@@ -926,5 +926,20 @@
   },
   "homeAttach": "Прикрепить",
   "authContinueWithRoblox": "Продолжить с Roblox",
-  "authRobloxLoginFailed": "Не удалось войти через Roblox. Попробуйте снова."
+  "authRobloxLoginFailed": "Не удалось войти через Roblox. Попробуйте снова.",
+  "authOrWithEmail": "или по эл. почте",
+  "authCreateAccount": "Создать аккаунт",
+  "authNoAccountPrompt": "Нет аккаунта?",
+  "authHaveAccountPrompt": "Уже есть аккаунт?",
+  "authShowPassword": "Показать пароль",
+  "authHidePassword": "Скрыть пароль",
+  "authPasswordMinHint": "Минимум 6 символов",
+  "onboardingUvTemplate": "UV-ШАБЛОН",
+  "onboardingLayers": "СЛОИ",
+  "onboardingLayerText": "Текст",
+  "onboardingLayerSticker": "Стикер",
+  "onboardingLayerTemplate": "Шаблон",
+  "onboardingStickerCrown": "Корона",
+  "onboardingPreview3d": "3D-ПРОСМОТР",
+  "onboardingReady": "Готово"
 }

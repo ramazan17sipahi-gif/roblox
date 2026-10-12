@@ -968,5 +968,20 @@
       "watched": { "type": "int" },
       "required": { "type": "int" }
     }
-  }
+  },
+  "authOrWithEmail": "veya e-posta ile",
+  "authCreateAccount": "Hesap oluştur",
+  "authNoAccountPrompt": "Hesabın yok mu?",
+  "authHaveAccountPrompt": "Zaten hesabın var mı?",
+  "authShowPassword": "Şifreyi göster",
+  "authHidePassword": "Şifreyi gizle",
+  "authPasswordMinHint": "En az 6 karakter",
+  "onboardingUvTemplate": "UV ŞABLONU",
+  "onboardingLayers": "KATMANLAR",
+  "onboardingLayerText": "Metin",
+  "onboardingLayerSticker": "Sticker",
+  "onboardingLayerTemplate": "Şablon",
+  "onboardingStickerCrown": "Taç",
+  "onboardingPreview3d": "3D ÖNİZLEME",
+  "onboardingReady": "Hazır"
 }

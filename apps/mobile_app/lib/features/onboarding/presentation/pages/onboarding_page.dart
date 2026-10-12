@@ -1,13 +1,10 @@
-import 'dart:math' as math;
-import 'dart:ui';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:networking/networking.dart';
 import '../../../../app/app_providers.dart';
-import '../../../../config/app_config.dart';
-import '../../../../shared/widgets/brand_logo.dart';
+import '../../../../shared/widgets/flow_ui.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 
 class OnboardingPage extends ConsumerStatefulWidget {
@@ -17,104 +14,22 @@ class OnboardingPage extends ConsumerStatefulWidget {
   ConsumerState<OnboardingPage> createState() => _OnboardingPageState();
 }
 
-class _OnboardingPageState extends ConsumerState<OnboardingPage>
-    with TickerProviderStateMixin {
+class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
-  late AnimationController _entranceController;
-  late AnimationController _floatController;
-  late AnimationController _pulseController;
-
-  late Animation<double> _heroScale;
-  late Animation<double> _heroOpacity;
-  late Animation<Offset> _contentSlide;
-  late Animation<double> _contentOpacity;
-
   static const _totalPages = 3;
 
-  // ── Page Configurations ──
-  static const _accentColors = [
-    Color(0xFFFF793A), // Vibrant orange
-    Color(0xFF9F3B00), // Deep burnt orange
-    Color(0xFF06693F), // Emerald green
-  ];
-
-  static const _bgGradients = [
-    [Color(0xFFFFF5EE), Color(0xFFFFF0E6)], // Warm cream
-    [Color(0xFFFAF0EA), Color(0xFFF5E6DA)], // Soft peach
-    [Color(0xFFEEF8F3), Color(0xFFE6F4EC)], // Mint cream
-  ];
-
-  static const _heroIcons = [
-    Icons.auto_awesome_rounded,
-    Icons.brush_rounded,
-    Icons.rocket_launch_rounded,
-  ];
-
-  static const _floatingIcons = [
-    [Icons.palette, Icons.star_rounded, Icons.diamond_rounded, Icons.auto_fix_high],
-    [Icons.checkroom, Icons.straighten, Icons.crop_portrait, Icons.format_paint],
-    [Icons.cloud_upload_rounded, Icons.verified_rounded, Icons.trending_up, Icons.monetization_on],
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-
-    _entranceController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 800),
-    );
-
-    _floatController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 3000),
-    )..repeat(reverse: true);
-
-    _pulseController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 2000),
-    )..repeat(reverse: true);
-
-    _setupAnimations();
-    _entranceController.forward();
-  }
-
-  void _setupAnimations() {
-    _heroScale = Tween<double>(begin: 0.7, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _entranceController,
-        curve: const Interval(0.0, 0.6, curve: Curves.easeOutBack),
-      ),
-    );
-    _heroOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _entranceController,
-        curve: const Interval(0.0, 0.4, curve: Curves.easeOut),
-      ),
-    );
-    _contentSlide =
-        Tween<Offset>(begin: const Offset(0, 0.15), end: Offset.zero).animate(
-      CurvedAnimation(
-        parent: _entranceController,
-        curve: const Interval(0.3, 0.8, curve: Curves.easeOutCubic),
-      ),
-    );
-    _contentOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _entranceController,
-        curve: const Interval(0.3, 0.7, curve: Curves.easeOut),
-      ),
-    );
-  }
+  // Collection sets shown on the slides (names are collection titles).
+  static const _template091 = 'assets/onboarding/onboarding_template_091.png';
+  static const _template064 = 'assets/onboarding/onboarding_template_064.png';
+  static const _dressed091 = 'assets/onboarding/onboarding_dressed_091.jpg';
+  static const _name091 = 'Turuncu Sağanak';
+  static const _name064 = 'Bauhaus Güneşi';
 
   @override
   void dispose() {
     _pageController.dispose();
-    _entranceController.dispose();
-    _floatController.dispose();
-    _pulseController.dispose();
     super.dispose();
   }
 
@@ -128,7 +43,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage>
   void _nextPage() {
     if (_currentPage < _totalPages - 1) {
       _pageController.nextPage(
-        duration: const Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 420),
         curve: Curves.easeInOutCubic,
       );
     } else {
@@ -138,74 +53,47 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage>
 
   void _skip() => _finishOnboarding();
 
-  List<String> _getTitles(AppLocalizations l) => [
-        l.onboardingTitle1,
-        l.onboardingTitle2,
-        l.onboardingTitle3,
-      ];
-
-  List<String> _getDescs(AppLocalizations l) => [
-        l.onboardingDesc1,
-        l.onboardingDesc2,
-        l.onboardingDesc3,
-      ];
-
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
-    final titles = _getTitles(l);
-    final descs = _getDescs(l);
+    final titles = [l.onboardingTitle1, l.onboardingTitle2, l.onboardingTitle3];
+    final descs = [l.onboardingDesc1, l.onboardingDesc2, l.onboardingDesc3];
+    final isLast = _currentPage == _totalPages - 1;
 
     return Scaffold(
-      body: AnimatedContainer(
-        duration: const Duration(milliseconds: 500),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: _bgGradients[_currentPage],
-          ),
-        ),
-        child: Stack(
+      backgroundColor: AppColors.background,
+      body: SafeArea(
+        child: Column(
           children: [
-            // ── Animated background orbs ──
-            ..._buildAnimatedOrbs(),
-
-            // ── Page content (under chrome so Skip stays tappable) ──
-            PageView.builder(
-              controller: _pageController,
-              itemCount: _totalPages,
-              onPageChanged: (index) {
-                setState(() => _currentPage = index);
-                _entranceController.reset();
-                _entranceController.forward();
-              },
-              itemBuilder: (context, index) => _buildPage(
-                context,
-                index: index,
-                title: titles[index],
-                description: descs[index],
-                accentColor: _accentColors[index],
-                isLastPage: index == _totalPages - 1,
-                l: l,
-              ),
-            ),
-
-            // ── Logo / branding ──
-            Positioned(
-              top: MediaQuery.of(context).padding.top + 16,
-              left: 24,
-              child: IgnorePointer(
+            // ── Header: step counter + skip ──
+            SizedBox(
+              height: 56,
+              child: Padding(
+                padding: const EdgeInsetsDirectional.only(start: 24, end: 12),
                 child: Row(
                   children: [
-                    const BrandLogo(size: 32, borderRadius: 8),
-                    const SizedBox(width: 8),
                     Text(
-                      AppConfig.appNameShort,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 16,
-                        letterSpacing: -0.5,
+                      '0${_currentPage + 1} / 0$_totalPages',
+                      style: FlowUi.mono(size: 12, tracking: 0.1),
+                    ),
+                    const Spacer(),
+                    AnimatedOpacity(
+                      opacity: isLast ? 0 : 1,
+                      duration: const Duration(milliseconds: 200),
+                      child: IgnorePointer(
+                        ignoring: isLast,
+                        child: TextButton(
+                          onPressed: _skip,
+                          style: TextButton.styleFrom(
+                            foregroundColor: AppColors.textMediumEmphasis,
+                            minimumSize: const Size(48, 44),
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                          ),
+                          child: Text(
+                            l.onboardingSkip,
+                            style: FlowUi.mono(size: 12, tracking: 0.1),
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -213,502 +101,709 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage>
               ),
             ),
 
-            // ── Skip button (above PageView so taps work) ──
-            Positioned(
-              top: MediaQuery.of(context).padding.top + 12,
-              right: 20,
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  onTap: _skip,
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.6),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                          color: Colors.white.withValues(alpha: 0.8)),
-                    ),
-                    child: Text(
-                      l.onboardingSkip,
-                      style: TextStyle(
-                        color: AppColors.onBackground.withValues(alpha: 0.5),
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 1.0,
+            // ── Slides ──
+            Expanded(
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: _totalPages,
+                onPageChanged: (index) => setState(() => _currentPage = index),
+                itemBuilder: (context, index) => _Slide(
+                  hero: switch (index) {
+                    0 => _PatternSheetHero(
+                        imageAsset: _template091,
+                        setName: _name091,
+                        setLabel: '${l.onboardingUvTemplate} · 091',
                       ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPage(
-    BuildContext context, {
-    required int index,
-    required String title,
-    required String description,
-    required Color accentColor,
-    required bool isLastPage,
-    required AppLocalizations l,
-  }) {
-    return AnimatedBuilder(
-      animation: _entranceController,
-      builder: (context, _) {
-        return Column(
-          children: [
-            // ─── HERO AREA (55%) ───
-            Expanded(
-              flex: 50,
-              child: Padding(
-                padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).padding.top + 60,
-                ),
-                child: Opacity(
-                  opacity: _heroOpacity.value,
-                  child: Transform.scale(
-                    scale: _heroScale.value,
-                    child: _buildHeroArea(index, accentColor),
-                  ),
+                    1 => _LayersHero(
+                        imageAsset: _template064,
+                        setName: _name064,
+                        layersLabel: l.onboardingLayers,
+                        textLabel: l.onboardingLayerText,
+                        stickerLabel: l.onboardingLayerSticker,
+                        stickerName: l.onboardingStickerCrown,
+                        templateLabel: l.onboardingLayerTemplate,
+                      ),
+                    _ => _ExportHero(
+                        imageAsset: _dressed091,
+                        setName: _name091,
+                        previewLabel: l.onboardingPreview3d,
+                        readyLabel: l.onboardingReady,
+                      ),
+                  },
+                  title: titles[index],
+                  description: descs[index],
                 ),
               ),
             ),
 
-            // ─── CONTENT CARD (50%) ───
-            Expanded(
-              flex: 50,
-              child: SlideTransition(
-                position: _contentSlide,
-                child: FadeTransition(
-                  opacity: _contentOpacity,
-                  child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.fromLTRB(28, 32, 28, 24),
-                    decoration: BoxDecoration(
-                      color: AppColors.surfaceContainerLowest,
-                      borderRadius: const BorderRadius.vertical(
-                          top: Radius.circular(36)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: accentColor.withValues(alpha: 0.08),
-                          blurRadius: 40,
-                          offset: const Offset(0, -8),
-                        ),
-                      ],
-                    ),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          // Decorative line
-                          Container(
-                            width: 40,
-                            height: 4,
-                            decoration: BoxDecoration(
-                              color: accentColor.withValues(alpha: 0.3),
-                              borderRadius: BorderRadius.circular(2),
-                            ),
-                          ),
-                          SizedBox(height: 24),
-
-                          // Step indicator
-                          _buildStepIndicator(index, accentColor),
-                          const SizedBox(height: 20),
-
-                          // Title
-                          Text(
-                            title,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 26,
-                              height: 1.15,
-                              letterSpacing: -0.5,
-                              color: AppColors.onBackground,
-                            ),
-                          ),
-                          SizedBox(height: 12),
-
-                          // Description
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
+            // ── Footer: progress + CTA ──
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 8, 24, 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _StepBars(current: _currentPage, total: _totalPages),
+                  const SizedBox(height: 20),
+                  FlowPrimaryButton(
+                    label:
+                        isLast ? l.onboardingGetStarted : l.onboardingContinue,
+                    onPressed: _nextPage,
+                    showArrow: true,
+                  ),
+                  AnimatedSize(
+                    duration: const Duration(milliseconds: 200),
+                    child: isLast
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 12),
                             child: Text(
-                              description,
+                              l.robloxDisclaimer,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: AppColors.onBackground
-                                    .withValues(alpha: 0.5),
-                                height: 1.6,
-                                fontSize: 14,
-                              ),
+                              style: FlowUi.body(size: 11, height: 1.4),
                             ),
-                          ),
-                          if (isLastPage) ...[
-                            SizedBox(height: 12),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 12),
-                              child: Text(
-                                l.robloxDisclaimer,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  color: AppColors.onBackground.withValues(alpha: 0.35),
-                                  height: 1.4,
-                                ),
-                              ),
-                            ),
-                          ],
-                          const SizedBox(height: 28),
-
-                          // Progress dots
-                          _buildProgressDots(accentColor),
-                          const SizedBox(height: 24),
-
-                          // CTA Button
-                          _buildCTAButton(
-                            label: isLastPage
-                                ? l.onboardingGetStarted
-                                : l.onboardingContinue,
-                            accentColor: accentColor,
-                          ),
-                          SizedBox(
-                              height:
-                                  MediaQuery.of(context).padding.bottom + 8),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  // ─── HERO AREA ───
-  Widget _buildHeroArea(int pageIndex, Color accentColor) {
-    return Stack(
-      alignment: Alignment.center,
-      clipBehavior: Clip.none,
-      children: [
-        // Outer pulsing ring
-        AnimatedBuilder(
-          animation: _pulseController,
-          builder: (_, __) {
-            final pulse =
-                1.0 + (_pulseController.value * 0.08);
-            return Transform.scale(
-              scale: pulse,
-              child: Container(
-                width: 220,
-                height: 220,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: accentColor.withValues(alpha: 0.08),
-                    width: 1.5,
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
-
-        // Middle ring
-        Container(
-          width: 180,
-          height: 180,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: accentColor.withValues(alpha: 0.12),
-              width: 1,
-            ),
-          ),
-        ),
-
-        // Inner glowing circle with icon
-        Container(
-          width: 120,
-          height: 120,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                accentColor,
-                accentColor.withValues(alpha: 0.7),
-              ],
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: accentColor.withValues(alpha: 0.4),
-                blurRadius: 40,
-                spreadRadius: 5,
-              ),
-              BoxShadow(
-                color: accentColor.withValues(alpha: 0.15),
-                blurRadius: 80,
-                spreadRadius: 20,
-              ),
-            ],
-          ),
-          child: Icon(
-            _heroIcons[pageIndex],
-            size: 48,
-            color: Colors.white,
-          ),
-        ),
-
-        // Floating orbit icons
-        ..._buildFloatingIcons(pageIndex, accentColor),
-      ],
-    );
-  }
-
-  List<Widget> _buildFloatingIcons(int pageIndex, Color accentColor) {
-    final icons = _floatingIcons[pageIndex];
-    final angles = [0.0, math.pi / 2, math.pi, 3 * math.pi / 2];
-    const radius = 140.0;
-
-    return List.generate(icons.length, (i) {
-      return AnimatedBuilder(
-        animation: _floatController,
-        builder: (_, __) {
-          final baseAngle = angles[i];
-          final wobble = math.sin(_floatController.value * math.pi * 2 + i) * 0.15;
-          final angle = baseAngle + wobble;
-          final floatOffset = math.sin(_floatController.value * math.pi + i * 0.8) * 6;
-
-          final x = math.cos(angle) * radius;
-          final y = math.sin(angle) * radius + floatOffset;
-
-          return Transform.translate(
-            offset: Offset(x, y),
-            child: Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                color: AppColors.surfaceContainerLowest,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: accentColor.withValues(alpha: 0.15),
-                    blurRadius: 12,
-                    offset: const Offset(0, 4),
+                          )
+                        : const SizedBox(width: double.infinity),
                   ),
                 ],
               ),
-              child: Icon(
-                icons[i],
-                size: 20,
-                color: accentColor,
-              ),
-            ),
-          );
-        },
-      );
-    });
-  }
-
-  // ─── Step indicator ───
-  Widget _buildStepIndicator(int index, Color accentColor) {
-    final labels = ['01', '02', '03'];
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-          decoration: BoxDecoration(
-            color: accentColor.withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Text(
-            labels[index],
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w900,
-              color: accentColor,
-              letterSpacing: 1.0,
-            ),
-          ),
-        ),
-        const SizedBox(width: 8),
-        ...List.generate(3, (i) {
-          return Container(
-            width: i == index ? 20 : 6,
-            height: 3,
-            margin: const EdgeInsets.only(right: 3),
-            decoration: BoxDecoration(
-              color: i <= index
-                  ? accentColor
-                  : accentColor.withValues(alpha: 0.15),
-              borderRadius: BorderRadius.circular(2),
-            ),
-          );
-        }),
-      ],
-    );
-  }
-
-  // ─── CTA Button ───
-  Widget _buildCTAButton(
-      {required String label, required Color accentColor}) {
-    return GestureDetector(
-      onTap: _nextPage,
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 18),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [accentColor, accentColor.withValues(alpha: 0.8)],
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-          ),
-          borderRadius: BorderRadius.circular(50),
-          boxShadow: [
-            BoxShadow(
-              color: accentColor.withValues(alpha: 0.35),
-              blurRadius: 24,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              label,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 0.3,
-              ),
-            ),
-            const SizedBox(width: 8),
-            Container(
-              width: 28,
-              height: 28,
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.2),
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(Icons.arrow_forward_rounded,
-                  color: Colors.white, size: 16),
             ),
           ],
         ),
       ),
     );
   }
+}
 
-  // ─── Progress Dots ───
-  Widget _buildProgressDots(Color accentColor) {
+class _Slide extends StatelessWidget {
+  final Widget hero;
+  final String title;
+  final String description;
+
+  const _Slide({
+    required this.hero,
+    required this.title,
+    required this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 4),
+          Expanded(child: hero),
+          const SizedBox(height: 28),
+          Text(title, style: FlowUi.display(size: 30)),
+          const SizedBox(height: 12),
+          Text(description, style: FlowUi.body(size: 15, height: 1.55)),
+          const SizedBox(height: 8),
+        ],
+      ),
+    );
+  }
+}
+
+class _StepBars extends StatelessWidget {
+  final int current;
+  final int total;
+
+  const _StepBars({required this.current, required this.total});
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(_totalPages, (i) {
-        final isActive = i == _currentPage;
-        return Padding(
-          padding: EdgeInsets.only(left: i == 0 ? 0 : 6),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 350),
-            curve: Curves.easeOutCubic,
-            width: isActive ? 24 : 8,
-            height: 8,
-            decoration: BoxDecoration(
-              color: isActive
-                  ? accentColor
-                  : accentColor.withValues(alpha: 0.15),
-              borderRadius: BorderRadius.circular(4),
-            ),
+      children: List.generate(total, (i) {
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOutCubic,
+          margin: const EdgeInsetsDirectional.only(end: 6),
+          width: i == current ? 28 : 12,
+          height: 4,
+          decoration: BoxDecoration(
+            color: i <= current ? AppColors.onBackground : AppColors.borderSubtle,
+            borderRadius: BorderRadius.circular(2),
           ),
         );
       }),
     );
   }
+}
 
-  // ─── Animated Background Orbs ───
-  List<Widget> _buildAnimatedOrbs() {
-    final accent = _accentColors[_currentPage];
-    return [
-      // Top-left orb
-      AnimatedBuilder(
-        animation: _floatController,
-        builder: (_, __) {
-          final offset = _floatController.value * 20;
-          return Positioned(
-            top: -100 + offset,
-            left: -80,
-            child: ImageFiltered(
-              imageFilter: ImageFilter.blur(sigmaX: 80, sigmaY: 80),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 500),
-                width: 300,
-                height: 300,
-                decoration: BoxDecoration(
-                  color: accent.withValues(alpha: 0.18),
-                  shape: BoxShape.circle,
+/// White sheet with a fine grid, used behind templates.
+class _GridCard extends StatelessWidget {
+  final Widget child;
+
+  const _GridCard({required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.surfaceContainerLowest,
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: AppColors.borderSubtle),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: CustomPaint(
+              painter: FlowGridPainter(color: AppColors.surfaceContainerLow),
+            ),
+          ),
+          Positioned.fill(child: child),
+        ],
+      ),
+    );
+  }
+}
+
+class _Chip extends StatelessWidget {
+  final String label;
+
+  const _Chip({required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 30,
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+        color: AppColors.onBackground,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 8,
+            height: 8,
+            decoration: const BoxDecoration(
+              color: FlowUi.orange,
+              shape: BoxShape.circle,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            label,
+            style: FlowUi.body(
+              size: 12,
+              weight: FontWeight.w700,
+              color: AppColors.background,
+              height: 1.2,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ─── Slide 1: template on pattern paper with measurements ───
+class _PatternSheetHero extends StatelessWidget {
+  final String imageAsset;
+  final String setName;
+  final String setLabel;
+
+  const _PatternSheetHero({
+    required this.imageAsset,
+    required this.setName,
+    required this.setLabel,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return _GridCard(
+      child: LayoutBuilder(
+        builder: (context, c) {
+          const padStart = 52.0, padTop = 50.0, padEnd = 24.0, padBottom = 62.0;
+          final areaW = (c.maxWidth - padStart - padEnd).clamp(0.0, 9999.0).toDouble();
+          final areaH = (c.maxHeight - padTop - padBottom).clamp(0.0, 9999.0).toDouble();
+          var iw = areaW;
+          var ih = iw * 559 / 585;
+          if (ih > areaH) {
+            ih = areaH;
+            iw = ih * 585 / 559;
+          }
+          final left = padStart + (areaW - iw) / 2;
+          final top = padTop + (areaH - ih) / 2;
+          final ink = AppColors.onBackground;
+          final labelBg = AppColors.surfaceContainerLowest;
+
+          return Stack(
+            children: [
+              // Horizontal dimension (width)
+              Positioned(
+                left: left,
+                top: top - 18,
+                width: iw,
+                height: 10,
+                child: _Dimension(horizontal: true, color: ink),
+              ),
+              Positioned(
+                left: left,
+                top: top - 34,
+                width: iw,
+                child: Center(
+                  heightFactor: 1,
+                  child: Container(
+                    color: labelBg,
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    child: Text('585 px',
+                        style: FlowUi.mono(size: 10, color: ink)),
+                  ),
                 ),
               ),
-            ),
+              // Vertical dimension (height)
+              Positioned(
+                left: left - 22,
+                top: top,
+                width: 10,
+                height: ih,
+                child: _Dimension(horizontal: false, color: ink),
+              ),
+              Positioned(
+                left: left - 44,
+                top: top,
+                height: ih,
+                width: 18,
+                child: Center(
+                  child: RotatedBox(
+                    quarterTurns: 3,
+                    child: Container(
+                      color: labelBg,
+                      padding: const EdgeInsets.symmetric(horizontal: 6),
+                      child: Text('559 px',
+                          style: FlowUi.mono(size: 10, color: ink)),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: left,
+                top: top,
+                width: iw,
+                height: ih,
+                child: Image.asset(imageAsset, fit: BoxFit.contain),
+              ),
+              PositionedDirectional(
+                start: 16,
+                end: 16,
+                bottom: 14,
+                child: Row(
+                  children: [
+                    Flexible(child: _Chip(label: setName)),
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: Text(
+                        setLabel,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.end,
+                        style: FlowUi.mono(size: 10, tracking: 0.06),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           );
         },
       ),
-      // Bottom-right orb
-      AnimatedBuilder(
-        animation: _floatController,
-        builder: (_, __) {
-          final offset = _floatController.value * 15;
-          return Positioned(
-            bottom: 100 - offset,
-            right: -60,
-            child: ImageFiltered(
-              imageFilter: ImageFilter.blur(sigmaX: 70, sigmaY: 70),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 500),
-                width: 250,
-                height: 250,
-                decoration: BoxDecoration(
-                  color: accent.withValues(alpha: 0.1),
-                  shape: BoxShape.circle,
+    );
+  }
+}
+
+class _Dimension extends StatelessWidget {
+  final bool horizontal;
+  final Color color;
+
+  const _Dimension({required this.horizontal, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      painter: _DimensionPainter(horizontal: horizontal, color: color),
+    );
+  }
+}
+
+class _DimensionPainter extends CustomPainter {
+  final bool horizontal;
+  final Color color;
+
+  _DimensionPainter({required this.horizontal, required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final p = Paint()
+      ..color = color
+      ..strokeWidth = 1.5;
+    if (horizontal) {
+      final y = size.height / 2;
+      canvas.drawLine(Offset(0, y), Offset(size.width, y), p);
+      canvas.drawLine(const Offset(0.75, 0), Offset(0.75, size.height), p);
+      canvas.drawLine(Offset(size.width - 0.75, 0),
+          Offset(size.width - 0.75, size.height), p);
+    } else {
+      final x = size.width / 2;
+      canvas.drawLine(Offset(x, 0), Offset(x, size.height), p);
+      canvas.drawLine(const Offset(0, 0.75), Offset(size.width, 0.75), p);
+      canvas.drawLine(Offset(0, size.height - 0.75),
+          Offset(size.width, size.height - 0.75), p);
+    }
+  }
+
+  @override
+  bool shouldRepaint(_DimensionPainter oldDelegate) =>
+      oldDelegate.color != color || oldDelegate.horizontal != horizontal;
+}
+
+// ─── Slide 2: template + layers panel ───
+class _LayersHero extends StatelessWidget {
+  final String imageAsset;
+  final String setName;
+  final String layersLabel;
+  final String textLabel;
+  final String stickerLabel;
+  final String stickerName;
+  final String templateLabel;
+
+  const _LayersHero({
+    required this.imageAsset,
+    required this.setName,
+    required this.layersLabel,
+    required this.textLabel,
+    required this.stickerLabel,
+    required this.stickerName,
+    required this.templateLabel,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return _GridCard(
+      child: LayoutBuilder(
+        builder: (context, c) {
+          final panelW = (c.maxWidth - 32).clamp(0.0, 252.0).toDouble();
+          final imgW = c.maxWidth * 0.66;
+          return Stack(
+            children: [
+              PositionedDirectional(
+                start: 18,
+                top: 18,
+                width: imgW,
+                height: imgW * 559 / 585,
+                child: Image.asset(imageAsset, fit: BoxFit.contain),
+              ),
+              PositionedDirectional(
+                end: 14,
+                bottom: 14,
+                width: panelW,
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: AppColors.surfaceContainerLowest,
+                    borderRadius: BorderRadius.circular(18),
+                    border: Border.all(color: AppColors.borderSubtle),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.10),
+                        blurRadius: 28,
+                        offset: const Offset(0, 12),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 6, 8, 8),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(layersLabel,
+                                  style: FlowUi.mono(size: 10, tracking: 0.12)),
+                            ),
+                            Text('3', style: FlowUi.mono(size: 10)),
+                          ],
+                        ),
+                      ),
+                      _LayerRow(
+                        selected: true,
+                        thumb: Container(
+                          color: AppColors.onBackground,
+                          alignment: Alignment.center,
+                          child: Text(
+                            'T',
+                            style: FlowUi.display(
+                                size: 15, color: AppColors.background),
+                          ),
+                        ),
+                        title: 'KING',
+                        subtitle: textLabel,
+                        trailing: Container(
+                          width: 8,
+                          height: 8,
+                          margin: const EdgeInsetsDirectional.only(end: 6),
+                          decoration: const BoxDecoration(
+                            color: FlowUi.orange,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                      _LayerRow(
+                        thumb: Container(
+                          color: AppColors.surfaceContainerLow,
+                          alignment: Alignment.center,
+                          child: CustomPaint(
+                            size: const Size(18, 18),
+                            painter:
+                                _CrownPainter(color: AppColors.onBackground),
+                          ),
+                        ),
+                        title: stickerName,
+                        subtitle: stickerLabel,
+                        trailing: Icon(Icons.visibility_outlined,
+                            size: 18, color: AppColors.textMediumEmphasis),
+                      ),
+                      _LayerRow(
+                        thumb: Container(
+                          color: AppColors.surfaceContainerLow,
+                          padding: const EdgeInsets.all(2),
+                          child: Image.asset(imageAsset, fit: BoxFit.contain),
+                        ),
+                        title: setName,
+                        subtitle: templateLabel,
+                        trailing: Icon(Icons.lock_outline_rounded,
+                            size: 18, color: AppColors.textMediumEmphasis),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
+            ],
           );
         },
       ),
-      // Center subtle orb
-      AnimatedBuilder(
-        animation: _pulseController,
-        builder: (_, __) {
-          return Positioned(
-            top: 200,
-            right: 40,
-            child: ImageFiltered(
-              imageFilter: ImageFilter.blur(sigmaX: 60, sigmaY: 60),
-              child: Container(
-                width: 150,
-                height: 150,
-                decoration: BoxDecoration(
-                  color: accent.withValues(
-                      alpha: 0.06 + _pulseController.value * 0.04),
-                  shape: BoxShape.circle,
+    );
+  }
+}
+
+class _LayerRow extends StatelessWidget {
+  final bool selected;
+  final Widget thumb;
+  final String title;
+  final String subtitle;
+  final Widget trailing;
+
+  const _LayerRow({
+    this.selected = false,
+    required this.thumb,
+    required this.title,
+    required this.subtitle,
+    required this.trailing,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 48,
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      decoration: BoxDecoration(
+        color: selected
+            ? FlowUi.orange.withValues(alpha: AppColors.isDark ? 0.18 : 0.10)
+            : Colors.transparent,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(9),
+            child: SizedBox(width: 34, height: 34, child: thumb),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: FlowUi.body(
+                    size: 13,
+                    weight: FontWeight.w700,
+                    color: AppColors.onBackground,
+                    height: 1.25,
+                  ),
                 ),
+                Text(
+                  subtitle,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: FlowUi.body(size: 11, height: 1.25),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 6),
+          trailing,
+        ],
+      ),
+    );
+  }
+}
+
+class _CrownPainter extends CustomPainter {
+  final Color color;
+
+  _CrownPainter({required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final s = size.width / 24;
+    final path = Path()
+      ..moveTo(3 * s, 8 * s)
+      ..lineTo(7.5 * s, 12 * s)
+      ..lineTo(12 * s, 5 * s)
+      ..lineTo(16.5 * s, 12 * s)
+      ..lineTo(21 * s, 8 * s)
+      ..lineTo(19 * s, 19 * s)
+      ..lineTo(5 * s, 19 * s)
+      ..close();
+    canvas.drawPath(
+      path,
+      Paint()
+        ..color = color
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2 * s
+        ..strokeJoin = StrokeJoin.round,
+    );
+  }
+
+  @override
+  bool shouldRepaint(_CrownPainter oldDelegate) => oldDelegate.color != color;
+}
+
+// ─── Slide 3: dressed avatar + exported file ───
+class _ExportHero extends StatelessWidget {
+  final String imageAsset;
+  final String setName;
+  final String previewLabel;
+  final String readyLabel;
+
+  const _ExportHero({
+    required this.imageAsset,
+    required this.setName,
+    required this.previewLabel,
+    required this.readyLabel,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: const Color(0xFF151614),
+        borderRadius: BorderRadius.circular(24),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              imageAsset,
+              fit: BoxFit.cover,
+              alignment: const Alignment(0, -0.4),
+            ),
+          ),
+          PositionedDirectional(
+            start: 16,
+            top: 16,
+            child: Container(
+              height: 28,
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Text(
+                previewLabel,
+                style: FlowUi.mono(size: 10, color: Colors.white, tracking: 0.1),
               ),
             ),
-          );
-        },
+          ),
+          Positioned(
+            left: 12,
+            right: 12,
+            bottom: 12,
+            child: Container(
+              height: 60,
+              padding: const EdgeInsetsDirectional.only(start: 10, end: 12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: FlowUi.orange,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Icon(Icons.download_rounded,
+                        color: FlowUi.ink, size: 22),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          setName,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: FlowUi.body(
+                            size: 14,
+                            weight: FontWeight.w700,
+                            color: FlowUi.ink,
+                            height: 1.25,
+                          ),
+                        ),
+                        Text(
+                          '585 × 559 · PNG',
+                          style: FlowUi.mono(
+                            size: 10,
+                            color: const Color(0xFF5A5C5A),
+                            tracking: 0.04,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Icon(Icons.check_rounded,
+                      size: 18, color: FlowUi.success),
+                  const SizedBox(width: 4),
+                  Text(
+                    readyLabel,
+                    style: FlowUi.body(
+                      size: 12,
+                      weight: FontWeight.w700,
+                      color: FlowUi.success,
+                      height: 1.2,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
-    ];
+    );
   }
 }

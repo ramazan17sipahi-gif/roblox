@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../data/auth_roblox_service.dart';
+import '../../../../shared/widgets/flow_ui.dart';
 
 /// Shared "Continue with Roblox" control for login and signup.
 class AuthRobloxButton extends ConsumerStatefulWidget {
@@ -41,12 +42,52 @@ class _AuthRobloxButtonState extends ConsumerState<AuthRobloxButton> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return DSButton(
-      label: l10n.authContinueWithRoblox,
-      icon: Icons.sports_esports_rounded,
-      variant: DSButtonVariant.outline,
-      isLoading: _loading,
-      onPressed: _loading ? null : _onPressed,
+    // Ink button: dark on light theme, light on dark theme.
+    final bg = AppColors.onBackground;
+    final fg = AppColors.background;
+    return SizedBox(
+      width: double.infinity,
+      height: 56,
+      child: FilledButton(
+        onPressed: _loading ? null : _onPressed,
+        style: FilledButton.styleFrom(
+          backgroundColor: bg,
+          foregroundColor: fg,
+          disabledBackgroundColor: bg.withValues(alpha: 0.6),
+          disabledForegroundColor: fg.withValues(alpha: 0.8),
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+        child: _loading
+            ? SizedBox(
+                width: 22,
+                height: 22,
+                child: CircularProgressIndicator(strokeWidth: 2.4, color: fg),
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.sports_esports_outlined, size: 22, color: fg),
+                  const SizedBox(width: 10),
+                  Flexible(
+                    child: Text(
+                      l10n.authContinueWithRoblox,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: FlowUi.body(
+                        size: 16,
+                        weight: FontWeight.w700,
+                        color: fg,
+                        height: 1.2,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+      ),
     );
   }
 }

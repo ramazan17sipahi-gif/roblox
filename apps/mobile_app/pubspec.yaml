@@ -1,7 +1,7 @@
 name: mobile_app
 description: "RBLX Clothing Maker: Shirts & Pants"
 publish_to: 'none'
-version: 1.0.11+17
+version: 1.0.12+18
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
@@ -22,6 +22,7 @@ dependencies:
   supabase_flutter: ^2.4.0
   
   cached_network_image: ^3.4.1
+  google_fonts: ^6.1.0
   
   # Internal Packages
   design_system:
@@ -77,10 +78,10 @@ flutter_launcher_icons:
     image_path: assets/branding/app_logo.png
 
 flutter_native_splash:
-  color: "#F6F6F3"
+  color: "#FF6A1A"
   image: assets/branding/app_logo.png
   android_12:
-    color: "#F6F6F3"
+    color: "#FF6A1A"
     image: assets/branding/app_logo.png
 
 flutter:
