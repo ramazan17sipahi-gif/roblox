@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:billing/billing.dart';
 import 'package:design_system/design_system.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/utils/legal_links.dart';
 
 class PaywallPage extends ConsumerStatefulWidget {
   const PaywallPage({super.key});
@@ -18,12 +20,46 @@ class _PaywallPageState extends ConsumerState<PaywallPage> {
   bool _isLoading = false;
   List<ProductDetails> _storeProducts = [];
   List<BillingProduct> _billingProducts = [];
+  StreamSubscription<PurchaseDetails>? _purchaseSub;
+  String? _pendingProductId;
 
   @override
   void initState() {
     super.initState();
     _loadProducts();
-    ref.read(purchaseFlowServiceProvider).startListening();
+    // Purchase verification runs app-wide (PurchaseFlowService, started at app
+    // launch). The paywall only listens to update its own loading/close state.
+    _purchaseSub = ref.read(storeRepositoryProvider).purchaseStream.listen(_onPurchaseUpdate);
+  }
+
+  @override
+  void dispose() {
+    _purchaseSub?.cancel();
+    super.dispose();
+  }
+
+  void _onPurchaseUpdate(PurchaseDetails purchase) {
+    if (!mounted || _pendingProductId == null) return;
+    if (purchase.productID != _pendingProductId) return;
+    if (purchase.status == PurchaseStatus.pending) return;
+
+    _pendingProductId = null;
+    setState(() => _isLoading = false);
+
+    if (purchase.status == PurchaseStatus.purchased ||
+        purchase.status == PurchaseStatus.restored) {
+      Navigator.of(context).maybePop();
+    } else if (purchase.status == PurchaseStatus.error) {
+      _showError(purchase.error?.message ?? AppLocalizations.of(context)!.paywallNoPlans);
+    }
+    // PurchaseStatus.canceled: user closed the Apple sheet, just re-enable the button.
+  }
+
+  void _showError(String message) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message), backgroundColor: AppColors.error),
+    );
   }
 
   Future<void> _loadProducts() async {
@@ -50,39 +86,50 @@ class _PaywallPageState extends ConsumerState<PaywallPage> {
     }
   }
 
+  /// Only plans that the store actually returned are shown and purchasable.
+  /// A plan without a store product would render a dead "Subscribe" button.
   List<BillingProduct> get _subscriptionProducts =>
-      _billingProducts.where((p) => p.isSubscription).toList()
+      _billingProducts
+          .where((p) => p.isSubscription && _findStoreProduct(p) != null)
+          .toList()
         ..sort((a, b) => a.displayOrder.compareTo(b.displayOrder));
 
   ProductDetails? _findStoreProduct(BillingProduct bp) {
     final platformId = Platform.isIOS ? bp.iosProductId : bp.androidProductId;
     if (platformId == null) return null;
-    try {
-      return _storeProducts.firstWhere((s) => s.id == platformId);
-    } catch (e) {
-      debugPrint('[paywall_page] store product not found: $e');
-      return null;
+    for (final s in _storeProducts) {
+      if (s.id == platformId) return s;
     }
+    return null;
   }
 
   void _purchase() async {
+    final l10n = AppLocalizations.of(context)!;
     final products = _subscriptionProducts;
-    if (products.isEmpty || _selectedPlan >= products.length) return;
+    if (products.isEmpty || _selectedPlan >= products.length) {
+      debugPrint('[paywall_page] no purchasable store product; store returned ${_storeProducts.map((p) => p.id).toList()}');
+      _showError(l10n.paywallNoPlans);
+      return;
+    }
 
     final bp = products[_selectedPlan];
-    final storeProduct = _findStoreProduct(bp);
-    if (storeProduct == null) return;
+    final storeProduct = _findStoreProduct(bp)!;
 
     setState(() => _isLoading = true);
+    _pendingProductId = storeProduct.id;
 
     try {
-      await ref.read(purchaseFlowServiceProvider).subscribe(storeProduct);
+      final started = await ref.read(purchaseFlowServiceProvider).subscribe(storeProduct);
+      if (!started && mounted) {
+        _pendingProductId = null;
+        setState(() => _isLoading = false);
+        _showError(l10n.paywallNoPlans);
+      }
     } catch (e) {
+      _pendingProductId = null;
       if (mounted) {
         setState(() => _isLoading = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toString()), backgroundColor: AppColors.error),
-        );
+        _showError(e.toString());
       }
     }
   }
@@ -304,6 +351,28 @@ class _PaywallPageState extends ConsumerState<PaywallPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+              ),
+              // Required by App Store Guideline 3.1.2: functional links to
+              // Terms of Use (EULA) and Privacy Policy inside the purchase flow.
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    onPressed: () => openLegalDocument(context, LegalDocument.terms),
+                    child: Text(
+                      l10n.settingsTermsOfService,
+                      style: TextStyle(color: AppColors.outlineVariant, fontSize: 12),
+                    ),
+                  ),
+                  Text('·', style: TextStyle(color: AppColors.outlineVariant)),
+                  TextButton(
+                    onPressed: () => openLegalDocument(context, LegalDocument.privacy),
+                    child: Text(
+                      l10n.settingsPrivacyPolicy,
+                      style: TextStyle(color: AppColors.outlineVariant, fontSize: 12),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

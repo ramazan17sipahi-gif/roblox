@@ -24,8 +24,11 @@ class PurchaseFlowService {
 
   PurchaseFlowService({required this.billing, required this.store, required this.ref});
 
-  /// Start listening to purchase completions
+  /// Start listening to purchase completions.
+  /// Idempotent: the store stream is broadcast, so a second subscription is
+  /// not required and would handle the same purchase twice.
   void startListening() {
+    if (_sub != null) return;
     _sub = store.purchaseStream.listen(_handlePurchase);
   }
 

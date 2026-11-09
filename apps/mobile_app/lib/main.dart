@@ -1,3 +1,4 @@
+import 'package:billing/billing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,8 +15,11 @@ void main() async {
   }
 
   runApp(
-    const ProviderScope(
-      child: CreatorApp(),
+    ProviderScope(
+      overrides: [
+        storeRepositoryProvider.overrideWithValue(AppBootstrap.store),
+      ],
+      child: const CreatorApp(),
     ),
   );
 }

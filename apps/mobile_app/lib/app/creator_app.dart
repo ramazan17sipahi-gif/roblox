@@ -41,6 +41,10 @@ class _CreatorAppState extends ConsumerState<CreatorApp>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    // One listener for the whole app, attached before the delayed
+    // store.initialize() in AppBootstrap. The purchase stream is broadcast,
+    // so events that arrive with no listener are dropped.
+    ref.read(purchaseFlowServiceProvider).startListening();
   }
 
   @override
