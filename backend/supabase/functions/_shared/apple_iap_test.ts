@@ -99,3 +99,30 @@ Deno.test('a production transaction-not-found response falls back to sandbox', a
   assert(result.environment === 'Sandbox', result.environment);
   assert(result.signedTransactionInfo === 'sandbox-jws', 'sandbox payload was not returned');
 });
+
+Deno.test('a production 401 falls back to sandbox for an unreleased app', async () => {
+  const calls: string[] = [];
+  const fetchImpl: typeof fetch = async (input) => {
+    const url = String(input);
+    calls.push(url);
+    if (url.includes('api.storekit.itunes.apple.com')) {
+      return new Response('', { status: 401 });
+    }
+    return new Response(JSON.stringify({ signedTransactionInfo: 'sandbox-jws' }), { status: 200 });
+  };
+  const result = await fetchSignedTransactionInfo('2000000123456789', 'test-jwt', fetchImpl);
+  assert(calls.length === 2, `expected 2 calls, got ${calls.length}`);
+  assert(result.environment === 'Sandbox', result.environment);
+  assert(result.signedTransactionInfo === 'sandbox-jws', 'sandbox payload was not returned');
+});
+
+Deno.test('401 from both Apple hosts stays an auth failure', async () => {
+  const fetchImpl: typeof fetch = async () => new Response('', { status: 401 });
+  let code = '';
+  try {
+    await fetchSignedTransactionInfo('2000000123456789', 'test-jwt', fetchImpl);
+  } catch (error) {
+    code = error instanceof AppleIapError ? error.code : '';
+  }
+  assert(code === 'API', `expected API, got ${code}`);
+});

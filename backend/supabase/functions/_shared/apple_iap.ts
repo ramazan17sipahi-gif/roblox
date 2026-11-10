@@ -112,27 +112,35 @@ async function requestTransaction(
   transactionId: string,
   jwt: string,
   fetchImpl: typeof fetch,
-): Promise<{ ok: true; signed: string } | { ok: false; notFound: boolean; error: string }> {
+): Promise<{ ok: true; signed: string } | { ok: false; notFound: boolean; unauthorized: boolean; error: string }> {
   const response = await fetchImpl(`${base}${encodeURIComponent(transactionId)}`, {
     method: 'GET',
-    headers: { Authorization: `Bearer ${jwt}` },
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+      Accept: 'application/json',
+    },
   });
   const body = await response.text();
   if (response.ok) {
     const parsed = JSON.parse(body) as { signedTransactionInfo?: string };
     if (!parsed.signedTransactionInfo) {
-      return { ok: false, notFound: false, error: 'Apple response missing signedTransactionInfo' };
+      return { ok: false, notFound: false, unauthorized: false, error: 'Apple response missing signedTransactionInfo' };
     }
     return { ok: true, signed: parsed.signedTransactionInfo };
   }
   return {
     ok: false,
     notFound: isTransactionNotFound(response.status, body),
+    unauthorized: response.status === 401,
     error: body || `Apple API status ${response.status}`,
   };
 }
 
-/** Production first. "Transaction id not found" retries the sandbox host. */
+/**
+ * Production first. An unreleased app answers sandbox purchases with
+ * production HTTP 401 instead of "transaction id not found", so 401 also
+ * retries the sandbox host. A second 401 means the JWT itself was rejected.
+ */
 export async function fetchSignedTransactionInfo(
   transactionId: string,
   jwt: string,
@@ -142,12 +150,15 @@ export async function fetchSignedTransactionInfo(
   if (production.ok) {
     return { environment: 'Production', signedTransactionInfo: production.signed };
   }
-  if (!production.notFound) {
+  if (!production.notFound && !production.unauthorized) {
     throw new AppleIapError(production.error, 'API');
   }
   const sandbox = await requestTransaction(SANDBOX_TX_BASE, transactionId, jwt, fetchImpl);
   if (sandbox.ok) {
     return { environment: 'Sandbox', signedTransactionInfo: sandbox.signed };
+  }
+  if (production.unauthorized && sandbox.unauthorized) {
+    throw new AppleIapError(production.error, 'API');
   }
   throw new AppleIapError(sandbox.error || 'transaction not found', sandbox.notFound ? 'NOT_FOUND' : 'API');
 }
