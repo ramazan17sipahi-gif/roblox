@@ -941,5 +941,11 @@
   "onboardingLayerTemplate": "Plantilla",
   "onboardingStickerCrown": "Corona",
   "onboardingPreview3d": "VISTA 3D",
-  "onboardingReady": "Listo"
+  "onboardingReady": "Listo",
+  "paywallVerifyingTitle": "Confirmando su suscripción",
+  "paywallVerifyingDesc": "Solo tardará un momento. Mantenga la aplicación abierta.",
+  "paywallSuccessTitle": "Pro está activo",
+  "paywallSuccessDesc": "Todas las plantillas y funciones Pro ya están desbloqueadas.",
+  "paywallFailedTitle": "No pudimos confirmar su suscripción",
+  "paywallFailedDesc": "Si Apple le realizó el cobro, restaure su compra con el botón de abajo. Restaurar nunca genera un nuevo cobro."
 }

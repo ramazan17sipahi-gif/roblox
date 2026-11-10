@@ -1011,5 +1011,12 @@
   "onboardingLayerTemplate": "Template",
   "onboardingStickerCrown": "Crown",
   "onboardingPreview3d": "3D PREVIEW",
-  "onboardingReady": "Ready"
+  "onboardingReady": "Ready",
+  "paywallVerifyingTitle": "Confirming your subscription",
+  "paywallVerifyingDesc": "This only takes a moment. Please keep the app open.",
+  "paywallSuccessTitle": "Pro is active",
+  "paywallSuccessDesc": "All Pro templates and features are now unlocked.",
+  "paywallFailedTitle": "We couldn't confirm your subscription",
+  "paywallFailedDesc": "If Apple charged you, restore your purchase with the button below. Restoring never charges you again.",
+  "@paywallSuccessDesc": {"description": "Shown on the paywall after the server confirms the Pro subscription."}
 }

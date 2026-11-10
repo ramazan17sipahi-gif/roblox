@@ -941,5 +941,11 @@
   "onboardingLayerTemplate": "Modelo",
   "onboardingStickerCrown": "Coroa",
   "onboardingPreview3d": "PRÉVIA 3D",
-  "onboardingReady": "Pronto"
+  "onboardingReady": "Pronto",
+  "paywallVerifyingTitle": "Confirmando sua assinatura",
+  "paywallVerifyingDesc": "Isso leva só um instante. Mantenha o app aberto.",
+  "paywallSuccessTitle": "O Pro está ativo",
+  "paywallSuccessDesc": "Todos os modelos e recursos Pro foram desbloqueados.",
+  "paywallFailedTitle": "Não foi possível confirmar sua assinatura",
+  "paywallFailedDesc": "Se a Apple fez a cobrança, restaure sua compra pelo botão abaixo. Restaurar nunca gera uma nova cobrança."
 }

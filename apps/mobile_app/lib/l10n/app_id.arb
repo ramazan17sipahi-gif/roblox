@@ -941,5 +941,11 @@
   "onboardingLayerTemplate": "Templat",
   "onboardingStickerCrown": "Mahkota",
   "onboardingPreview3d": "PRATINJAU 3D",
-  "onboardingReady": "Siap"
+  "onboardingReady": "Siap",
+  "paywallVerifyingTitle": "Mengonfirmasi langganan Anda",
+  "paywallVerifyingDesc": "Hanya butuh sebentar. Jangan tutup aplikasi.",
+  "paywallSuccessTitle": "Pro sudah aktif",
+  "paywallSuccessDesc": "Semua templat dan fitur Pro kini terbuka.",
+  "paywallFailedTitle": "Langganan Anda tidak dapat dikonfirmasi",
+  "paywallFailedDesc": "Jika Apple sudah menagih Anda, pulihkan pembelian dengan tombol di bawah. Pemulihan tidak akan menagih Anda lagi."
 }

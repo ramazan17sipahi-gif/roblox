@@ -941,5 +941,11 @@
   "onboardingLayerTemplate": "Vorlage",
   "onboardingStickerCrown": "Krone",
   "onboardingPreview3d": "3D-VORSCHAU",
-  "onboardingReady": "Fertig"
+  "onboardingReady": "Fertig",
+  "paywallVerifyingTitle": "Ihr Abo wird bestätigt",
+  "paywallVerifyingDesc": "Das dauert nur einen Moment. Bitte lassen Sie die App geöffnet.",
+  "paywallSuccessTitle": "Pro ist aktiv",
+  "paywallSuccessDesc": "Alle Pro-Vorlagen und -Funktionen sind jetzt freigeschaltet.",
+  "paywallFailedTitle": "Ihr Abo konnte nicht bestätigt werden",
+  "paywallFailedDesc": "Falls Apple Ihnen etwas berechnet hat, stellen Sie Ihren Kauf mit der Schaltfläche unten wieder her. Dabei wird nichts erneut berechnet."
 }

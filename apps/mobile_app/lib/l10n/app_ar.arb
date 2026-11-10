@@ -941,5 +941,11 @@
   "onboardingLayerTemplate": "قالب",
   "onboardingStickerCrown": "تاج",
   "onboardingPreview3d": "معاينة ثلاثية الأبعاد",
-  "onboardingReady": "جاهز"
+  "onboardingReady": "جاهز",
+  "paywallVerifyingTitle": "جارٍ تأكيد اشتراكك",
+  "paywallVerifyingDesc": "لن يستغرق ذلك سوى لحظة. يُرجى إبقاء التطبيق مفتوحًا.",
+  "paywallSuccessTitle": "اشتراك Pro مفعّل",
+  "paywallSuccessDesc": "أصبحت جميع قوالب وميزات Pro متاحة لك الآن.",
+  "paywallFailedTitle": "تعذّر تأكيد اشتراكك",
+  "paywallFailedDesc": "إذا خصمت Apple المبلغ، فاستعد عملية الشراء من الزر أدناه. الاستعادة لا تخصم أي مبلغ مرة أخرى."
 }

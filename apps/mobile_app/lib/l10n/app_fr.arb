@@ -1188,5 +1188,11 @@
   "onboardingLayerTemplate": "Modèle",
   "onboardingStickerCrown": "Couronne",
   "onboardingPreview3d": "APERÇU 3D",
-  "onboardingReady": "Prêt"
+  "onboardingReady": "Prêt",
+  "paywallVerifyingTitle": "Confirmation de votre abonnement",
+  "paywallVerifyingDesc": "Cela ne prend qu'un instant. Veuillez garder l'application ouverte.",
+  "paywallSuccessTitle": "Pro est actif",
+  "paywallSuccessDesc": "Tous les modèles et fonctionnalités Pro sont désormais débloqués.",
+  "paywallFailedTitle": "Impossible de confirmer votre abonnement",
+  "paywallFailedDesc": "Si Apple vous a débité, restaurez votre achat avec le bouton ci-dessous. La restauration ne vous débite jamais une seconde fois."
 }

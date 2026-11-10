@@ -941,5 +941,11 @@
   "onboardingLayerTemplate": "템플릿",
   "onboardingStickerCrown": "왕관",
   "onboardingPreview3d": "3D 미리보기",
-  "onboardingReady": "준비됨"
+  "onboardingReady": "준비됨",
+  "paywallVerifyingTitle": "구독을 확인하는 중입니다",
+  "paywallVerifyingDesc": "잠시면 됩니다. 앱을 닫지 마세요.",
+  "paywallSuccessTitle": "Pro가 활성화되었습니다",
+  "paywallSuccessDesc": "이제 모든 Pro 템플릿과 기능을 사용할 수 있습니다.",
+  "paywallFailedTitle": "구독을 확인하지 못했습니다",
+  "paywallFailedDesc": "Apple에서 결제가 완료되었다면 아래 버튼으로 구매를 복원하세요. 복원 시 다시 결제되지 않습니다."
 }

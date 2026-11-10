@@ -983,5 +983,11 @@
   "onboardingLayerTemplate": "Şablon",
   "onboardingStickerCrown": "Taç",
   "onboardingPreview3d": "3D ÖNİZLEME",
-  "onboardingReady": "Hazır"
+  "onboardingReady": "Hazır",
+  "paywallVerifyingTitle": "Aboneliğiniz onaylanıyor",
+  "paywallVerifyingDesc": "Bu birkaç saniye sürer. Lütfen uygulamayı kapatmayın.",
+  "paywallSuccessTitle": "Pro aktif",
+  "paywallSuccessDesc": "Tüm Pro şablonlar ve özellikler artık açık.",
+  "paywallFailedTitle": "Aboneliğiniz onaylanamadı",
+  "paywallFailedDesc": "Apple ödemeyi aldıysa aşağıdaki butonla satın alımınızı geri yükleyin. Geri yükleme tekrar ücret almaz."
 }

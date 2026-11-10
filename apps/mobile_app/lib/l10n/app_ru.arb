@@ -941,5 +941,11 @@
   "onboardingLayerTemplate": "Шаблон",
   "onboardingStickerCrown": "Корона",
   "onboardingPreview3d": "3D-ПРОСМОТР",
-  "onboardingReady": "Готово"
+  "onboardingReady": "Готово",
+  "paywallVerifyingTitle": "Подтверждаем вашу подписку",
+  "paywallVerifyingDesc": "Это займёт всего несколько секунд. Не закрывайте приложение.",
+  "paywallSuccessTitle": "Pro активен",
+  "paywallSuccessDesc": "Все шаблоны и функции Pro теперь доступны.",
+  "paywallFailedTitle": "Не удалось подтвердить подписку",
+  "paywallFailedDesc": "Если Apple списала оплату, восстановите покупку кнопкой ниже. При восстановлении повторного списания не будет."
 }

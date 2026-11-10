@@ -1,7 +1,7 @@
 name: mobile_app
 description: "RBLX Clothing Maker: Shirts & Pants"
 publish_to: 'none'
-version: 1.0.12+20
+version: 1.0.12+21
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
