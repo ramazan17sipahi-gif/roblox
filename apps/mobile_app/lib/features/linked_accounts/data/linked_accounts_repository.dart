@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:networking/networking.dart';
@@ -20,9 +21,18 @@ class RobloxOAuthInitResult {
   });
 
   factory RobloxOAuthInitResult.fromJson(Map<String, dynamic> json) {
+    final authorizationUrl = json['authorizationUrl'];
+    final state = json['state'];
+    if (authorizationUrl is! String ||
+        authorizationUrl.isEmpty ||
+        state is! String ||
+        state.isEmpty) {
+      debugPrint('Roblox OAuth init response keys: ${json.keys.toList()}');
+      throw Exception('Roblox bağlantısı başlatılamadı');
+    }
     return RobloxOAuthInitResult(
-      authorizationUrl: json['authorizationUrl'] as String,
-      state: json['state'] as String,
+      authorizationUrl: authorizationUrl,
+      state: state,
       redirectUri: json['redirectUri'] as String? ?? AppConfig.robloxOAuthRedirectUri,
     );
   }
@@ -61,47 +71,52 @@ class LinkedAccountsRepository {
   }
 
   Future<RobloxOAuthInitResult> initRobloxOAuth() async {
-    final response = await _supabase.functions.invoke(
-      'link-platform-account-init',
-      body: {
-        'platformCode': 'roblox',
-        'redirectUri': AppConfig.robloxOAuthRedirectUri,
-      },
-    );
-
-    if (response.status != 200) {
+    try {
+      final response = await _supabase.functions.invoke(
+        'link-platform-account-init',
+        body: {
+          'platformCode': 'roblox',
+          'redirectUri': AppConfig.robloxOAuthRedirectUri,
+        },
+      );
       final data = response.data;
-      final message = data is Map && data['error'] is Map
-          ? (data['error']['message'] as String? ?? 'Failed to start Roblox OAuth')
-          : 'Failed to start Roblox OAuth';
-      throw Exception(message);
+      if (data is! Map) {
+        debugPrint('Roblox OAuth init response keys: <not a map>');
+        throw Exception('Roblox bağlantısı başlatılamadı');
+      }
+      return RobloxOAuthInitResult.fromJson(Map<String, dynamic>.from(data));
+    } on FunctionException catch (error) {
+      throw Exception(_functionErrorMessage(error, 'Failed to start Roblox OAuth'));
     }
-
-    return RobloxOAuthInitResult.fromJson(Map<String, dynamic>.from(response.data as Map));
   }
 
   Future<RobloxOAuthFinalizeResult> finalizeRobloxOAuth({
     required String authorizationCode,
     required String state,
   }) async {
-    final response = await _supabase.functions.invoke(
-      'link-platform-account-finalize',
-      body: {
-        'platformCode': 'roblox',
-        'authorizationCode': authorizationCode,
-        'state': state,
-      },
-    );
-
-    if (response.status != 200) {
-      final data = response.data;
-      final message = data is Map && data['error'] is Map
-          ? (data['error']['message'] as String? ?? 'Failed to complete Roblox OAuth')
-          : 'Failed to complete Roblox OAuth';
-      throw Exception(message);
+    try {
+      final response = await _supabase.functions.invoke(
+        'link-platform-account-finalize',
+        body: {
+          'platformCode': 'roblox',
+          'authorizationCode': authorizationCode,
+          'state': state,
+        },
+      );
+      return RobloxOAuthFinalizeResult.fromJson(Map<String, dynamic>.from(response.data as Map));
+    } on FunctionException catch (error) {
+      throw Exception(_functionErrorMessage(error, 'Failed to complete Roblox OAuth'));
     }
+  }
 
-    return RobloxOAuthFinalizeResult.fromJson(Map<String, dynamic>.from(response.data as Map));
+  String _functionErrorMessage(FunctionException error, String fallback) {
+    final details = error.details;
+    if (details is Map) {
+      final body = details['error'];
+      final message = body is Map ? body['message'] : null;
+      if (message is String && message.isNotEmpty) return message;
+    }
+    return fallback;
   }
 
   Future<void> unlinkRobloxAccount() async {

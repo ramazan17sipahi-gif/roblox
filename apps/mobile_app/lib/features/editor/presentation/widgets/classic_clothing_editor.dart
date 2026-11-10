@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'threejs_preview.dart';
 import '../editor_state.dart';
 import '../editor_tool_constants.dart';
@@ -400,14 +401,25 @@ class _ClassicClothingEditorState extends State<ClassicClothingEditor>
     } catch (_) {}
   }
 
+  /// Home button and system back. Saves the draft, then always returns to
+  /// Home. The save is bounded so a slow or failed network call can never
+  /// leave the user stuck in the editor with a dead button.
   Future<void> _leaveEditor() async {
     if (_leaving) return;
-    _leaving = true;
+    setState(() => _leaving = true);
     _dirtySaveTimer?.cancel();
-    if (_shouldPersistDraft) {
-      await _autoSaveProject();
+    try {
+      if (_shouldPersistDraft) {
+        await _autoSaveProject().timeout(
+          const Duration(seconds: 8),
+          onTimeout: () => debugPrint('[leave] draft save still running, leaving anyway'),
+        );
+      }
+    } catch (e) {
+      debugPrint('[leave] draft save failed: $e');
     }
-    if (mounted) Navigator.of(context).pop();
+    if (!mounted) return;
+    GoRouter.of(context).go('/home');
   }
 
   @override
@@ -697,6 +709,7 @@ class _ClassicClothingEditorState extends State<ClassicClothingEditor>
         children: [
           // Home
           GestureDetector(
+            behavior: HitTestBehavior.opaque,
             onTap: _leaveEditor,
             child: Container(
               padding: const EdgeInsets.all(8),
@@ -704,7 +717,13 @@ class _ClassicClothingEditorState extends State<ClassicClothingEditor>
                 color: AppColors.surfaceContainerLow.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Icon(Icons.home_outlined, size: 20, color: AppColors.onSurface),
+              child: _leaving
+                  ? SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.onSurface),
+                    )
+                  : Icon(Icons.home_outlined, size: 20, color: AppColors.onSurface),
             ),
           ),
           const SizedBox(width: 6),
