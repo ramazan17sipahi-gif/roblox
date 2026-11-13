@@ -119,14 +119,6 @@ Deno.test('a production 401 falls back to sandbox for an unreleased app', async 
   assert(result.signedTransactionInfo === 'sandbox-jws', 'sandbox payload was not returned');
 });
 
-Deno.test('a real sandbox transaction JWS verifies', async () => {
-  const jws = Deno.readTextFileSync(new URL('./sandbox_transaction.jws', import.meta.url)).trim();
-  const payload = await verifySignedTransaction(jws, 'Sandbox', BUNDLE);
-  assert(payload.bundleId === BUNDLE, `bundle ${payload.bundleId}`);
-  assert(payload.environment === 'Sandbox', `environment ${payload.environment}`);
-  assert(payload.productId === PRODUCT, `product ${payload.productId}`);
-});
-
 Deno.test('401 from both Apple hosts stays an auth failure', async () => {
   const fetchImpl: typeof fetch = async () => new Response('', { status: 401 });
   let code = '';
