@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../providers/billing_provider.dart';
 import '../providers/subscription_sheet_labels_provider.dart';
 
@@ -95,7 +97,11 @@ class SubscriptionDetailSheet extends ConsumerWidget {
                     filled: true,
                     onTap: () {
                       Navigator.pop(context);
-                      context.push('/paywall');
+                      if (isFree) {
+                        context.push('/paywall');
+                      } else {
+                        _openStoreSubscriptions();
+                      }
                     },
                   ),
                 ],
@@ -105,6 +111,15 @@ class SubscriptionDetailSheet extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  /// Active subscribers manage or cancel in the store's own subscription page.
+  /// Apple: https://developer.apple.com/documentation/storekit/handling-subscriptions-billing
+  Future<void> _openStoreSubscriptions() async {
+    final uri = Uri.parse(Platform.isIOS
+        ? 'https://apps.apple.com/account/subscriptions'
+        : 'https://play.google.com/store/account/subscriptions');
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 
   String _formatDate(DateTime d) => '${d.day}/${d.month}/${d.year}';

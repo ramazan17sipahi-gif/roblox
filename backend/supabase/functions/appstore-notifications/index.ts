@@ -4,7 +4,7 @@
 // The signedPayload JWS is verified against Apple Root CA - G3.
 // ═══════════════════════════════════════════════════════════════════════════════
 
-import { createClient, SupabaseClient } from 'https://esm.sh/@supabase/supabase-js@2.49.0';
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.0';
 import { errorResponse, jsonResponse, grantBillingCredit, billingLog, generateOpToken } from '../_shared/mod.ts';
 import {
   AppleIapError,
@@ -16,10 +16,10 @@ import {
   verifySignedNotification,
   verifySignedTransaction,
 } from '../_shared/apple_iap.ts';
+import { resolveAppleNotificationUser } from '../_shared/subscription_owner.ts';
 
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 Deno.serve(async (req: Request) => {
   if (req.method !== 'POST') return errorResponse(405, 'METHOD_NOT_ALLOWED', 'POST only');
@@ -84,7 +84,7 @@ Deno.serve(async (req: Request) => {
     return errorResponse(401, 'INVALID_TRANSACTION', 'transaction bundle or environment does not match');
   }
 
-  const userId = await findUserId(svc, tx);
+  const userId = await resolveAppleNotificationUser(svc, tx);
   const productId = tx.productId ?? '';
   const originalTransactionId = tx.originalTransactionId ?? '';
   const transactionId = tx.transactionId || originalTransactionId;
@@ -147,30 +147,3 @@ Deno.serve(async (req: Request) => {
   return jsonResponse({ opToken, received: true, matched: true });
 });
 
-async function findUserId(svc: SupabaseClient, tx: DecodedTransaction): Promise<string | null> {
-  const token = tx.appAccountToken ?? '';
-  if (UUID_RE.test(token)) {
-    const { data, error } = await svc.auth.admin.getUserById(token);
-    if (!error && data?.user) return data.user.id;
-  }
-  const original = tx.originalTransactionId;
-  if (!original) return null;
-
-  const byToken = await svc.from('purchase_events')
-    .select('user_id')
-    .eq('platform', 'ios')
-    .eq('purchase_token_or_txid', original)
-    .order('created_at', { ascending: false })
-    .limit(1)
-    .maybeSingle();
-  if (byToken.data?.user_id) return byToken.data.user_id as string;
-
-  const byPayload = await svc.from('purchase_events')
-    .select('user_id')
-    .eq('platform', 'ios')
-    .filter('raw_payload->>originalTransactionId', 'eq', original)
-    .order('created_at', { ascending: false })
-    .limit(1)
-    .maybeSingle();
-  return (byPayload.data?.user_id as string | undefined) ?? null;
-}

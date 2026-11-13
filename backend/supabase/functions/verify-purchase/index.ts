@@ -13,6 +13,7 @@ import {
 import type { BillingLogContext } from '../_shared/mod.ts';
 import { verifyGooglePlaySubscription } from '../_shared/google_play_verify.ts';
 import { AppleIapError, readAppleIapConfig, verifyApplePurchase } from '../_shared/apple_iap.ts';
+import { completeIosPurchase } from '../_shared/subscription_owner.ts';
 
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
@@ -103,19 +104,30 @@ Deno.serve(async (req: Request) => {
   }
 
   // ── Grant via shared service ────────────────────────────────────────────────
-  const grantResult = await grantBillingCredit({
-    svc, ctx, userId: user.id, platform, productId,
-    transactionIdOrToken: txIdOrToken,
-    eventType: verificationResult.eventType,
-    periodAnchor: verificationResult.periodAnchor,
-    rawPayload: {
-      ...body,
-      expiresDate: verificationResult.expiresDate,
-      originalTransactionId: verificationResult.originalTransactionId,
-      environment: verificationResult.environment,
-      verifiedAt: new Date().toISOString(),
-    },
-  });
+  // iOS restore onto another account moves Pro and expires the previous owner.
+  const grantResult = platform === 'ios'
+    ? await completeIosPurchase({
+      svc, ctx, userId: user.id, productId,
+      transactionId: txIdOrToken,
+      verification: verificationResult,
+      body,
+    })
+    : await grantBillingCredit({
+      svc, ctx, userId: user.id, platform, productId,
+      transactionIdOrToken: txIdOrToken,
+      eventType: verificationResult.eventType,
+      periodAnchor: verificationResult.periodAnchor,
+      rawPayload: {
+        ...body,
+        expiresDate: verificationResult.expiresDate,
+        originalTransactionId: verificationResult.originalTransactionId,
+        environment: verificationResult.environment,
+        verifiedAt: new Date().toISOString(),
+      },
+    });
+  if (platform === 'ios' && 'transferredFrom' in grantResult && grantResult.transferredFrom) {
+    billingLog.reconcile(ctx, 'verify', 'subscription_transferred');
+  }
 
   billingLog.opEnd(ctx, 'verify-purchase', grantResult.granted ? 'granted' : 'dedupe_hit', Date.now() - startMs);
 

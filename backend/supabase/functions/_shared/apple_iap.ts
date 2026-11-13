@@ -1,34 +1,20 @@
 // App Store Server API + JWS verification.
 //
-// JWS chain checks use Apple's SignedDataVerifier. OCSP is off: a failed
-// online check on the edge runtime would reject a real App Review purchase.
-// The certificate chain, bundle id, and environment are still verified.
+// JWS chain checks live in apple_jws.ts and use WebCrypto. Apple's
+// SignedDataVerifier needs node X509Certificate methods that Supabase Edge
+// does not implement, and the thrown exception has an empty message.
 // JWT signing uses jose with the claims from Apple's "Generating JSON Web
 // Tokens" document. The library's HTTP client uses node-fetch, which cannot
 // take the fetch mock the tests require, so Get Transaction Info stays here.
 
 import { importPKCS8, SignJWT } from 'npm:jose@5.9.6';
-import {
-  Environment,
-  SignedDataVerifier,
-} from 'npm:@apple/app-store-server-library@1.6.0';
-import { Buffer } from 'node:buffer';
-import { APPLE_ROOT_CERTIFICATES } from './apple_roots.ts';
+import { AppleIapError, verifyAppleSignedPayload } from './apple_jws.ts';
+
+export { AppleIapError };
 
 export const PRODUCTION_TX_BASE = 'https://api.storekit.itunes.apple.com/inApps/v1/transactions/';
 export const SANDBOX_TX_BASE = 'https://api.storekit-sandbox.itunes.apple.com/inApps/v1/transactions/';
 export const APP_BUNDLE_ID = 'com.rblxclothingmaker.app';
-// Public App Store Apple ID. Required by SignedDataVerifier in Production.
-const APP_APPLE_ID = 6805604533;
-
-const APPLE_ROOT_BUFFERS = APPLE_ROOT_CERTIFICATES.map((der) => Buffer.from(der));
-
-export class AppleIapError extends Error {
-  constructor(message: string, readonly code: string) {
-    super(message);
-    this.name = 'AppleIapError';
-  }
-}
 
 export interface AppleIapConfig {
   keyId: string;
@@ -163,50 +149,41 @@ export async function fetchSignedTransactionInfo(
   throw new AppleIapError(sandbox.error || 'transaction not found', sandbox.notFound ? 'NOT_FOUND' : 'API');
 }
 
-function productionAppAppleId(): number {
-  const raw = Deno.env.get('APPLE_APP_APPLE_ID')?.trim();
-  const parsed = raw ? Number(raw) : APP_APPLE_ID;
-  return Number.isFinite(parsed) ? parsed : APP_APPLE_ID;
+function bundleAndEnvironment(payload: Record<string, unknown>): { bundleId?: string; environment?: string } {
+  const data = (payload.data ?? payload.summary ?? {}) as Record<string, unknown>;
+  const bundleId = typeof data.bundleId === 'string'
+    ? data.bundleId
+    : typeof payload.bundleId === 'string' ? payload.bundleId : undefined;
+  const environment = typeof data.environment === 'string'
+    ? data.environment
+    : typeof payload.environment === 'string' ? payload.environment : undefined;
+  return { bundleId, environment };
 }
 
-function verifierFor(environment: 'Production' | 'Sandbox', bundleId: string): SignedDataVerifier {
-  const appleEnvironment = environment === 'Production' ? Environment.PRODUCTION : Environment.SANDBOX;
-  const appAppleId = environment === 'Production' ? productionAppAppleId() : undefined;
-  return new SignedDataVerifier(APPLE_ROOT_BUFFERS, false, appleEnvironment, bundleId, appAppleId);
-}
-
-function asRecord(value: unknown): Record<string, unknown> {
-  return JSON.parse(JSON.stringify(value)) as Record<string, unknown>;
-}
-
-/** Verify a transaction JWS with Apple's SignedDataVerifier. */
+/** Verify a transaction JWS, then check the bundle and the API host environment. */
 export async function verifySignedTransaction(
   jws: string,
   environment: 'Production' | 'Sandbox',
   bundleId: string,
 ): Promise<Record<string, unknown>> {
-  try {
-    const decoded = await verifierFor(environment, bundleId).verifyAndDecodeTransaction(jws);
-    return asRecord(decoded);
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    throw new AppleIapError(message || 'transaction JWS rejected', 'VERIFICATION_FAILURE');
+  const payload = await verifyAppleSignedPayload(jws);
+  const tx = bundleAndEnvironment(payload);
+  if (tx.bundleId !== bundleId) throw new AppleIapError('bundleId does not match', 'BUNDLE');
+  if (tx.environment !== environment) {
+    throw new AppleIapError(`environment ${tx.environment ?? 'missing'} does not match ${environment}`, 'ENVIRONMENT');
   }
+  return payload;
 }
 
-/** Verify a notification JWS. Tries both environments because the payload is signed. */
+/** Verify a notification JWS. The environment is inside the signed payload. */
 export async function verifySignedNotification(jws: string, bundleId: string): Promise<Record<string, unknown>> {
-  let lastError: unknown;
-  for (const environment of ['Production', 'Sandbox'] as const) {
-    try {
-      const decoded = await verifierFor(environment, bundleId).verifyAndDecodeNotification(jws);
-      return asRecord(decoded);
-    } catch (error) {
-      lastError = error;
-    }
+  const payload = await verifyAppleSignedPayload(jws);
+  const note = bundleAndEnvironment(payload);
+  if (note.bundleId !== bundleId) throw new AppleIapError('bundleId does not match', 'INVALID_APP_IDENTIFIER');
+  if (note.environment !== 'Production' && note.environment !== 'Sandbox') {
+    throw new AppleIapError(`environment ${note.environment ?? 'missing'} is not Production or Sandbox`, 'INVALID_ENVIRONMENT');
   }
-  const message = lastError instanceof Error ? lastError.message : String(lastError);
-  throw new AppleIapError(message || 'notification JWS rejected', 'VERIFICATION_FAILURE');
+  return payload;
 }
 
 function asMillis(value: unknown): number | undefined {
@@ -239,7 +216,8 @@ export function periodAnchorFromMillis(ms: number): string {
 
 /**
  * Checks required for a purchase the signed-in user is trying to redeem.
- * appAccountToken is only enforced when Apple echoes it.
+ * A different appAccountToken does not reject the receipt. The caller moves
+ * the subscription onto the signed-in account instead.
  */
 export function assertPurchaseTransaction(
   tx: DecodedTransaction,
@@ -263,9 +241,6 @@ export function assertPurchaseTransaction(
   }
   if (tx.purchaseDate == null) {
     throw new AppleIapError('purchaseDate is missing', 'PURCHASE_DATE');
-  }
-  if (tx.appAccountToken && tx.appAccountToken.toLowerCase() !== input.userId.toLowerCase()) {
-    throw new AppleIapError('appAccountToken does not match the signed-in user', 'ACCOUNT');
   }
   return {
     valid: true,

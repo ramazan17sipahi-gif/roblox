@@ -39,12 +39,15 @@ Deno.test('invalid JWS signature is rejected', async () => {
   assert(transactionRejected, 'garbage transaction JWS was accepted');
 
   let notificationRejected = false;
+  let notificationMessage = '';
   try {
     await verifySignedNotification('aaa.bbb.ccc', BUNDLE);
   } catch (error) {
     notificationRejected = error instanceof AppleIapError;
+    notificationMessage = error instanceof AppleIapError ? error.message : '';
   }
   assert(notificationRejected, 'garbage notification JWS was accepted');
+  assert(notificationMessage.length > 0, 'notification rejection had an empty message');
 });
 
 Deno.test('a transaction with a different bundle id is rejected', () => {
@@ -114,6 +117,14 @@ Deno.test('a production 401 falls back to sandbox for an unreleased app', async 
   assert(calls.length === 2, `expected 2 calls, got ${calls.length}`);
   assert(result.environment === 'Sandbox', result.environment);
   assert(result.signedTransactionInfo === 'sandbox-jws', 'sandbox payload was not returned');
+});
+
+Deno.test('a real sandbox transaction JWS verifies', async () => {
+  const jws = Deno.readTextFileSync(new URL('./sandbox_transaction.jws', import.meta.url)).trim();
+  const payload = await verifySignedTransaction(jws, 'Sandbox', BUNDLE);
+  assert(payload.bundleId === BUNDLE, `bundle ${payload.bundleId}`);
+  assert(payload.environment === 'Sandbox', `environment ${payload.environment}`);
+  assert(payload.productId === PRODUCT, `product ${payload.productId}`);
 });
 
 Deno.test('401 from both Apple hosts stays an auth failure', async () => {
