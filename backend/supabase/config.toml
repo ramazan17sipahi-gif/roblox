@@ -32,9 +32,6 @@ verify_jwt = false
 [functions.link-platform-account-finalize]
 verify_jwt = false
 
-[functions.revenuecat-webhook]
-verify_jwt = false
-
 [functions.auth-roblox-init]
 verify_jwt = false
 
