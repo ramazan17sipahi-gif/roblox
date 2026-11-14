@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/utils/legal_links.dart';
+import '../../../../shared/utils/store_subscriptions.dart';
 
 class PaywallPage extends ConsumerStatefulWidget {
   const PaywallPage({super.key});
@@ -339,7 +340,7 @@ class _PaywallPageState extends ConsumerState<PaywallPage> {
               ),
               SizedBox(height: 12),
               GestureDetector(
-                onTap: _isLoading ? null : _purchase,
+                onTap: _isLoading ? null : (entitlement.canAccessProContent ? openStoreSubscriptions : _purchase),
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 18),
                   decoration: BoxDecoration(
@@ -367,7 +368,7 @@ class _PaywallPageState extends ConsumerState<PaywallPage> {
                             ),
                           )
                         : Text(
-                            l10n.paywallSubscribe,
+                            entitlement.canAccessProContent ? l10n.settingsManageSubscription : l10n.paywallSubscribe,
                             style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,

@@ -66,6 +66,28 @@ class _CreatorAppState extends ConsumerState<CreatorApp>
     unawaited(ref.read(appOpenAdServiceProvider).showIfAvailable());
   }
 
+  static Brightness? _lastBrightness;
+
+  /// AppColors reads the theme through a static getter, so widgets that do
+  /// not depend on Theme keep their old colors after a light/dark switch.
+  /// When the brightness flips, mark the whole tree for rebuild once.
+  /// Element state (open editor, scroll positions, forms) is preserved.
+  void _rebuildOnBrightnessChange(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    final previous = _lastBrightness;
+    _lastBrightness = brightness;
+    if (previous == null || previous == brightness) return;
+    final root = context as Element;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!root.mounted) return;
+      void mark(Element element) {
+        element.markNeedsBuild();
+        element.visitChildren(mark);
+      }
+      root.visitChildren(mark);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final wallet = ref.watch(walletStateProvider).asData?.value;
@@ -87,6 +109,7 @@ class _CreatorAppState extends ConsumerState<CreatorApp>
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       builder: (context, child) {
         AppColors.bindToTheme(context);
+        _rebuildOnBrightnessChange(context);
         final l10n = AppLocalizations.of(context);
         if (child == null) return const SizedBox.shrink();
 

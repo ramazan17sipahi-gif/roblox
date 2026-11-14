@@ -761,7 +761,7 @@ class _ClassicClothingEditorState extends State<ClassicClothingEditor>
                         duration: const Duration(milliseconds: 200),
                         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                         decoration: BoxDecoration(
-                          color: isActive ? AppColors.primary : Colors.white,
+                          color: isActive ? AppColors.primary : AppColors.surfaceContainerLowest,
                           borderRadius: BorderRadius.circular(14),
                           border: isActive ? null : Border.all(color: AppColors.outlineVariant.withValues(alpha: 0.15)),
                           boxShadow: isActive ? [BoxShadow(color: AppColors.primary.withValues(alpha: 0.2), blurRadius: 6)] : null,
@@ -844,7 +844,7 @@ class _ClassicClothingEditorState extends State<ClassicClothingEditor>
     return Container(
       padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.95),
+        color: AppColors.surfaceContainerLowest.withValues(alpha: 0.95),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.08), blurRadius: 8)],
       ),
@@ -902,7 +902,7 @@ class _ClassicClothingEditorState extends State<ClassicClothingEditor>
     return Container(
       padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.95),
+        color: AppColors.surfaceContainerLowest.withValues(alpha: 0.95),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.08), blurRadius: 8)],
       ),
@@ -963,7 +963,7 @@ class _ClassicClothingEditorState extends State<ClassicClothingEditor>
         duration: const Duration(milliseconds: 350),
         curve: Curves.easeOutCubic,
         decoration: BoxDecoration(
-          color: is3D ? const Color(0xFFF0F0F3) : Colors.white,
+          color: is3D ? AppColors.surfaceContainerLow : AppColors.surfaceContainerLowest,
           borderRadius: BorderRadius.circular(is3D ? 0 : 14),
           boxShadow: is3D
               ? null
@@ -1013,7 +1013,7 @@ class _ClassicClothingEditorState extends State<ClassicClothingEditor>
                               ),
                             )
                           : ColoredBox(
-                              color: const Color(0xFFF0F0F3),
+                              color: AppColors.surfaceContainerLow,
                               child: Center(
                                 child: Icon(
                                   Icons.view_in_ar,
@@ -1041,7 +1041,7 @@ class _ClassicClothingEditorState extends State<ClassicClothingEditor>
                               end: Alignment.bottomCenter,
                               colors: [
                                 Colors.transparent,
-                                Colors.white.withValues(alpha: 0.95),
+                                AppColors.surfaceContainerLowest.withValues(alpha: 0.95),
                               ],
                             ),
                           ),
@@ -1071,7 +1071,7 @@ class _ClassicClothingEditorState extends State<ClassicClothingEditor>
   /// Close bar above the WebView — must not overlap the platform view.
   Widget _buildExpandedPreviewChrome() {
     return Material(
-      color: Colors.white,
+      color: AppColors.surfaceContainerLowest,
       child: SizedBox(
         height: 40,
         child: Row(
@@ -1502,7 +1502,7 @@ class _ClassicClothingEditorState extends State<ClassicClothingEditor>
         top: 4,
       ),
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.97),
+        color: AppColors.surfaceContainerLowest.withValues(alpha: 0.97),
         boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.06), blurRadius: 8, offset: const Offset(0, -2))],
       ),
       child: Row(
@@ -2224,7 +2224,7 @@ class _ClassicClothingEditorState extends State<ClassicClothingEditor>
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
                 decoration: BoxDecoration(
-                  color: _activeShape == s.$1 ? AppColors.primary.withValues(alpha: 0.12) : const Color(0xFFF0F0F3),
+                  color: _activeShape == s.$1 ? AppColors.primary.withValues(alpha: 0.12) : AppColors.surfaceContainerLow,
                   borderRadius: BorderRadius.circular(8),
                   border: _activeShape == s.$1 ? Border.all(color: AppColors.primary.withValues(alpha: 0.4)) : null,
                 ),
@@ -2255,7 +2255,7 @@ class _ClassicClothingEditorState extends State<ClassicClothingEditor>
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: isActive ? AppColors.primary.withValues(alpha: 0.12) : const Color(0xFFF0F0F3),
+          color: isActive ? AppColors.primary.withValues(alpha: 0.12) : AppColors.surfaceContainerLow,
           borderRadius: BorderRadius.circular(6),
           border: isActive ? Border.all(color: AppColors.primary.withValues(alpha: 0.4), width: 1) : null,
         ),
@@ -2644,7 +2644,7 @@ class _ClassicClothingEditorState extends State<ClassicClothingEditor>
               width: 22,
               height: 48,
               decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.95),
+                color: AppColors.surfaceContainerLowest.withValues(alpha: 0.95),
                 borderRadius:
                     const BorderRadius.horizontal(left: Radius.circular(8)),
                 boxShadow: [

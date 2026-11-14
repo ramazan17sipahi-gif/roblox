@@ -134,7 +134,7 @@ class _PublishSheetState extends ConsumerState<PublishSheet> {
       constraints: BoxConstraints(
         maxHeight: MediaQuery.of(context).size.height * 0.85,
       ),
-      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.vertical(top: Radius.circular(40))),
+      decoration: BoxDecoration(color: AppColors.surfaceContainerLowest, borderRadius: BorderRadius.vertical(top: Radius.circular(40))),
       child: SafeArea(
         top: false,
         child: SingleChildScrollView(
@@ -377,11 +377,11 @@ class _PublishSheetState extends ConsumerState<PublishSheet> {
                 children: [
                   Text(label, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 14)),
                   const SizedBox(height: 2),
-                  Text(subtitle, style: TextStyle(color: Colors.white.withOpacity(0.2), fontSize: 11)),
+                  Text(subtitle, style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 11)),
                 ],
               ),
             ),
-            Icon(Icons.chevron_right, color: Colors.white.withOpacity(0.2)),
+            Icon(Icons.chevron_right, color: Colors.white.withOpacity(0.8)),
           ],
         ),
       ),

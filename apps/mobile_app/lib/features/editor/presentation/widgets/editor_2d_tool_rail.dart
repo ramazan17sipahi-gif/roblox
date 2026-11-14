@@ -22,7 +22,7 @@ class Editor2DToolRail extends StatelessWidget {
         width: 44,
         padding: const EdgeInsets.symmetric(vertical: 6),
         decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.96),
+          color: AppColors.surfaceContainerLowest.withValues(alpha: 0.96),
           borderRadius: BorderRadius.circular(14),
           border: Border.all(color: AppColors.outlineVariant.withValues(alpha: 0.1)),
           boxShadow: [

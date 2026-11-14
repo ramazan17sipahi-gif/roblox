@@ -106,7 +106,7 @@ class _ClassicClothingSelectorState extends ConsumerState<ClassicClothingSelecto
       heightFactor: 0.75,
       child: Container(
         decoration: BoxDecoration(
-          color: Color(0xFFF8F8FA),
+          color: AppColors.surface,
           borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
         ),
         child: Column(

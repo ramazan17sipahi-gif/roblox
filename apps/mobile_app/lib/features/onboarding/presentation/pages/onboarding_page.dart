@@ -779,7 +779,7 @@ class _ExportHero extends StatelessWidget {
                           '585 × 559 · PNG',
                           style: FlowUi.mono(
                             size: 10,
-                            color: const Color(0xFF5A5C5A),
+                            color: AppColors.textMediumEmphasis,
                             tracking: 0.04,
                           ),
                         ),

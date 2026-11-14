@@ -204,7 +204,7 @@ class _MyDesignPreviewPageState extends State<MyDesignPreviewPage>
                   end: Alignment.bottomRight,
                   colors: [
                     AppColors.surfaceContainerLow,
-                    const Color(0xFFE8F5E9).withOpacity(0.5),
+                    AppColors.success.withOpacity(0.08),
                     AppColors.surfaceContainerLow,
                   ],
                 ),

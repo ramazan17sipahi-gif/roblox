@@ -408,7 +408,7 @@ class ThreeJSPreviewState extends State<ThreeJSPreview> {
             // Loading overlay — initial engine load
             if (!_isLoaded && !_overlayVisible)
               Container(
-                color: const Color(0xFFF0F0F3),
+                color: AppColors.surfaceContainerLow,
                 child: Center(
                   child: SizedBox(
                     width: 28, height: 28,
@@ -420,7 +420,7 @@ class ThreeJSPreviewState extends State<ThreeJSPreview> {
             // GLB load failure overlay
             if (_glbLoadFailed)
               Container(
-                color: const Color(0xFFF0F0F3),
+                color: AppColors.surfaceContainerLow,
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(24),

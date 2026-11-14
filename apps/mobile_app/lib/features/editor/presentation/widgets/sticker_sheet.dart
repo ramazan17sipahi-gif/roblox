@@ -108,7 +108,7 @@ class _StickerSheetState extends State<StickerSheet> {
                     duration: const Duration(milliseconds: 200),
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: isActive ? AppColors.primary : const Color(0xFFF0F0F3),
+                      color: isActive ? AppColors.primary : AppColors.surfaceContainerLow,
                       borderRadius: BorderRadius.circular(18),
                       boxShadow: isActive
                           ? [BoxShadow(color: AppColors.primary.withValues(alpha: 0.3), blurRadius: 8)]
@@ -148,7 +148,7 @@ class _StickerSheetState extends State<StickerSheet> {
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 150),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF5F5F8),
+                      color: AppColors.surfaceContainerLow,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(color: AppColors.outlineVariant.withValues(alpha: 0.1)),
                     ),

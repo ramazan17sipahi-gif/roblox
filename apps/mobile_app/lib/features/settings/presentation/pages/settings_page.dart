@@ -8,6 +8,7 @@ import 'link_roblox_page.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../app/app_providers.dart';
 import '../../../../shared/utils/legal_links.dart';
+import '../../../../shared/utils/store_subscriptions.dart';
 import '../../../auth/data/auth_repository.dart';
 
 class SettingsPage extends ConsumerStatefulWidget {
@@ -630,7 +631,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
               // ── Subscription Card ───────────────────────────────────
               GestureDetector(
-                onTap: () => context.push('/paywall'),
+                onTap: () => entitlement.isFree ? context.push('/paywall') : openStoreSubscriptions(),
                 child: Container(
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
@@ -693,7 +694,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                       const SizedBox(height: 16),
                       Text(
                         entitlement.isFree ? l10n.settingsFreePlanDesc : l10n.settingsPlanDesc,
-                        style: TextStyle(color: Colors.white.withOpacity(0.2), fontSize: 14),
+                        style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 14),
                       ),
                       const SizedBox(height: 24),
                       Container(

@@ -364,15 +364,15 @@ class _HomePageState extends ConsumerState<HomePage> with LazyShellTabLoader {
                       children: [
                         Text(
                           buttonLabel,
-                          style: const TextStyle(
-                            color: Color(0xFF2D2F2D),
+                          style: TextStyle(
+                            color: AppColors.onSurface,
                             fontWeight: FontWeight.w800,
                             fontSize: 13,
                           ),
                         ),
                         const SizedBox(width: 6),
-                        const Icon(Icons.arrow_forward,
-                            size: 16, color: Color(0xFF2D2F2D)),
+                        Icon(Icons.arrow_forward,
+                            size: 16, color: AppColors.onSurface),
                       ],
                     ),
                   ),
@@ -549,7 +549,7 @@ class _HomePageState extends ConsumerState<HomePage> with LazyShellTabLoader {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: const Color(0xFFF0F0F3),
+                color: AppColors.surfaceContainerLow,
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(

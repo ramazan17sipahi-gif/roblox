@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui' as ui;
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 /// Catalog thumbnail: each card maps its own Shirt/Pants UV onto a blocky
@@ -14,13 +15,13 @@ class WornCharacterPreview extends StatefulWidget {
     this.pantsUrl,
     this.atlasUrl,
     this.templateType,
-    this.backgroundColor = const Color(0xFFF0F0F3),
+    this.backgroundColor,
   });
 
   factory WornCharacterPreview.fromTemplateRow(
     Map<String, dynamic> row, {
     Key? key,
-    Color backgroundColor = const Color(0xFFF0F0F3),
+    Color? backgroundColor,
   }) {
     return WornCharacterPreview(
       key: key,
@@ -36,7 +37,7 @@ class WornCharacterPreview extends StatefulWidget {
   factory WornCharacterPreview.fromLibraryRow(
     Map<String, dynamic> row, {
     Key? key,
-    Color backgroundColor = const Color(0xFFF0F0F3),
+    Color? backgroundColor,
   }) {
     final shirt = httpUrl(row['shirt_texture_url']);
     final pants = httpUrl(row['pants_texture_url']);
@@ -62,7 +63,8 @@ class WornCharacterPreview extends StatefulWidget {
   final String? pantsUrl;
   final String? atlasUrl;
   final String? templateType;
-  final Color backgroundColor;
+  /// Null uses the theme surface so cards follow light and dark mode.
+  final Color? backgroundColor;
 
   @override
   State<WornCharacterPreview> createState() => _WornCharacterPreviewState();
@@ -147,7 +149,7 @@ class _WornCharacterPreviewState extends State<WornCharacterPreview> {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: widget.backgroundColor,
+      color: widget.backgroundColor ?? AppColors.surfaceContainerLow,
       child: _loading && _shirt == null && _pants == null
           ? const Center(
               child: SizedBox(
