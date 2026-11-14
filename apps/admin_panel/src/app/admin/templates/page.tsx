@@ -450,7 +450,7 @@ function TemplateForm({ initial, onSave, onCancel }: {
         </div>
         <div style={{ gridColumn: "1 / -1" }}>
           <label className="form-label">Rank</label>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
+          <div className="rank-grid">
             {ACCESS_TIERS.map((tier) => {
               const selected = accessTier === tier.value;
               const accent = tier.value === "pro" ? "#fbbf24" : tier.value === "ad" ? "#00b4d8" : "var(--text-muted)";
@@ -485,7 +485,7 @@ function TemplateForm({ initial, onSave, onCancel }: {
       </div>
 
       {/* ── Texture Upload Area ── */}
-      <div style={{ marginTop: 20, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+      <div className="texture-upload-grid">
         {/* Shirt Upload */}
         {typeConfig?.needsShirt && (
           <div>

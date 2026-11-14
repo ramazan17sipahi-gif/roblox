@@ -94,6 +94,7 @@ export default function CreditsPage() {
           <p>Henüz kredi hareketi yok</p>
         </div>
       ) : (
+        <div className="table-scroll">
         <table className="data-table">
           <thead>
             <tr>
@@ -138,6 +139,7 @@ export default function CreditsPage() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </div>
   );

@@ -96,8 +96,8 @@ export default function UsersPage() {
           <h1 className="page-title">Üye Yönetimi</h1>
           <p className="page-subtitle">Kullanıcı profilleri, kredi bakiyeleri ve yönetim</p>
         </div>
-        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          <div style={{ position: "relative" }}>
+        <div style={{ display: "flex", gap: 8, alignItems: "center", width: "100%", maxWidth: 360 }}>
+          <div className="search-field" style={{ position: "relative" }}>
             <span className="material-symbols-rounded" style={{
               position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)",
               fontSize: 18, color: "var(--text-muted)"
@@ -107,7 +107,7 @@ export default function UsersPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="İsim veya ID ile ara..."
-              style={{ paddingLeft: 38, width: 280 }}
+              style={{ paddingLeft: 38 }}
             />
           </div>
         </div>
@@ -170,6 +170,7 @@ export default function UsersPage() {
           <p>Kullanıcı bulunamadı</p>
         </div>
       ) : (
+        <div className="table-scroll">
         <table className="data-table">
           <thead>
             <tr>
@@ -240,6 +241,7 @@ export default function UsersPage() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </div>
   );

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const NAV = [
   {
@@ -25,7 +26,39 @@ const NAV = [
   },
 ];
 
-export function SidebarNav() {
+export function AdminChrome({ children }: { children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  return (
+    <div className={`app-shell${open ? " nav-open" : ""}`}>
+      <button
+        type="button"
+        className="sidebar-backdrop"
+        aria-label="Menüyü kapat"
+        onClick={() => setOpen(false)}
+      />
+      <SidebarNav onNavigate={() => setOpen(false)} />
+      <div className="main-column">
+        <AdminTopBar menuOpen={open} onMenu={() => setOpen((v) => !v)} />
+        <main className="main-content">{children}</main>
+      </div>
+    </div>
+  );
+}
+
+export function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
 
   const isActive = (href: string) =>
@@ -52,6 +85,7 @@ export function SidebarNav() {
                 key={item.href}
                 href={item.href}
                 className={`nav-link${isActive(item.href) ? " active" : ""}`}
+                onClick={onNavigate}
               >
                 <span className="material-symbols-rounded nav-icon">{item.icon}</span>
                 <span className="nav-label">{item.label}</span>
@@ -78,7 +112,13 @@ export function SidebarNav() {
   );
 }
 
-export function AdminTopBar() {
+export function AdminTopBar({
+  onMenu,
+  menuOpen,
+}: {
+  onMenu?: () => void;
+  menuOpen?: boolean;
+}) {
   const pathname = usePathname();
 
   const meta: Record<string, { title: string; desc: string }> = {
@@ -106,9 +146,22 @@ export function AdminTopBar() {
 
   return (
     <header className="topbar">
-      <div>
-        <h2 className="topbar-title">{current.title}</h2>
-        <p className="topbar-desc">{current.desc}</p>
+      <div className="topbar-leading">
+        <button
+          type="button"
+          className="menu-toggle"
+          aria-label={menuOpen ? "Menüyü kapat" : "Menüyü aç"}
+          aria-expanded={menuOpen}
+          onClick={onMenu}
+        >
+          <span className="material-symbols-rounded">
+            {menuOpen ? "close" : "menu"}
+          </span>
+        </button>
+        <div>
+          <h2 className="topbar-title">{current.title}</h2>
+          <p className="topbar-desc">{current.desc}</p>
+        </div>
       </div>
       <div className="topbar-actions">
         <span className="topbar-pill">
