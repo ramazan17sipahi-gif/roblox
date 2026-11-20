@@ -24,7 +24,7 @@ export default function SettingsPage() {
         <ul className="settings-list">
           <li><code>NEXT_PUBLIC_SUPABASE_URL</code> — Supabase proje URL</li>
           <li><code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> — Okuma anahtarı</li>
-          <li><code>NEXT_PUBLIC_SUPABASE_SERVICE_KEY</code> — Admin yazma (sunucuda tutulmalı)</li>
+          <li><code>SUPABASE_SERVICE_ROLE_KEY</code> — Yönetim işlemleri için sunucu anahtarı</li>
         </ul>
       </div>
     </div>

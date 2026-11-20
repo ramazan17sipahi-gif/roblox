@@ -1,0 +1,26 @@
+.screen {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+}
+
+.card {
+  width: min(100%, 25rem);
+  margin: 0;
+}
+
+.form,
+.field {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.form {
+  margin-top: 1.25rem;
+  gap: 1rem;
+}
+
+.form p {
+  margin: 0;
+}

@@ -1,10 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
+import { adminApiFailure } from "@/lib/admin-auth";
 import { getSupabaseAdmin } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
 /** Upload a file to the clothing-assets storage bucket (service role). */
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
+  const failure = adminApiFailure(request);
+  if (failure) return failure;
   const supabase = getSupabaseAdmin();
   const form = await request.formData();
   const file = form.get("file");

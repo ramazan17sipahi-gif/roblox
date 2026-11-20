@@ -16,6 +16,12 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Admin access
+
+Set a randomly generated `ADMIN_PANEL_PASSWORD` of at least 24 characters in the deployment environment. For local development, use the ignored `.env.local` file. For Vercel, set it as a Sensitive environment variable on the `roblox` project. The panel remains locked when this value is missing.
+
+Set `SUPABASE_SERVICE_ROLE_KEY` in the server environment for privileged Supabase operations. The admin session lasts eight hours. Rotating `ADMIN_PANEL_PASSWORD` invalidates existing sessions.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

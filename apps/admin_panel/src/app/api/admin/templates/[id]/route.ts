@@ -1,13 +1,16 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
+import { adminApiFailure } from "@/lib/admin-auth";
 import { getSupabaseAdmin } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
 /** Update a clothing template by id. */
 export async function PATCH(
-  request: Request,
+  request: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  const failure = adminApiFailure(request);
+  if (failure) return failure;
   const { id } = await params;
   const supabase = getSupabaseAdmin();
 
@@ -39,9 +42,11 @@ export async function PATCH(
 
 /** Delete a clothing template by id. */
 export async function DELETE(
-  _request: Request,
+  request: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  const failure = adminApiFailure(request);
+  if (failure) return failure;
   const { id } = await params;
   const supabase = getSupabaseAdmin();
 
