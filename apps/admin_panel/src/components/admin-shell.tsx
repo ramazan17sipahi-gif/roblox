@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { signOut } from "@/app/admin-login/actions";
 
 const NAV = [
   {
@@ -168,6 +169,9 @@ export function AdminTopBar({
           <span className="status-dot" />
           Senkron aktif
         </span>
+        <form action={signOut}>
+          <button type="submit" className="btn btn-secondary">Çıkış yap</button>
+        </form>
       </div>
     </header>
   );
