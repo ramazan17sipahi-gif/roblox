@@ -1,10 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
+import { adminApiFailure } from "@/lib/admin-auth";
 import { getSupabaseAdmin } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
 /** List all clothing templates (service role — bypasses RLS). */
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const failure = adminApiFailure(request);
+  if (failure) return failure;
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from("clothing_templates")
@@ -18,7 +21,9 @@ export async function GET() {
 }
 
 /** Create a clothing template. */
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
+  const failure = adminApiFailure(request);
+  if (failure) return failure;
   const supabase = getSupabaseAdmin();
   let body: Record<string, unknown>;
   try {
